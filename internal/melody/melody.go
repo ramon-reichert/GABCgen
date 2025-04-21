@@ -50,13 +50,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 
 	//last unstressed Syllables:
 	for !ph.Syllables[i].IsTonic {
-		for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-			ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-			i--
-			if i < 0 {
-				return definitions.Phrase{}, definitions.ErrResponseToShort
-			}
-		}
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
@@ -65,13 +58,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 	}
 
 	//last tonic syllable:
-	for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-		i--
-		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
-		}
-	}
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
@@ -79,13 +65,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 	}
 
 	//syllable before the last tonic:
-	for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-		i--
-		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
-		}
-	}
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
@@ -93,13 +72,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 	}
 
 	//testing the exception at last unstressed reciting syllable:
-	for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-		i--
-		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
-		}
-	}
 	if ph.Syllables[i].IsTonic { //default case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
@@ -116,13 +88,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 
 	// completing reciting Syllables:
 	for i > 0 {
-		for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-			ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-			i--
-			if i < 0 {
-				return definitions.Phrase{}, definitions.ErrResponseToShort
-			}
-		}
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
@@ -131,10 +96,6 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 	}
 
 	//first intonation syllable:
-	for ph.Syllables[i].IsPunct { //leaving the punctuation out of the melody logic
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char)
-		i++
-	}
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(f)"
 
 	return ph, nil

@@ -10,30 +10,30 @@ import (
 	"github.com/ramon-reichert/GABCgen/internal/definitions"
 )
 
-func mockSyllabify(ctx context.Context, word string) (string, string, error) {
+func mockSyllabify(ctx context.Context, word string) (string, int, error) {
 	var hyphen string
-	var tonic string
+	var tonic int
 
 	//Mocking syllabification to allow testing the core application:
 	switch word { //"Na verdade, é digno e justo,="
 	case "na":
 		hyphen = "na"
-		tonic = "na"
+		tonic = 1
 	case "verdade":
-		hyphen = "ver-da-de"
-		tonic = "da"
+		hyphen = "ver/da/de"
+		tonic = 2
 	case "é":
 		hyphen = "é"
-		tonic = "é"
+		tonic = 1
 	case "digno":
-		hyphen = "dig-no"
-		tonic = "dig"
+		hyphen = "dig/no"
+		tonic = 1
 	case "e":
 		hyphen = "e"
-		tonic = "e"
+		tonic = 1
 	case "justo":
-		hyphen = "jus-to"
-		tonic = "jus"
+		hyphen = "jus/to"
+		tonic = 1
 	}
 
 	//TODO: fetch the word in a list of already used words. Could be a map["palavra"]Syllab{hyphen: "pa-la-vra", tonic: "la"}
@@ -68,7 +68,7 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syll
 	log.Println("upperLetters: ", upperLetters)
 	log.Println("justLetters: ", string(justLetters))
 
-	hyphenated, tonic, err := mockSyllabify(ctx, string(justLetters))
+	hyphenated, tonicIndex, err := mockSyllabify(ctx, string(justLetters))
 	if err != nil {
 		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
 	}
@@ -100,7 +100,7 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syll
 			log.Println("length of runeHyphenated: ", len(runeHyphenated))
 			log.Println("runeHyphenatedIndex: ", runeHyphenatedIndex)
 			runeHyphenatedIndex++
-			if runeHyphenatedIndex < len(runeHyphenated) && runeHyphenated[runeHyphenatedIndex] == '-' {
+			if runeHyphenatedIndex < len(runeHyphenated) && runeHyphenated[runeHyphenatedIndex] == '/' {
 				recomposedWord = append(recomposedWord, runeHyphenated[runeHyphenatedIndex])
 				runeHyphenatedIndex++
 			}
@@ -115,7 +115,7 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syll
 		log.Println(recomposedWord, " > recomposed word runes")
 	}
 
-	strSyllables := strings.Split(string(recomposedWord), "-")
+	strSyllables := strings.Split(string(recomposedWord), "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
 
 	for i, v := range strSyllables {
 		runeSyllable := []rune(v)
@@ -124,7 +124,7 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syll
 
 		//build a Syllable with metadata from the []rune without letters and putctuation marks:
 		s := definitions.Syllable{Char: runeSyllable}
-		if v == tonic {
+		if i+1 == tonicIndex {
 			s.IsTonic = true
 		}
 

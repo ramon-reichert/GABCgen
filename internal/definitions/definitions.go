@@ -1,9 +1,8 @@
 package definitions
 
-type Syllable struct { //TODO: MOVE THIS TO PROPER FILE LATER!!
+type Syllable struct {
 	Char    []rune
 	IsTonic bool
-	IsPunct bool //TODO: Cut it off since the punctuation handling was built in syllabifier file!!
 	IsLast  bool //If it is the last syllable of a word.
 	IsFirst bool //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
 	GABC    string
