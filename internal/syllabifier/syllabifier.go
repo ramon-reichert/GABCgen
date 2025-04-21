@@ -42,45 +42,48 @@ func mockSyllabify(ctx context.Context, word string) (string, int, error) {
 	return hyphen, tonic, nil
 }
 
-func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syllable, error) {
-	var syllables []definitions.Syllable
+type wordMap struct {
+	word         string
+	justLetters  []rune
+	upperLetters map[int]rune
+	notLetters   map[int]rune
+}
 
-	//TODO: handle case with hyphen beginning (-speech)
+// createWordMap takes a word and returns a wordMap struct with the word, its letters, upper case letters, and non-letter characters.
+// It separates letters from non-letters and stores the original case of the letters.
+func createWordMap(word string) wordMap {
 
-	//store attached punctuation marks and non-letters as runes:
-	notLetters := make(map[int]rune)
-	justLetters := []rune{}
-	upperLetters := make(map[int]rune)
+	wMap := wordMap{
+		word:         word,
+		justLetters:  []rune{},           //store only the letters of the word, all in lower case
+		upperLetters: make(map[int]rune), //store the original upper case letters
+		notLetters:   make(map[int]rune), //store attached punctuation marks and non-letters as runes
+	}
+
 	runeWord := []rune(word)
 	for i, v := range runeWord {
 		if !unicode.IsLetter(v) {
-			notLetters[i] = v
+			wMap.notLetters[i] = v
 		} else {
-			if unicode.IsUpper(v) { //store the upper case letters
-				upperLetters[i] = v
+			if unicode.IsUpper(v) {
+				wMap.upperLetters[i] = v
 				v = unicode.ToLower(v)
 			}
-			justLetters = append(justLetters, v)
+			wMap.justLetters = append(wMap.justLetters, v)
 		}
 	}
-	log.Println("\n entry word: ", word)
-	log.Println("notLetters: ", notLetters)
-	log.Println("upperLetters: ", upperLetters)
-	log.Println("justLetters: ", string(justLetters))
+	return wMap
+}
 
-	hyphenated, tonicIndex, err := mockSyllabify(ctx, string(justLetters))
-	if err != nil {
-		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
-	}
-
-	runeHyphenated := []rune(hyphenated)
-	//restore letters case and ponctuation marks to exisiting Syllables:
+// recomposeWord takes a word with slashes and recomposes it with the original case and punctuation marks.
+func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 	var recomposedWord []rune
+
 	entryWordIndex := 0
 	runeHyphenatedIndex := 0
-	for entryWordIndex < len(runeWord) {
+	for entryWordIndex < len([]rune(wordMap.word)) {
 		//test if there is a ponctuation mark to put back into place:
-		elem, ok := notLetters[entryWordIndex]
+		elem, ok := wordMap.notLetters[entryWordIndex]
 		if ok {
 			recomposedWord = append(recomposedWord, elem)
 
@@ -91,38 +94,45 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syll
 
 		} else {
 			//retrieve the case of each letter:
-			wasUpper, ok := upperLetters[entryWordIndex]
+			wasUpper, ok := wordMap.upperLetters[entryWordIndex]
 			if ok {
-				runeHyphenated[runeHyphenatedIndex] = unicode.ToUpper(wasUpper)
+				runeSlashed[runeHyphenatedIndex] = unicode.ToUpper(wasUpper)
 			}
 
-			recomposedWord = append(recomposedWord, runeHyphenated[runeHyphenatedIndex])
-			log.Println("length of runeHyphenated: ", len(runeHyphenated))
+			recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
+			log.Println("length of runeHyphenated: ", len(runeSlashed))
 			log.Println("runeHyphenatedIndex: ", runeHyphenatedIndex)
 			runeHyphenatedIndex++
-			if runeHyphenatedIndex < len(runeHyphenated) && runeHyphenated[runeHyphenatedIndex] == '/' {
-				recomposedWord = append(recomposedWord, runeHyphenated[runeHyphenatedIndex])
+			if runeHyphenatedIndex < len(runeSlashed) && runeSlashed[runeHyphenatedIndex] == '/' {
+				recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
 				runeHyphenatedIndex++
 			}
 
 		}
 		entryWordIndex++
+	}
+	return string(recomposedWord)
+}
 
-		//DEBUG:
-		log.Println("entryWordIndex: ", entryWordIndex)
-		log.Println("runeHyphenatedIndex: ", runeHyphenatedIndex)
-		log.Println(string(recomposedWord), " > recomposed word string")
-		log.Println(recomposedWord, " > recomposed word runes")
+// ClassifyWordSyllables takes a word and returns its syllables with metadata.
+func ClassifyWordSyllables(ctx context.Context, word string) ([]definitions.Syllable, error) {
+	var syllables []definitions.Syllable
+
+	wordMap := createWordMap(word)
+
+	slashed, tonicIndex, err := mockSyllabify(ctx, string(wordMap.justLetters))
+	if err != nil {
+		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
 	}
 
-	strSyllables := strings.Split(string(recomposedWord), "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
+	recomposedWord := recomposeWord([]rune(slashed), wordMap)
 
+	strSyllables := strings.Split(recomposedWord, "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
+
+	//build a definitions.Syllable with metadata from each []rune syllable:
 	for i, v := range strSyllables {
 		runeSyllable := []rune(v)
-		log.Println(v, " > string syllable")
-		log.Println(runeSyllable, " > runes syllable")
 
-		//build a Syllable with metadata from the []rune without letters and putctuation marks:
 		s := definitions.Syllable{Char: runeSyllable}
 		if i+1 == tonicIndex {
 			s.IsTonic = true
