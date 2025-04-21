@@ -1,14 +1,12 @@
-package melody
+package gabcGen
 
 import (
 	"context"
 	"fmt"
-
-	"github.com/ramon-reichert/GABCgen/internal/definitions"
 )
 
-func ApplyMelodyGABC(ctx context.Context, ph definitions.Phrase) (string, error) {
-	switch ph.PhraseType {
+func (ph Phrase) ApplyMelodyGABC(ctx context.Context) (string, error) {
+	switch ph.phraseType {
 	case "firsts":
 		composedPhrase, err := applyFirsts(ph)
 		if err != nil {
@@ -30,7 +28,7 @@ func ApplyMelodyGABC(ctx context.Context, ph definitions.Phrase) (string, error)
 	return "", fmt.Errorf("someerror") //TODO: HANDLE ERROR CASES
 }
 
-func joinSyllables(ph definitions.Phrase, end string) string {
+func joinSyllables(ph Phrase, end string) string {
 	var result string
 	for _, v := range ph.Syllables {
 		result = result + v.GABC
@@ -42,10 +40,10 @@ func joinSyllables(ph definitions.Phrase, end string) string {
 	return result + end
 }
 
-func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
+func applyFirsts(ph Phrase) (Phrase, error) {
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
-		return definitions.Phrase{}, definitions.ErrResponseToShort
+		return Phrase{}, ErrResponseToShort
 	}
 
 	//last unstressed Syllables:
@@ -53,7 +51,7 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
+			return Phrase{}, ErrResponseToShort
 		}
 	}
 
@@ -61,14 +59,14 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
-		return definitions.Phrase{}, definitions.ErrResponseToShort
+		return Phrase{}, ErrResponseToShort
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
-		return definitions.Phrase{}, definitions.ErrResponseToShort
+		return Phrase{}, ErrResponseToShort
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -76,13 +74,13 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
+			return Phrase{}, ErrResponseToShort
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
+			return Phrase{}, ErrResponseToShort
 		}
 	}
 
@@ -91,7 +89,7 @@ func applyFirsts(ph definitions.Phrase) (definitions.Phrase, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return definitions.Phrase{}, definitions.ErrResponseToShort
+			return Phrase{}, ErrResponseToShort
 		}
 	}
 
