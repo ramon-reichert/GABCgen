@@ -7,9 +7,12 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/ramon-reichert/GABCgen/internal/syllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/syllabification"
 )
 
+type Syllabifier interface {
+	Syllabify(ctx context.Context, word string) (string, int, error)
+}
 type wordMap struct {
 	word         string
 	justLetters  []rune
@@ -88,7 +91,7 @@ func ClassifyWordSyllables(ctx context.Context, word string) ([]Syllable, error)
 
 	wordMap := createWordMap(word)
 
-	slashed, tonicIndex, err := syllabifier.Syllabify(ctx, string(wordMap.justLetters))
+	slashed, tonicIndex, err := syllabification.NewSyllabifier().Syllabify(ctx, string(wordMap.justLetters))
 	if err != nil {
 		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
 	}

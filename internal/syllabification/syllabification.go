@@ -1,10 +1,17 @@
-package syllabifier
+package syllabification
 
 import (
 	"context"
 )
 
-func Syllabify(ctx context.Context, word string) (string, int, error) {
+type MockSyllabifier struct {
+}
+
+func NewSyllabifier() *MockSyllabifier {
+	return &MockSyllabifier{}
+}
+
+func (syllab MockSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
 	var hyphen string
 	var tonic int
 
