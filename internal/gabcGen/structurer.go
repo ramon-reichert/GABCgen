@@ -24,7 +24,7 @@ type Phrase struct {
 	Syllables []Syllable
 }
 
-func BuildPhrase(ctx context.Context, s string) (Phrase, error) {
+func (gabc GabcGen) BuildPhrase(ctx context.Context, s string) (Phrase, error) {
 	var phrase Phrase
 
 	switch {
@@ -47,7 +47,7 @@ func BuildPhrase(ctx context.Context, s string) (Phrase, error) {
 	words := strings.Fields(s)
 	for _, v := range words {
 		//TODO: verify if word is composed and divide it at the hyphen
-		syllables, err := ClassifyWordSyllables(ctx, v)
+		syllables, err := gabc.classifyWordSyllables(ctx, v)
 		if err != nil {
 			return Phrase{}, fmt.Errorf("building Phrase from sentence: %w ", err)
 		}

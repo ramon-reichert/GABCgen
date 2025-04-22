@@ -3,11 +3,8 @@ package gabcGen
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 	"unicode"
-
-	"github.com/ramon-reichert/GABCgen/internal/syllabification"
 )
 
 type Syllabifier interface {
@@ -58,11 +55,6 @@ func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 		if ok {
 			recomposedWord = append(recomposedWord, elem)
 
-			//DEBUG:
-			log.Println(elem, " > elem rune")
-			log.Println(recomposedWord, " > recomposed word runes")
-			log.Println(string(recomposedWord), " > recomposed word string")
-
 		} else {
 			//retrieve the case of each letter:
 			wasUpper, ok := wordMap.upperLetters[entryWordIndex]
@@ -71,8 +63,7 @@ func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 			}
 
 			recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
-			log.Println("length of runeHyphenated: ", len(runeSlashed))
-			log.Println("runeHyphenatedIndex: ", runeHyphenatedIndex)
+
 			runeHyphenatedIndex++
 			if runeHyphenatedIndex < len(runeSlashed) && runeSlashed[runeHyphenatedIndex] == '/' {
 				recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
@@ -85,13 +76,13 @@ func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 	return string(recomposedWord)
 }
 
-// ClassifyWordSyllables takes a word and returns its syllables with metadata.
-func ClassifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
+// classifyWordSyllables takes a word and returns its syllables with metadata.
+func (gabc GabcGen) classifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
 	var syllables []Syllable
 
 	wordMap := createWordMap(word)
 
-	slashed, tonicIndex, err := syllabification.NewSyllabifier().Syllabify(ctx, string(wordMap.justLetters))
+	slashed, tonicIndex, err := gabc.syllabifier.Syllabify(ctx, string(wordMap.justLetters))
 	if err != nil {
 		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
 	}
