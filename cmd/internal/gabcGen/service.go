@@ -1,12 +1,12 @@
 package gabcGen
 
-type GabcGen struct {
+type GabcGenAPI struct {
 	syllabifier Syllabifier
 	//renderer             Renderer
 }
 
-func NewGabcGen(syllab Syllabifier) GabcGen {
-	return GabcGen{
+func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
+	return GabcGenAPI{
 		syllabifier: syllab,
 	}
 }

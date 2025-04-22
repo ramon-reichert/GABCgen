@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/internal/syllabification"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification"
 )
 
 var ctx context.Context = context.Background()
@@ -17,7 +17,7 @@ func TestApplyMelody(t *testing.T) {
 	t.Run("apply gabc melody to firsts phrase", func(t *testing.T) {
 		is := is.New(t)
 
-		phrase, err := gabcGen.NewGabcGen(syllabification.NewSyllabifier()).BuildPhrase(ctx, "-Na: verd'ade, é .digno e justo,=")
+		phrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).BuildPhrase(ctx, "-Na: verd'ade, é .digno e justo,=")
 		is.NoErr(err)
 
 		for _, v := range phrase.Syllables { //DEBUG code

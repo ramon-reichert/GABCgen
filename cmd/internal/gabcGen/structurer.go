@@ -24,7 +24,7 @@ type Phrase struct {
 	Syllables []Syllable
 }
 
-func (gabc GabcGen) BuildPhrase(ctx context.Context, s string) (Phrase, error) {
+func (gabc GabcGenAPI) BuildPhrase(ctx context.Context, s string) (Phrase, error) {
 	var phrase Phrase
 
 	switch {

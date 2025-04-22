@@ -77,7 +77,7 @@ func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 }
 
 // classifyWordSyllables takes a word and returns its syllables with metadata.
-func (gabc GabcGen) classifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
+func (gabc GabcGenAPI) classifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
 	var syllables []Syllable
 
 	wordMap := createWordMap(word)
