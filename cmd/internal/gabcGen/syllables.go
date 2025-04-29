@@ -7,9 +7,6 @@ import (
 	"unicode"
 )
 
-type Syllabifier interface {
-	Syllabify(ctx context.Context, word string) (string, int, error)
-}
 type wordMap struct {
 	word         string
 	justLetters  []rune

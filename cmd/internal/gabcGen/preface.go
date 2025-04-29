@@ -5,7 +5,22 @@ import (
 	"fmt"
 )
 
-func (ph Phrase) ApplyMelodyGABC(ctx context.Context) (string, error) {
+type preface struct {
+	prefaceText string
+	phrases     []Phrase
+}
+
+func newPreface(markedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
+	return &preface{
+		prefaceText: markedText,
+	}
+}
+
+func (preface *preface) StructurePhrases(ctx context.Context) error {
+
+}
+
+func (preface *preface) ApplyMelodyGABC(ctx context.Context) (string, error) {
 	switch ph.phraseType {
 	case "firsts":
 		composedPhrase, err := applyFirsts(ph)
