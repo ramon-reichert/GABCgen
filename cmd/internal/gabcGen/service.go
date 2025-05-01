@@ -37,7 +37,7 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 	}
 
 	for _, v := range preface.phrases {
-		err = v.BuildPhrase(ctx, gen)
+		err = v.BuildSyllables(ctx, gen)
 		if err != nil {
 			//TODO handle error
 		}

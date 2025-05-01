@@ -14,7 +14,7 @@ type Syllable struct {
 	IsFirst bool //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
 	GABC    string
 }
-type wordMap struct {
+type wordMaped struct {
 	word         string
 	justLetters  []rune
 	upperLetters map[int]rune
@@ -23,9 +23,9 @@ type wordMap struct {
 
 // createWordMap takes a word and returns a wordMap struct with the word, its letters, upper case letters, and non-letter characters.
 // It separates letters from non-letters and stores the original case of the letters.
-func createWordMap(word string) wordMap {
+func createWordMap(word string) wordMaped {
 
-	wMap := wordMap{
+	wMap := wordMaped{
 		word:         word,
 		justLetters:  []rune{},           //store only the letters of the word, all in lower case
 		upperLetters: make(map[int]rune), //store the original upper case letters
@@ -48,7 +48,7 @@ func createWordMap(word string) wordMap {
 }
 
 // recomposeWord takes a word with slashes and recomposes it with the original case and punctuation marks.
-func recomposeWord(runeSlashed []rune, wordMap wordMap) []string {
+func recomposeWord(runeSlashed []rune, wordMap wordMaped) []string {
 	var recomposedWord []rune
 
 	entryWordIndex := 0

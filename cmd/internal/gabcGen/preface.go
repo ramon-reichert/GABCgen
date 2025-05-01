@@ -76,7 +76,7 @@ func (preface *preface) newTypedPhrase(s string) (*Phrase, error) {
 func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 	var composedGABC string
 	for _, ph := range preface.phrases {
-		gabcPhrase, err := ph.applyMelodySwitch()
+		gabcPhrase, err := preface.applyMelodySwitch(ph)
 		if err != nil {
 			return "", fmt.Errorf("applying melody: %w ", err)
 		}
@@ -86,7 +86,7 @@ func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 
 }
 
-func (ph *Phrase) applyMelodySwitch() (string, error) {
+func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 
 	switch ph.PhraseTyped {
 	case firsts:

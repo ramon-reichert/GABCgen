@@ -6,9 +6,9 @@ import (
 	"strings"
 )
 
-type PhraseMelodyer interface {
-	applyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
-}
+//type PhraseMelodyer interface {
+//	applyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+//}
 
 type Phrase struct {
 	Raw         string
@@ -16,7 +16,8 @@ type Phrase struct {
 	Syllables   []Syllable
 }
 
-func (ph *Phrase) BuildPhrase(ctx context.Context, gen GabcGenAPI) error {
+// BuildSyllabes populates a Phrase.Syllables creating Syllable structs from each word of the Phrase.
+func (ph *Phrase) BuildSyllables(ctx context.Context, gen GabcGenAPI) error {
 
 	words := strings.Fields(ph.Raw)
 	for _, v := range words {
