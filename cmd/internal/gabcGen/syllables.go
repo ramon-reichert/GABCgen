@@ -7,6 +7,13 @@ import (
 	"unicode"
 )
 
+type Syllable struct {
+	Char    []rune
+	IsTonic bool
+	IsLast  bool //If it is the last syllable of a word.
+	IsFirst bool //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
+	GABC    string
+}
 type wordMap struct {
 	word         string
 	justLetters  []rune
@@ -41,7 +48,7 @@ func createWordMap(word string) wordMap {
 }
 
 // recomposeWord takes a word with slashes and recomposes it with the original case and punctuation marks.
-func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
+func recomposeWord(runeSlashed []rune, wordMap wordMap) []string {
 	var recomposedWord []rune
 
 	entryWordIndex := 0
@@ -70,23 +77,24 @@ func recomposeWord(runeSlashed []rune, wordMap wordMap) string {
 		}
 		entryWordIndex++
 	}
-	return string(recomposedWord)
+
+	strSyllables := strings.Split(string(recomposedWord), "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
+
+	return strSyllables
 }
 
 // classifyWordSyllables takes a word and returns its syllables with metadata.
 func (gabc GabcGenAPI) classifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
 	var syllables []Syllable
 
-	wordMap := createWordMap(word)
+	wordMap := createWordMap(word) //TODO method
 
 	slashed, tonicIndex, err := gabc.syllabifier.Syllabify(ctx, string(wordMap.justLetters))
 	if err != nil {
 		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
 	}
 
-	recomposedWord := recomposeWord([]rune(slashed), wordMap)
-
-	strSyllables := strings.Split(recomposedWord, "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
+	strSyllables := recomposeWord([]rune(slashed), wordMap)
 
 	//build a gabcGen.Syllable with metadata from each []rune syllable:
 	for i, v := range strSyllables {
@@ -107,4 +115,16 @@ func (gabc GabcGenAPI) classifyWordSyllables(ctx context.Context, word string) (
 	}
 
 	return syllables, nil
+}
+
+func joinSyllables(syl *[]Syllable, end string) string {
+	var result string
+	for _, v := range *syl {
+		result = result + v.GABC
+		if v.IsLast {
+			result = result + " "
+		}
+	}
+
+	return result + end
 }

@@ -1,6 +1,9 @@
 package gabcGen
 
-import "context"
+import (
+	"context"
+	"log"
+)
 
 type Syllabifier interface {
 	Syllabify(ctx context.Context, word string) (string, int, error)
@@ -22,18 +25,34 @@ func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
 }
 
 type scoreFile struct {
-	url string
+	Url string
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	preface := newPreface(markedText)
-	err := preface.StructurePhrases(ctx)
-	//TODO: handle error
-	composedGABC, err := preface.ApplyMelodyGABC(ctx)
-	//TODO: handle error
+
+	err := preface.DistributeTextToPhrases(ctx)
+	if err != nil {
+		log.Panicln("structuring phrases: ", err) //TODO: handle error
+	}
+
+	for _, v := range preface.phrases {
+		err = v.BuildPhrase(ctx, gen)
+		if err != nil {
+			//TODO handle error
+		}
+	}
+
+	composedGABC, err := preface.ApplyGabcMelodies(ctx)
+	if err != nil {
+		log.Panicln("applying gabc melodies: ", err) //TODO: handle error
+	}
+
 	var score scoreFile
-	score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
+	//score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
 	//TODO: handle error
+
+	score.Url = composedGABC // REMOVE LATER. JUST TO ENABLE PRE TESTING!
 
 	return score, nil
 }
