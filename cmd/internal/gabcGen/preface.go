@@ -7,7 +7,7 @@ import (
 )
 
 type preface struct {
-	markedText string
+	markedText string    //each line must end with a mark: =, *, // or +.
 	phrases    []*Phrase //TODO: change to PhraseMelodyer
 	//phrases    []PhraseMelodyer
 }
@@ -22,18 +22,21 @@ const ( // Phrase types that can occur in a Preface
 	conclusion PrefacePhraseType = "conclusion" // conclusion = Beginning of conclusion paragraph (often "Por isso") Must end with "+"
 )
 
+// NewPreface creates a new preface struct with the marked text.
 func newPreface(markedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
 	return &preface{
 		markedText: markedText,
 	}
 }
 
+// DistributeTextToPhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
+// It creates a new Phrase struct for each line and appends it to the preface's phrases slice.
 func (preface *preface) DistributeTextToPhrases(ctx context.Context, gen GabcGenAPI) /*(PhraseMelodyer,*/ error {
 
 	for v := range strings.Lines(preface.markedText) {
 		typedPhrase, err := preface.newTypedPhrase(v, gen.syllabifier)
 		if err != nil {
-			//TODO handle error
+			return err //TODO handle error
 		}
 
 		preface.phrases = append(preface.phrases, typedPhrase)
@@ -42,6 +45,7 @@ func (preface *preface) DistributeTextToPhrases(ctx context.Context, gen GabcGen
 	return nil
 }
 
+// newTypedPhrase creates a new Phrase struct based on the given string.
 func (preface *preface) newTypedPhrase(s string, syllab Syllabifier) (*Phrase, error) {
 
 	switch {
@@ -78,6 +82,7 @@ func (preface *preface) newTypedPhrase(s string, syllab Syllabifier) (*Phrase, e
 	}
 }
 
+// ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
 func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 	var composedGABC string
 	for _, ph := range preface.phrases {
@@ -91,6 +96,7 @@ func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 
 }
 
+// applyMelodySwitch route to the correct applyMelody function based on the phrase type.
 func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 
 	switch ph.PhraseTyped {
@@ -112,8 +118,7 @@ func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 
 		}*/
 	}
-	return "", fmt.Errorf("someerror") //TODO: HANDLE ERROR CASES
-
+	return "", fmt.Errorf("Phrase type is none of the accepted ones: %v ", ph.PhraseTyped)
 }
 
 //type Firsts Phrase
@@ -122,6 +127,7 @@ func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 //	return firsts
 //}
 
+// applyMelodyFirsts applies the GABC melody to the firsts phrases of a preface.
 func (ph *Phrase) applyMelodyFirsts() (string, error) {
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {

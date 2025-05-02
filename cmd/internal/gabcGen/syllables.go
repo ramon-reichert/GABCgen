@@ -46,6 +46,7 @@ func (wMap *WordMaped) parseWord() {
 	}
 }
 
+// Syllabify takes a word and uses the Syllabifier to split it into syllables.
 func (wMap *WordMaped) syllabify(ctx context.Context, syllabifier Syllabifier) error {
 	slashed, tonicIndex, err := syllabifier.Syllabify(ctx, string(wMap.justLetters))
 	if err != nil {

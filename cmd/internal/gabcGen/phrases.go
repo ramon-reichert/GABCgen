@@ -12,10 +12,10 @@ import (
 //}
 
 type Phrase struct {
-	Raw         string
-	PhraseTyped PrefacePhraseType
-	Syllables   []*Syllable
-	syllabifier Syllabifier
+	Raw         string            // the original phrase
+	PhraseTyped PrefacePhraseType // the type of the phrase (firsts, last, mediant, etc.)
+	Syllables   []*Syllable       // the syllables of the phrase
+	syllabifier Syllabifier       // the Syllabifier to be used to syllabify the words of the phrase
 }
 
 // BuildSyllabes populates a Phrase.Syllables creating Syllable structs from each word of the Phrase.
