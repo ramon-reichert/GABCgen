@@ -14,26 +14,26 @@ type Syllable struct {
 	IsFirst bool //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
 	GABC    string
 }
-type wordMaped struct {
-	word         string
-	justLetters  []rune
-	upperLetters map[int]rune
-	notLetters   map[int]rune
+type WordMaped struct {
+	word              string       //the original word
+	originalRunes     []rune       //the original word as runes
+	justLetters       []rune       //store only the letters of the word, all in lower case
+	upperLetters      map[int]rune //store the original upper case letters
+	notLetters        map[int]rune //store attached punctuation marks and non-letters as runes
+	slashedLetters    string       //the word with slashes between the syllables
+	tonicIndex        int          //the index of the tonic syllable in the word starting from 1
+	splittedSyllables []string     //the syllables of the word as slices of strings
 }
 
-// createWordMap takes a word and returns a wordMap struct with the word, its letters, upper case letters, and non-letter characters.
-// It separates letters from non-letters and stores the original case of the letters.
-func createWordMap(word string) wordMaped {
+// ParseWord populates all possible WordMap fields before syllabifying the word.
+func (wMap *WordMaped) parseWord() {
 
-	wMap := wordMaped{
-		word:         word,
-		justLetters:  []rune{},           //store only the letters of the word, all in lower case
-		upperLetters: make(map[int]rune), //store the original upper case letters
-		notLetters:   make(map[int]rune), //store attached punctuation marks and non-letters as runes
-	}
+	wMap.originalRunes = []rune(wMap.word)
+	wMap.justLetters = []rune{}
+	wMap.upperLetters = make(map[int]rune)
+	wMap.notLetters = make(map[int]rune)
 
-	runeWord := []rune(word)
-	for i, v := range runeWord {
+	for i, v := range wMap.originalRunes {
 		if !unicode.IsLetter(v) {
 			wMap.notLetters[i] = v
 		} else {
@@ -44,87 +44,74 @@ func createWordMap(word string) wordMaped {
 			wMap.justLetters = append(wMap.justLetters, v)
 		}
 	}
-	return wMap
+}
+
+func (wMap *WordMaped) syllabify(ctx context.Context, syllabifier Syllabifier) error {
+	slashed, tonicIndex, err := syllabifier.Syllabify(ctx, string(wMap.justLetters))
+	if err != nil {
+		return fmt.Errorf("syllabifying word %v: %w ", wMap.word, err)
+	}
+	wMap.slashedLetters = slashed
+	wMap.tonicIndex = tonicIndex
+
+	return nil
 }
 
 // recomposeWord takes a word with slashes and recomposes it with the original case and punctuation marks.
-func recomposeWord(runeSlashed []rune, wordMap wordMaped) []string {
+func (wMap *WordMaped) recomposeWord() {
 	var recomposedWord []rune
+	runeSlashed := []rune(wMap.slashedLetters)
 
-	entryWordIndex := 0
-	runeHyphenatedIndex := 0
-	for entryWordIndex < len([]rune(wordMap.word)) {
+	originalWordIndex := 0
+	slashedLettersIndex := 0
+	for originalWordIndex < len(wMap.originalRunes) {
 		//test if there is a ponctuation mark to put back into place:
-		elem, ok := wordMap.notLetters[entryWordIndex]
+		elem, ok := wMap.notLetters[originalWordIndex]
 		if ok {
 			recomposedWord = append(recomposedWord, elem)
 
 		} else {
 			//retrieve the case of each letter:
-			wasUpper, ok := wordMap.upperLetters[entryWordIndex]
+			wasUpper, ok := wMap.upperLetters[originalWordIndex]
 			if ok {
-				runeSlashed[runeHyphenatedIndex] = unicode.ToUpper(wasUpper)
+				runeSlashed[slashedLettersIndex] = unicode.ToUpper(wasUpper)
 			}
 
-			recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
+			recomposedWord = append(recomposedWord, runeSlashed[slashedLettersIndex])
 
-			runeHyphenatedIndex++
-			if runeHyphenatedIndex < len(runeSlashed) && runeSlashed[runeHyphenatedIndex] == '/' {
-				recomposedWord = append(recomposedWord, runeSlashed[runeHyphenatedIndex])
-				runeHyphenatedIndex++
+			slashedLettersIndex++
+			if slashedLettersIndex < len(runeSlashed) && runeSlashed[slashedLettersIndex] == '/' {
+				recomposedWord = append(recomposedWord, runeSlashed[slashedLettersIndex])
+				slashedLettersIndex++
 			}
 
 		}
-		entryWordIndex++
+		originalWordIndex++
 	}
 
-	strSyllables := strings.Split(string(recomposedWord), "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
-
-	return strSyllables
+	wMap.splittedSyllables = strings.Split(string(recomposedWord), "/") //Using "/" instead of "-" to preserve syllables that use "-" to start speech
 }
 
-// classifyWordSyllables takes a word and returns its syllables with metadata.
-func (gabc GabcGenAPI) classifyWordSyllables(ctx context.Context, word string) ([]Syllable, error) {
-	var syllables []Syllable
+// buildWordSyllables builds a Syllable struct with metadata from each []rune representing a syllable:
+func (wMap *WordMaped) buildWordSyllables() []*Syllable {
 
-	wordMap := createWordMap(word) //TODO method
+	var wordSyllables []*Syllable
 
-	slashed, tonicIndex, err := gabc.syllabifier.Syllabify(ctx, string(wordMap.justLetters))
-	if err != nil {
-		return syllables, fmt.Errorf("classifying syllables from word %v: %w ", word, err)
-	}
+	for i, v := range wMap.splittedSyllables {
 
-	strSyllables := recomposeWord([]rune(slashed), wordMap)
-
-	//build a gabcGen.Syllable with metadata from each []rune syllable:
-	for i, v := range strSyllables {
-		runeSyllable := []rune(v)
-
-		s := Syllable{Char: runeSyllable}
-		if i+1 == tonicIndex {
+		s := &Syllable{Char: []rune(v)}
+		if i+1 == wMap.tonicIndex {
 			s.IsTonic = true
 		}
 
 		if i == 0 { //the first syllable
 			s.IsFirst = true
 		}
-		if i == len(strSyllables)-1 { //the last syllable
+		if i == len(wMap.splittedSyllables)-1 { //the last syllable
 			s.IsLast = true
 		}
-		syllables = append(syllables, s)
+		wordSyllables = append(wordSyllables, s)
 	}
 
-	return syllables, nil
-}
-
-func joinSyllables(syl *[]Syllable, end string) string {
-	var result string
-	for _, v := range *syl {
-		result = result + v.GABC
-		if v.IsLast {
-			result = result + " "
-		}
-	}
-
-	return result + end
+	return wordSyllables
 }

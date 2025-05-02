@@ -15,7 +15,7 @@ type Renderer interface {
 
 type GabcGenAPI struct {
 	syllabifier Syllabifier
-	renderer    Renderer
+	//	renderer    Renderer
 }
 
 func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
@@ -30,14 +30,17 @@ type scoreFile struct {
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	preface := newPreface(markedText)
+	//preface := preface.New
 
-	err := preface.DistributeTextToPhrases(ctx)
+	err := preface.DistributeTextToPhrases(ctx, gen)
 	if err != nil {
-		log.Panicln("structuring phrases: ", err) //TODO: handle error
+		return scoreFile{}, err //TODO: handle error
 	}
 
+	//Syllable := phraseTyped.GetSyllables()
+
 	for _, v := range preface.phrases {
-		err = v.BuildSyllables(ctx, gen)
+		err = v.BuildPhraseSyllables(ctx, gen)
 		if err != nil {
 			//TODO handle error
 		}

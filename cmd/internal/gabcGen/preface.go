@@ -8,7 +8,8 @@ import (
 
 type preface struct {
 	markedText string
-	phrases    []*Phrase
+	phrases    []*Phrase //TODO: change to PhraseMelodyer
+	//phrases    []PhraseMelodyer
 }
 
 type PrefacePhraseType string
@@ -27,10 +28,10 @@ func newPreface(markedText string) *preface { //returning a pointer because this
 	}
 }
 
-func (preface *preface) DistributeTextToPhrases(ctx context.Context) error {
+func (preface *preface) DistributeTextToPhrases(ctx context.Context, gen GabcGenAPI) /*(PhraseMelodyer,*/ error {
 
 	for v := range strings.Lines(preface.markedText) {
-		typedPhrase, err := preface.newTypedPhrase(v)
+		typedPhrase, err := preface.newTypedPhrase(v, gen.syllabifier)
 		if err != nil {
 			//TODO handle error
 		}
@@ -41,7 +42,7 @@ func (preface *preface) DistributeTextToPhrases(ctx context.Context) error {
 	return nil
 }
 
-func (preface *preface) newTypedPhrase(s string) (*Phrase, error) {
+func (preface *preface) newTypedPhrase(s string, syllab Syllabifier) (*Phrase, error) {
 
 	switch {
 	case strings.HasSuffix(s, "="):
@@ -49,24 +50,28 @@ func (preface *preface) newTypedPhrase(s string) (*Phrase, error) {
 		return &Phrase{
 			Raw:         s,
 			PhraseTyped: firsts,
+			syllabifier: syllab,
 		}, nil
 	case strings.HasSuffix(s, "*"):
 		s, _ = strings.CutSuffix(s, "*")
 		return &Phrase{
 			Raw:         s,
 			PhraseTyped: mediant,
+			syllabifier: syllab,
 		}, nil
 	case strings.HasSuffix(s, "//"):
 		s, _ = strings.CutSuffix(s, "//")
 		return &Phrase{
 			Raw:         s,
 			PhraseTyped: last,
+			syllabifier: syllab,
 		}, nil
 	case strings.HasSuffix(s, "+"):
 		s, _ = strings.CutSuffix(s, "+")
 		return &Phrase{
 			Raw:         s,
 			PhraseTyped: conclusion,
+			syllabifier: syllab,
 		}, nil
 	default:
 		return nil, fmt.Errorf("defining Phrase type from line: %w ", ErrResponseNoMarks)
@@ -76,7 +81,7 @@ func (preface *preface) newTypedPhrase(s string) (*Phrase, error) {
 func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 	var composedGABC string
 	for _, ph := range preface.phrases {
-		gabcPhrase, err := preface.applyMelodySwitch(ph)
+		gabcPhrase, err := preface.applyMelodySwitch(ph) //ph.ApplyMelody()
 		if err != nil {
 			return "", fmt.Errorf("applying melody: %w ", err)
 		}
@@ -110,6 +115,12 @@ func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 	return "", fmt.Errorf("someerror") //TODO: HANDLE ERROR CASES
 
 }
+
+//type Firsts Phrase
+
+//func (ph *Firsts) Type() PrefacePhraseType {
+//	return firsts
+//}
 
 func (ph *Phrase) applyMelodyFirsts() (string, error) {
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
@@ -168,5 +179,18 @@ func (ph *Phrase) applyMelodyFirsts() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(f)"
 
 	end := "(;)"
-	return joinSyllables(&ph.Syllables, end), nil
+	return joinSyllables(ph.Syllables, end), nil
+}
+
+// joinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
+func joinSyllables(syl []*Syllable, end string) string {
+	var result string
+	for _, v := range syl {
+		result = result + v.GABC
+		if v.IsLast {
+			result = result + " "
+		}
+	}
+
+	return result + end
 }
