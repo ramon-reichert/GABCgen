@@ -30,7 +30,9 @@ type scoreFile struct {
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	newPhrases, err := gen.distributeTextToPhrases(markedText)
+	marks := "=+*$" //Possible preface marks
+
+	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
 	if err != nil {
 		return scoreFile{}, err //TODO: handle error
 	}
@@ -63,12 +65,21 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 	return score, nil
 }
 
-func (gen GabcGenAPI) distributeTextToPhrases(MarkedText string) ([]*phrases.Phrase, error) {
+func (gen GabcGenAPI) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
 	var newPhrases []*phrases.Phrase
 
 	for v := range strings.Lines(MarkedText) {
 		//TODO handle errors with empty lines between pharagraphs
-		newPhrases = append(newPhrases, phrases.New(v))
+
+		//Parse suffix mark:
+		index := strings.LastIndexAny(v, marks)
+		if index == -1 {
+			return newPhrases, gabcErrors.ErrNoMarks
+		}
+		mark := string(v[index])
+		text, _ := strings.CutSuffix(v, mark)
+
+		newPhrases = append(newPhrases, phrases.New(text, mark))
 	}
 
 	if len(newPhrases) == 0 {
