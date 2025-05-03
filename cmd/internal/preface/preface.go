@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
 	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
@@ -62,7 +63,7 @@ func (preface *preface) newTypedPhrase(s string) (phrases.PhraseMelodyer, error)
 				s, _ = strings.CutSuffix(s, "+")
 				return conclusion{Raw: s}, nil */
 	default:
-		return nil, fmt.Errorf("defining Phrase type from line: %w ", ErrResponseNoMarks)
+		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrResponseNoMarks)
 	}
 }
 
@@ -117,7 +118,7 @@ func (ph firsts) PutSyllabes(sylls []*words.Syllable) {
 func (ph firsts) ApplyMelody() (string, error) {
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 	}
 
 	//last unstressed Syllables:
@@ -125,7 +126,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 		}
 	}
 
@@ -133,14 +134,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -148,13 +149,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 		}
 	}
 
@@ -163,7 +164,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
 		}
 	}
 
