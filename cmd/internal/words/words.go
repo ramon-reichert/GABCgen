@@ -1,4 +1,5 @@
-package gabcGen
+// Maps Words and handle Syllable structs that compose musical Phrases.
+package words
 
 import (
 	"context"
@@ -25,8 +26,12 @@ type WordMaped struct {
 	splittedSyllables []string     //the syllables of the word as slices of strings
 }
 
+func New(word string) *WordMaped {
+	return &WordMaped{word: word}
+}
+
 // ParseWord populates all possible WordMap fields before syllabifying the word.
-func (wMap *WordMaped) parseWord() {
+func (wMap *WordMaped) ParseWord() {
 
 	wMap.originalRunes = []rune(wMap.word)
 	wMap.justLetters = []rune{}
@@ -47,7 +52,7 @@ func (wMap *WordMaped) parseWord() {
 }
 
 // Syllabify takes a word and uses the Syllabifier to split it into syllables.
-func (wMap *WordMaped) syllabify(ctx context.Context, syllabifier Syllabifier) error {
+func (wMap *WordMaped) Syllabify(ctx context.Context, syllabifier Syllabifier) error {
 	slashed, tonicIndex, err := syllabifier.Syllabify(ctx, string(wMap.justLetters))
 	if err != nil {
 		return fmt.Errorf("syllabifying word %v: %w ", wMap.word, err)
@@ -59,7 +64,7 @@ func (wMap *WordMaped) syllabify(ctx context.Context, syllabifier Syllabifier) e
 }
 
 // recomposeWord takes a word with slashes and recomposes it with the original case and punctuation marks.
-func (wMap *WordMaped) recomposeWord() {
+func (wMap *WordMaped) RecomposeWord() {
 	var recomposedWord []rune
 	runeSlashed := []rune(wMap.slashedLetters)
 
@@ -94,7 +99,7 @@ func (wMap *WordMaped) recomposeWord() {
 }
 
 // buildWordSyllables builds a Syllable struct with metadata from each []rune representing a syllable:
-func (wMap *WordMaped) buildWordSyllables() []*Syllable {
+func (wMap *WordMaped) BuildWordSyllables() []*Syllable {
 
 	var wordSyllables []*Syllable
 

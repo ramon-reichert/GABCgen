@@ -5,6 +5,11 @@ import (
 	"log"
 )
 
+//	type MassPart interface {
+//		New(string) *MassPart
+//		DistributeTextToPhrases() error
+//		ApplyGabcMelodies() (string, error)
+//	}
 type Syllabifier interface {
 	Syllabify(ctx context.Context, word string) (string, int, error)
 }
@@ -13,14 +18,19 @@ type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
 }
 
+type PhraseMelodyer interface {
+	ApplyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+	//GetValues()
+}
+
 type GabcGenAPI struct {
-	syllabifier Syllabifier
+	Syllabifier Syllabifier
 	//	renderer    Renderer
 }
 
 func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
 	return GabcGenAPI{
-		syllabifier: syllab,
+		Syllabifier: syllab,
 	}
 }
 
@@ -29,24 +39,24 @@ type scoreFile struct {
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	preface := newPreface(markedText)
-	//preface := preface.New
+	preface := New(markedText)
+	//preface := preface.New(markedText) use this one when export preface package
 
-	err := preface.DistributeTextToPhrases(ctx, gen)
-	if err != nil {
+	if err := preface.DistributeTextToPhrases(); err != nil {
 		return scoreFile{}, err //TODO: handle error
 	}
 
 	//Syllable := phraseTyped.GetSyllables()
 
-	for _, v := range preface.phrases {
-		err = v.BuildPhraseSyllables(ctx, gen)
-		if err != nil {
-			//TODO handle error
-		}
-	}
+	//for _, v := range preface.Phrases {
+	//	phraseValues := v.GetValues()
 
-	composedGABC, err := preface.ApplyGabcMelodies(ctx)
+	//	if err := v.BuildPhraseSyllables(ctx, gen); err != nil {
+	//TODO handle error
+	//	}
+	//}
+
+	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {
 		log.Panicln("applying gabc melodies: ", err) //TODO: handle error
 	}

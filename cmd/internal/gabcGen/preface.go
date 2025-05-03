@@ -1,92 +1,77 @@
+// Project: gabcgen - GABC generator for Gregorian chant
+//package preface
+
 package gabcGen
 
 import (
-	"context"
 	"fmt"
 	"strings"
+
+	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
 )
 
 type preface struct {
-	markedText string    //each line must end with a mark: =, *, // or +.
-	phrases    []*Phrase //TODO: change to PhraseMelodyer
-	//phrases    []PhraseMelodyer
+	MarkedText string //each line must end with a mark: =, *, // or +.
+	Phrases    []PhraseMelodyer
 }
 
-type PrefacePhraseType string
-
-const ( // Phrase types that can occur in a Preface
-	dialogue   PrefacePhraseType = "dialogue"   // dialogue = whole initial dialogue (always the same); Special treatment, since it is always the same
-	firsts     PrefacePhraseType = "firsts"     // firsts(of the paragraph) = intonation, reciting tone, short cadence; Must end with "="
-	last       PrefacePhraseType = "last"       // last(of the paragraph) = reciting tone, final cadence; Must end with "//"
-	mediant    PrefacePhraseType = "mediant"    // mediant = intonation, reciting tone, mediant cadence; Must end with "*"
-	conclusion PrefacePhraseType = "conclusion" // conclusion = Beginning of conclusion paragraph (often "Por isso") Must end with "+"
+type ( // Phrase types that can occur in a Preface
+	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same); Special treatment, since it is always the same
+	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence; Must end with "="
+	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence; Must end with "//"
+	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence; Must end with "*"
+	conclusion phrases.Phrase // conclusion = Beginning of conclusion paragraph (often "Por isso") Must end with "+"
 )
 
-// NewPreface creates a new preface struct with the marked text.
-func newPreface(markedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
+// New creates a new preface struct with the marked text.
+func New(markedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
 	return &preface{
-		markedText: markedText,
+		MarkedText: markedText,
 	}
 }
 
 // DistributeTextToPhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
 // It creates a new Phrase struct for each line and appends it to the preface's phrases slice.
-func (preface *preface) DistributeTextToPhrases(ctx context.Context, gen GabcGenAPI) /*(PhraseMelodyer,*/ error {
+func (preface *preface) DistributeTextToPhrases() /*(PhraseMelodyer,*/ error {
 
-	for v := range strings.Lines(preface.markedText) {
-		typedPhrase, err := preface.newTypedPhrase(v, gen.syllabifier)
+	for v := range strings.Lines(preface.MarkedText) {
+		typedPhrase, err := preface.newTypedPhrase(v)
 		if err != nil {
 			return err //TODO handle error
 		}
 
-		preface.phrases = append(preface.phrases, typedPhrase)
+		preface.Phrases = append(preface.Phrases, typedPhrase)
 	}
 
 	return nil
 }
 
 // newTypedPhrase creates a new Phrase struct based on the given string.
-func (preface *preface) newTypedPhrase(s string, syllab Syllabifier) (*Phrase, error) {
+func (preface *preface) newTypedPhrase(s string) (PhraseMelodyer, error) {
 
 	switch {
 	case strings.HasSuffix(s, "="):
 		s, _ = strings.CutSuffix(s, "=")
-		return &Phrase{
-			Raw:         s,
-			PhraseTyped: firsts,
-			syllabifier: syllab,
-		}, nil
-	case strings.HasSuffix(s, "*"):
-		s, _ = strings.CutSuffix(s, "*")
-		return &Phrase{
-			Raw:         s,
-			PhraseTyped: mediant,
-			syllabifier: syllab,
-		}, nil
-	case strings.HasSuffix(s, "//"):
-		s, _ = strings.CutSuffix(s, "//")
-		return &Phrase{
-			Raw:         s,
-			PhraseTyped: last,
-			syllabifier: syllab,
-		}, nil
-	case strings.HasSuffix(s, "+"):
-		s, _ = strings.CutSuffix(s, "+")
-		return &Phrase{
-			Raw:         s,
-			PhraseTyped: conclusion,
-			syllabifier: syllab,
-		}, nil
+		return firsts{Raw: s}, nil
+		/*	case strings.HasSuffix(s, "*"):
+				s, _ = strings.CutSuffix(s, "*")
+				return mediant{Raw: s}, nil
+			case strings.HasSuffix(s, "//"):
+				s, _ = strings.CutSuffix(s, "//")
+				return last{Raw: s}, nil
+			case strings.HasSuffix(s, "+"):
+				s, _ = strings.CutSuffix(s, "+")
+				return conclusion{Raw: s}, nil */
 	default:
 		return nil, fmt.Errorf("defining Phrase type from line: %w ", ErrResponseNoMarks)
 	}
 }
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
-func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
+func (preface *preface) ApplyGabcMelodies() (string, error) {
 	var composedGABC string
-	for _, ph := range preface.phrases {
-		gabcPhrase, err := preface.applyMelodySwitch(ph) //ph.ApplyMelody()
+	for _, ph := range preface.Phrases {
+		gabcPhrase, err := ph.ApplyMelody()
 		if err != nil {
 			return "", fmt.Errorf("applying melody: %w ", err)
 		}
@@ -97,7 +82,7 @@ func (preface *preface) ApplyGabcMelodies(ctx context.Context) (string, error) {
 }
 
 // applyMelodySwitch route to the correct applyMelody function based on the phrase type.
-func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
+/*func (preface *preface) applyMelodySwitch(ph *phrases.Phrase) (string, error) {
 
 	switch ph.PhraseTyped {
 	case firsts:
@@ -116,19 +101,17 @@ func (preface *preface) applyMelodySwitch(ph *Phrase) (string, error) {
 					}
 				}
 
-		}*/
+		}
 	}
 	return "", fmt.Errorf("Phrase type is none of the accepted ones: %v ", ph.PhraseTyped)
-}
-
-//type Firsts Phrase
+}*/
 
 //func (ph *Firsts) Type() PrefacePhraseType {
 //	return firsts
 //}
 
-// applyMelodyFirsts applies the GABC melody to the firsts phrases of a preface.
-func (ph *Phrase) applyMelodyFirsts() (string, error) {
+// applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
+func (ph firsts) ApplyMelody() (string, error) {
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
 		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, ErrResponseToShort)
@@ -189,7 +172,7 @@ func (ph *Phrase) applyMelodyFirsts() (string, error) {
 }
 
 // joinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
-func joinSyllables(syl []*Syllable, end string) string {
+/*func joinSyllables(syl []*words.Syllable, end string) string {
 	var result string
 	for _, v := range syl {
 		result = result + v.GABC
@@ -199,4 +182,4 @@ func joinSyllables(syl []*Syllable, end string) string {
 	}
 
 	return result + end
-}
+}*/
