@@ -11,15 +11,16 @@ import (
 )
 
 type Phrase struct {
-	Raw       string            // the original phrase
-	Syllables []*words.Syllable // the syllables of the phrase
-	//	Syllabifier gabcGen.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
+	Raw         string            // the original phrase
+	Syllables   []*words.Syllable // the syllables of the phrase
+	Syllabifier words.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
 	//PhraseType PhraseMelodyer // the type of the phrase according to the Mass part
 }
 
 type PhraseMelodyer interface {
-	ApplyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
-	//GetValues()
+	ApplyMelody() (string, error)  // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+	GetRawString() string          //TODO: Split this interface to apply Interface Segregation SOLID principle
+	PutSyllabes([]*words.Syllable) // Put the built Syllables back to the original typed Phrase
 }
 
 func New(raw string, typedPhrase PhraseMelodyer) *Phrase {
@@ -31,19 +32,19 @@ func New(raw string, typedPhrase PhraseMelodyer) *Phrase {
 }
 
 // BuildSyllabes populates a Phrase.Syllables creating Syllable structs from each word of the Phrase.
-func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) error {
+func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) ([]*words.Syllable, error) {
 
 	words := strings.Fields(ph.Raw)
 	for _, v := range words {
 		//TODO: verify if word is composed and divide it at the hyphen
 		syllables, err := ph.classifyWordSyllables(ctx, v)
 		if err != nil {
-			return fmt.Errorf("building Phrase Syllables: %w ", err)
+			return syllables, fmt.Errorf("building Phrase Syllables: %w ", err)
 		}
 		ph.Syllables = append(ph.Syllables, syllables...)
 	}
 
-	return nil
+	return ph.Syllables, nil
 }
 
 // classifyWordSyllables divides the syllables of a word and builds a Syllable struct from each one of them.

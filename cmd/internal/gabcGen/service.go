@@ -4,7 +4,9 @@ import (
 	"context"
 	"log"
 
+	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
 //	type MassPart interface {
@@ -12,20 +14,17 @@ import (
 //		DistributeTextToPhrases() error
 //		ApplyGabcMelodies() (string, error)
 //	}
-type Syllabifier interface {
-	Syllabify(ctx context.Context, word string) (string, int, error)
-}
 
 type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
 }
 
 type GabcGenAPI struct {
-	Syllabifier Syllabifier
+	Syllabifier words.Syllabifier
 	//	renderer    Renderer
 }
 
-func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
+func NewGabcGenAPI(syllab words.Syllabifier) GabcGenAPI {
 	return GabcGenAPI{
 		Syllabifier: syllab,
 	}
@@ -38,19 +37,25 @@ type scoreFile struct {
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	preface := preface.New(markedText)
 
-	if err := preface.DistributeTextToPhrases(); err != nil {
+	if err := preface.DistributeTextToPhrases(); err != nil { //MAYBE BUILD THESE PHRASES BEFORE TYPING THEM????
 		return scoreFile{}, err //TODO: handle error
 	}
 
 	//Syllable := phraseTyped.GetSyllables()
 
-	//for _, v := range preface.Phrases {
-	//	phraseValues := v.GetValues()
+	for _, v := range preface.Phrases {
+		rebuiltPhrase := &phrases.Phrase{
+			Raw:         v.GetRawString(),
+			Syllabifier: gen.Syllabifier,
+		}
+		syllabs, err := rebuiltPhrase.BuildPhraseSyllables(ctx)
+		if err != nil {
+			//TODO handle error
+		}
 
-	//	if err := v.BuildPhraseSyllables(ctx, gen); err != nil {
-	//TODO handle error
-	//	}
-	//}
+		v.PutSyllabes(syllabs)
+
+	}
 
 	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {

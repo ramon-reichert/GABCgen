@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
+	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
 type preface struct {
@@ -104,9 +105,13 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 	return "", fmt.Errorf("Phrase type is none of the accepted ones: %v ", ph.PhraseTyped)
 }*/
 
-//func (ph *Firsts) Type() PrefacePhraseType {
-//	return firsts
-//}
+func (ph firsts) GetRawString() string {
+	return ph.Raw
+}
+
+func (ph firsts) PutSyllabes(sylls []*words.Syllable) {
+	ph.Syllables = sylls
+}
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
 func (ph firsts) ApplyMelody() (string, error) {

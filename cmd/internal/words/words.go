@@ -8,6 +8,10 @@ import (
 	"unicode"
 )
 
+type Syllabifier interface {
+	Syllabify(ctx context.Context, word string) (string, int, error)
+}
+
 type Syllable struct {
 	Char    []rune
 	IsTonic bool
