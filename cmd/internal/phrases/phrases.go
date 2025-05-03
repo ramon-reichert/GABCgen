@@ -22,16 +22,14 @@ type PhraseMelodyer interface {
 	PutSyllables([]*words.Syllable) // Put the built Syllables back to the original typed Phrase
 }
 
-func New(raw string, typedPhrase PhraseMelodyer) *Phrase {
+func New(raw string) *Phrase {
 	return &Phrase{
 		Raw: raw,
-
-		//	PhraseType: phraseType,
 	}
 }
 
 // BuildSyllabes populates a Phrase.Syllables creating Syllable structs from each word of the Phrase.
-func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) ([]*words.Syllable, error) {
+func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) error {
 
 	words := strings.Fields(ph.Raw)
 	for _, v := range words {

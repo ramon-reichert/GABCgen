@@ -31,18 +31,16 @@ func New(markedText string) *preface { //returning a pointer because this struct
 	}
 }
 
-// DistributeTextToPhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
+// TypePhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
 // It creates a new Phrase struct for each line and appends it to the preface's phrases slice.
-func (preface *preface) DistributeTextToPhrases() /*(PhraseMelodyer,*/ error {
+func (preface *preface) TypePhrases() /*(PhraseMelodyer,*/ error {
 
-	for v := range strings.Lines(preface.MarkedText) {
-		typedPhrase, err := preface.newTypedPhrase(v)
-		if err != nil {
-			return err //TODO handle error
-		}
-
-		preface.Phrases = append(preface.Phrases, typedPhrase)
+	typedPhrase, err := preface.newTypedPhrase(v)
+	if err != nil {
+		return err //TODO handle error
 	}
+
+	preface.Phrases = append(preface.Phrases, typedPhrase)
 
 	return nil
 }
@@ -64,7 +62,7 @@ func (preface *preface) newTypedPhrase(s string) (phrases.PhraseMelodyer, error)
 				s, _ = strings.CutSuffix(s, "+")
 				return conclusion{Raw: s}, nil */
 	default:
-		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrResponseNoMarks)
+		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrNoMarks)
 	}
 }
 
@@ -121,7 +119,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 	}
 
 	//last unstressed Syllables:
@@ -129,7 +127,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -137,14 +135,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -152,13 +150,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -167,7 +165,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrToShort)
 		}
 	}
 

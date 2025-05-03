@@ -3,7 +3,9 @@ package gabcGen
 import (
 	"context"
 	"log"
+	"strings"
 
+	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
@@ -29,27 +31,24 @@ type scoreFile struct {
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	preface := preface.New(markedText)
-
-	if err := preface.DistributeTextToPhrases(); err != nil { //MAYBE BUILD THESE PHRASES BEFORE TYPING THEM????
+	newPhrases, err := gen.distributeTextToPhrases(markedText)
+	if err != nil {
 		return scoreFile{}, err //TODO: handle error
 	}
 
-	//Syllable := phraseTyped.GetSyllables()
+	for _, v := range newPhrases {
+		v.Syllabifier = gen.Syllabifier
 
-	for _, v := range preface.Phrases {
-		rebuiltPhrase := &phrases.Phrase{
-			Raw:         v.GetRawString(),
-			Syllabifier: gen.Syllabifier,
-		}
-		syllabs, err := rebuiltPhrase.BuildPhraseSyllables(ctx)
-		if err != nil {
+		if err := v.BuildPhraseSyllables(ctx); err != nil {
 			//TODO handle error
 		}
-
-		v.PutSyllables(syllabs)
-
 	}
+
+	preface := preface.New(markedText)
+
+	if err := preface.TypePhrases(newPhrases); err != nil { 
+		return scoreFile{}, err //TODO: handle error
+	}DO THIS!
 
 	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {
@@ -63,4 +62,19 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 	score.Url = composedGABC // REMOVE LATER. JUST TO ENABLE PRE TESTING!
 
 	return score, nil
+}
+
+func (gen GabcGenAPI) distributeTextToPhrases(MarkedText string) ([]*phrases.Phrase, error) {
+	var newPhrases []*phrases.Phrase
+
+	for v := range strings.Lines(MarkedText) {
+		//TODO handle errors with empty lines between pharagraphs
+		newPhrases = append(newPhrases, phrases.New(v))
+	}
+
+	if len(newPhrases) == 0 {
+		return newPhrases, gabcErrors.ErrNoText
+	}
+
+	return newPhrases, nil
 }
