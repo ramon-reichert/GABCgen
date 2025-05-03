@@ -3,6 +3,8 @@ package gabcGen
 import (
 	"context"
 	"log"
+
+	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 )
 
 //	type MassPart interface {
@@ -16,11 +18,6 @@ type Syllabifier interface {
 
 type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
-}
-
-type PhraseMelodyer interface {
-	ApplyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
-	//GetValues()
 }
 
 type GabcGenAPI struct {
@@ -39,8 +36,7 @@ type scoreFile struct {
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	preface := New(markedText)
-	//preface := preface.New(markedText) use this one when export preface package
+	preface := preface.New(markedText)
 
 	if err := preface.DistributeTextToPhrases(); err != nil {
 		return scoreFile{}, err //TODO: handle error

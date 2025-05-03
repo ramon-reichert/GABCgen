@@ -1,7 +1,5 @@
 // Project: gabcgen - GABC generator for Gregorian chant
-//package preface
-
-package gabcGen
+package preface
 
 import (
 	"fmt"
@@ -12,7 +10,7 @@ import (
 
 type preface struct {
 	MarkedText string //each line must end with a mark: =, *, // or +.
-	Phrases    []PhraseMelodyer
+	Phrases    []phrases.PhraseMelodyer
 }
 
 type ( // Phrase types that can occur in a Preface
@@ -47,7 +45,7 @@ func (preface *preface) DistributeTextToPhrases() /*(PhraseMelodyer,*/ error {
 }
 
 // newTypedPhrase creates a new Phrase struct based on the given string.
-func (preface *preface) newTypedPhrase(s string) (PhraseMelodyer, error) {
+func (preface *preface) newTypedPhrase(s string) (phrases.PhraseMelodyer, error) {
 
 	switch {
 	case strings.HasSuffix(s, "="):

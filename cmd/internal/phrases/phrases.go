@@ -14,6 +14,20 @@ type Phrase struct {
 	Raw       string            // the original phrase
 	Syllables []*words.Syllable // the syllables of the phrase
 	//	Syllabifier gabcGen.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
+	//PhraseType PhraseMelodyer // the type of the phrase according to the Mass part
+}
+
+type PhraseMelodyer interface {
+	ApplyMelody() (string, error) // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+	//GetValues()
+}
+
+func New(raw string, typedPhrase PhraseMelodyer) *Phrase {
+	return &Phrase{
+		Raw: raw,
+
+		//	PhraseType: phraseType,
+	}
 }
 
 // BuildSyllabes populates a Phrase.Syllables creating Syllable structs from each word of the Phrase.
