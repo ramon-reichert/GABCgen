@@ -2,25 +2,26 @@ package gabcGen
 
 import (
 	"context"
-	"log"
-)
+	"strings"
 
-type Syllabifier interface {
-	Syllabify(ctx context.Context, word string) (string, int, error)
-}
+	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
+)
 
 type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
 }
 
 type GabcGenAPI struct {
-	syllabifier Syllabifier
+	Syllabifier words.Syllabifier
 	//	renderer    Renderer
 }
 
-func NewGabcGenAPI(syllab Syllabifier) GabcGenAPI {
+func NewGabcGenAPI(syllab words.Syllabifier) GabcGenAPI {
 	return GabcGenAPI{
-		syllabifier: syllab,
+		Syllabifier: syllab,
 	}
 }
 
@@ -29,26 +30,30 @@ type scoreFile struct {
 }
 
 func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	preface := newPreface(markedText)
-	//preface := preface.New
+	marks := "=+*$" //Possible preface marks
 
-	err := preface.DistributeTextToPhrases(ctx, gen)
+	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
 	if err != nil {
 		return scoreFile{}, err //TODO: handle error
 	}
 
-	//Syllable := phraseTyped.GetSyllables()
+	for _, v := range newPhrases {
+		v.Syllabifier = gen.Syllabifier
 
-	for _, v := range preface.phrases {
-		err = v.BuildPhraseSyllables(ctx, gen)
-		if err != nil {
+		if err := v.BuildPhraseSyllables(ctx); err != nil {
 			//TODO handle error
 		}
 	}
 
-	composedGABC, err := preface.ApplyGabcMelodies(ctx)
+	preface := preface.New(markedText)
+
+	if err := preface.TypePhrases(newPhrases); err != nil {
+		return scoreFile{}, err //TODO: handle error
+	}
+
+	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {
-		log.Panicln("applying gabc melodies: ", err) //TODO: handle error
+		return scoreFile{}, err //TODO: handle error
 	}
 
 	var score scoreFile
@@ -58,4 +63,28 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 	score.Url = composedGABC // REMOVE LATER. JUST TO ENABLE PRE TESTING!
 
 	return score, nil
+}
+
+func (gen GabcGenAPI) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
+	var newPhrases []*phrases.Phrase
+
+	for v := range strings.Lines(MarkedText) {
+		//TODO handle errors with empty lines between pharagraphs
+
+		//Parse suffix mark:
+		index := strings.LastIndexAny(v, marks)
+		if index == -1 {
+			return newPhrases, gabcErrors.ErrNoMarks
+		}
+		mark := string(v[index])
+		text, _ := strings.CutSuffix(v, mark)
+
+		newPhrases = append(newPhrases, phrases.New(text, mark))
+	}
+
+	if len(newPhrases) == 0 {
+		return newPhrases, gabcErrors.ErrNoText
+	}
+
+	return newPhrases, nil
 }

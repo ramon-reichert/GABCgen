@@ -1,4 +1,4 @@
-package gabcGen_test
+package preface_test
 
 import (
 	"context"
