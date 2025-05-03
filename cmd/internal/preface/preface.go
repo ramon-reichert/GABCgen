@@ -3,6 +3,7 @@ package preface
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -110,12 +111,14 @@ func (ph firsts) GetRawString() string {
 	return ph.Raw
 }
 
-func (ph firsts) PutSyllabes(sylls []*words.Syllable) {
+func (ph firsts) PutSyllables(sylls []*words.Syllable) {
 	ph.Syllables = sylls
 }
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
 func (ph firsts) ApplyMelody() (string, error) {
+	log.Printf("On firsts.ApplyMelody(): firsts.Raw: %v\n len(Syllables): %v \nSyllables: %v\n", ph.Raw, len(ph.Syllables), ph.Syllables) //DEBUG code
+
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
 		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
@@ -172,18 +175,5 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(f)"
 
 	end := "(;)"
-	return joinSyllables(ph.Syllables, end), nil
+	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
-
-// joinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
-/*func joinSyllables(syl []*words.Syllable, end string) string {
-	var result string
-	for _, v := range syl {
-		result = result + v.GABC
-		if v.IsLast {
-			result = result + " "
-		}
-	}
-
-	return result + end
-}*/

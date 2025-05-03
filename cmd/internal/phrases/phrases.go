@@ -14,13 +14,12 @@ type Phrase struct {
 	Raw         string            // the original phrase
 	Syllables   []*words.Syllable // the syllables of the phrase
 	Syllabifier words.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
-	//PhraseType PhraseMelodyer // the type of the phrase according to the Mass part
 }
 
 type PhraseMelodyer interface {
-	ApplyMelody() (string, error)  // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
-	GetRawString() string          //TODO: Split this interface to apply Interface Segregation SOLID principle
-	PutSyllabes([]*words.Syllable) // Put the built Syllables back to the original typed Phrase
+	ApplyMelody() (string, error)   // Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+	GetRawString() string           //TODO: Split this interface to apply Interface Segregation SOLID principle
+	PutSyllables([]*words.Syllable) // Put the built Syllables back to the original typed Phrase
 }
 
 func New(raw string, typedPhrase PhraseMelodyer) *Phrase {
@@ -54,11 +53,24 @@ func (ph *Phrase) classifyWordSyllables(ctx context.Context, word string) ([]*wo
 
 	wordMaped.ParseWord()
 
-	//if err := wordMaped.Syllabify(ctx, ph.Syllabifier); err != nil {
-	//	return []*words.Syllable{}, err //TODO: handle error
-	//}
+	if err := wordMaped.Syllabify(ctx, ph.Syllabifier); err != nil {
+		return []*words.Syllable{}, err //TODO: handle error
+	}
 
 	wordMaped.RecomposeWord()
 
 	return wordMaped.BuildWordSyllables(), nil
+}
+
+// joinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
+func JoinSyllables(syl []*words.Syllable, end string) string {
+	var result string
+	for _, v := range syl {
+		result = result + v.GABC
+		if v.IsLast {
+			result = result + " "
+		}
+	}
+
+	return result + end
 }

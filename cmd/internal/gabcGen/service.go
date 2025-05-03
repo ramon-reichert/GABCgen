@@ -9,12 +9,6 @@ import (
 	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
-//	type MassPart interface {
-//		New(string) *MassPart
-//		DistributeTextToPhrases() error
-//		ApplyGabcMelodies() (string, error)
-//	}
-
 type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
 }
@@ -53,7 +47,7 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 			//TODO handle error
 		}
 
-		v.PutSyllabes(syllabs)
+		v.PutSyllables(syllabs)
 
 	}
 
