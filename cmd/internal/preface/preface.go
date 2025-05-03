@@ -3,12 +3,9 @@ package preface
 
 import (
 	"fmt"
-	"log"
-	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
-	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
 type preface struct {
@@ -19,7 +16,7 @@ type preface struct {
 type ( // Phrase types that can occur in a Preface
 	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same); Special treatment, since it is always the same
 	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence; Must end with "="
-	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence; Must end with "//"
+	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence; Must end with "$"
 	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence; Must end with "*"
 	conclusion phrases.Phrase // conclusion = Beginning of conclusion paragraph (often "Por isso") Must end with "+"
 )
@@ -31,11 +28,9 @@ func New(markedText string) *preface { //returning a pointer because this struct
 	}
 }
 
-// DistributeTextToPhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
-// It creates a new Phrase struct for each line and appends it to the preface's phrases slice.
-func (preface *preface) DistributeTextToPhrases() /*(PhraseMelodyer,*/ error {
+func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
 
-	for v := range strings.Lines(preface.MarkedText) {
+	for _, v := range newPhrases {
 		typedPhrase, err := preface.newTypedPhrase(v)
 		if err != nil {
 			return err //TODO handle error
@@ -43,28 +38,29 @@ func (preface *preface) DistributeTextToPhrases() /*(PhraseMelodyer,*/ error {
 
 		preface.Phrases = append(preface.Phrases, typedPhrase)
 	}
-
 	return nil
 }
 
 // newTypedPhrase creates a new Phrase struct based on the given string.
-func (preface *preface) newTypedPhrase(s string) (phrases.PhraseMelodyer, error) {
+func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelodyer, error) {
 
-	switch {
-	case strings.HasSuffix(s, "="):
-		s, _ = strings.CutSuffix(s, "=")
-		return firsts{Raw: s}, nil
+	switch ph.Mark {
+	case "=":
+		return firsts{
+			Text:      ph.Text,
+			Syllables: ph.Syllables,
+		}, nil
 		/*	case strings.HasSuffix(s, "*"):
 				s, _ = strings.CutSuffix(s, "*")
 				return mediant{Raw: s}, nil
-			case strings.HasSuffix(s, "//"):
-				s, _ = strings.CutSuffix(s, "//")
+			case strings.HasSuffix(s, "$):
+				s, _ = strings.CutSuffix(s, "$")
 				return last{Raw: s}, nil
 			case strings.HasSuffix(s, "+"):
 				s, _ = strings.CutSuffix(s, "+")
 				return conclusion{Raw: s}, nil */
 	default:
-		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrResponseNoMarks)
+		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrNoMarks)
 	}
 }
 
@@ -107,21 +103,12 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 	return "", fmt.Errorf("Phrase type is none of the accepted ones: %v ", ph.PhraseTyped)
 }*/
 
-func (ph firsts) GetRawString() string {
-	return ph.Raw
-}
-
-func (ph firsts) PutSyllables(sylls []*words.Syllable) {
-	ph.Syllables = sylls
-}
-
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
 func (ph firsts) ApplyMelody() (string, error) {
-	log.Printf("On firsts.ApplyMelody(): firsts.Raw: %v\n len(Syllables): %v \nSyllables: %v\n", ph.Raw, len(ph.Syllables), ph.Syllables) //DEBUG code
 
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//last unstressed Syllables:
@@ -129,7 +116,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -137,14 +124,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -152,13 +139,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -167,7 +154,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Raw, gabcErrors.ErrResponseToShort)
+			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
