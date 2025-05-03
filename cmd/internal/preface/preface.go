@@ -8,7 +8,6 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
-	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
 type preface struct {
@@ -31,27 +30,36 @@ func New(markedText string) *preface { //returning a pointer because this struct
 	}
 }
 
-// TypePhrases takes the marked text and distributes it into phrases based on the marks at the end of each line.
-// It creates a new Phrase struct for each line and appends it to the preface's phrases slice.
-func (preface *preface) TypePhrases() /*(PhraseMelodyer,*/ error {
+func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
 
-	typedPhrase, err := preface.newTypedPhrase(v)
-	if err != nil {
-		return err //TODO handle error
+	for _, v := range newPhrases {
+		typedPhrase, err := preface.newTypedPhrase(v)
+		if err != nil {
+			return err //TODO handle error
+		}
+
+		aFirsts, ok := typedPhrase.(firsts) //DEBUG code
+		if ok {
+			log.Printf("On preface.TypePhrases(): firsts: %v\n", aFirsts)
+		} else {
+			log.Printf("On preface.TypePhrases(): not firsts: %v\n", typedPhrase)
+		} //DEBUG code
+
+		preface.Phrases = append(preface.Phrases, typedPhrase)
 	}
-
-	preface.Phrases = append(preface.Phrases, typedPhrase)
-
 	return nil
 }
 
 // newTypedPhrase creates a new Phrase struct based on the given string.
-func (preface *preface) newTypedPhrase(s string) (phrases.PhraseMelodyer, error) {
+func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelodyer, error) {
 
 	switch {
-	case strings.HasSuffix(s, "="):
-		s, _ = strings.CutSuffix(s, "=")
-		return firsts{Raw: s}, nil
+	case strings.HasSuffix(ph.Raw, "="):
+		ph.Raw, _ = strings.CutSuffix(ph.Raw, "=")
+		return firsts{
+			Raw:       ph.Raw,
+			Syllables: ph.Syllables,
+		}, nil
 		/*	case strings.HasSuffix(s, "*"):
 				s, _ = strings.CutSuffix(s, "*")
 				return mediant{Raw: s}, nil
@@ -107,10 +115,6 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 
 func (ph firsts) GetRawString() string {
 	return ph.Raw
-}
-
-func (ph firsts) PutSyllables(sylls []*words.Syllable) {
-	ph.Syllables = sylls
 }
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.

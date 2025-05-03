@@ -2,7 +2,6 @@ package gabcGen
 
 import (
 	"context"
-	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -46,13 +45,13 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 
 	preface := preface.New(markedText)
 
-	if err := preface.TypePhrases(newPhrases); err != nil { 
+	if err := preface.TypePhrases(newPhrases); err != nil {
 		return scoreFile{}, err //TODO: handle error
-	}DO THIS!
+	}
 
 	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {
-		log.Panicln("applying gabc melodies: ", err) //TODO: handle error
+		return scoreFile{}, err //TODO: handle error
 	}
 
 	var score scoreFile
