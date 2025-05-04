@@ -1,15 +1,15 @@
-// Project: gabcgen - GABC generator for Gregorian chant
+// Handle specific phrase types that compose the melody of the Preface of Mass.
 package preface
 
 import (
 	"fmt"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases" //realy needed
+	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 )
 
 type preface struct {
-	MarkedText string //each line must end with a mark: =, *, // or +.
+	MarkedText string //each line must end with a mark: =, *, $ or +.
 	Phrases    []phrases.PhraseMelodyer
 }
 
@@ -28,6 +28,7 @@ func New(markedText string) *preface { //returning a pointer because this struct
 	}
 }
 
+// TypePhrases types the already built phrases based on the given mark suffix.
 func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
 
 	for _, v := range newPhrases {
@@ -41,7 +42,7 @@ func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
 	return nil
 }
 
-// newTypedPhrase creates a new Phrase struct based on the given string.
+// newTypedPhrase switches between the possible phrase types for Preface.
 func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelodyer, error) {
 
 	switch ph.Mark {
@@ -50,15 +51,8 @@ func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelody
 			Text:      ph.Text,
 			Syllables: ph.Syllables,
 		}, nil
-		/*	case strings.HasSuffix(s, "*"):
-				s, _ = strings.CutSuffix(s, "*")
-				return mediant{Raw: s}, nil
-			case strings.HasSuffix(s, "$):
-				s, _ = strings.CutSuffix(s, "$")
-				return last{Raw: s}, nil
-			case strings.HasSuffix(s, "+"):
-				s, _ = strings.CutSuffix(s, "+")
-				return conclusion{Raw: s}, nil */
+	// TODO test the other preface types cases
+
 	default:
 		return nil, gabcErrors.ErrNoMarks
 	}
@@ -81,7 +75,8 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
 func (ph firsts) ApplyMelody() (string, error) {
 
-	i := len(ph.Syllables) - 1 //reading Syllables from the end:
+	//reading Syllables from the end:
+	i := len(ph.Syllables) - 1
 	if i < 0 {
 		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
@@ -136,7 +131,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 	//first intonation syllable:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(f)"
 
-	end := "(;)"
+	end := "(;)" //gabc code for the "half bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 

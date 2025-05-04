@@ -1,3 +1,4 @@
+// The core of the GABC Generator. Coordinates internal and external packages interactions.
 package gabcGen
 
 import (
@@ -30,6 +31,7 @@ type scoreFile struct {
 	Url string
 }
 
+// GeneratePreface attaches GABC code to each syllable of the incomming marked text following the preface melody rules.
 func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	var score scoreFile
 
@@ -67,6 +69,8 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scor
 	return score, nil
 }
 
+// distributeTextToPhrases takes a marked text and stores each line in a new Phrase struct.
+// The last character of each line is considered a mark and is removed from the text.
 func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
 	var newPhrases []*phrases.Phrase
 
@@ -77,7 +81,7 @@ func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases
 	for v := range strings.Lines(MarkedText) {
 		//TODO handle empty lines between pharagraphs
 
-		//Parse suffix mark:
+		//Remove suffix mark from the text and store it in another field of the Phrase struct.
 		index := strings.LastIndexAny(v, marks)
 		if index == -1 {
 			return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoMarks)

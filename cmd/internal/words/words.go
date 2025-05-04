@@ -17,9 +17,9 @@ type Syllabifier interface {
 type Syllable struct {
 	Char    []rune
 	IsTonic bool
-	IsLast  bool //If it is the last syllable of a word.
-	IsFirst bool //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
-	GABC    string
+	IsLast  bool   //If it is the last syllable of a word.
+	IsFirst bool   //If it is the first syllable of a word. If it is an oxytone, so IsLast an Is First are true.
+	GABC    string //holds the syllable text with the GABC code attached to it.
 }
 type WordMaped struct {
 	word              string       //the original word
