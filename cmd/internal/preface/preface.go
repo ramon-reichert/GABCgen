@@ -33,7 +33,7 @@ func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
 	for _, v := range newPhrases {
 		typedPhrase, err := preface.newTypedPhrase(v)
 		if err != nil {
-			return err //TODO handle error
+			return fmt.Errorf("typing built Phrases: %w", err)
 		}
 
 		preface.Phrases = append(preface.Phrases, typedPhrase)
@@ -60,7 +60,7 @@ func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelody
 				s, _ = strings.CutSuffix(s, "+")
 				return conclusion{Raw: s}, nil */
 	default:
-		return nil, fmt.Errorf("defining Phrase type from line: %w ", gabcErrors.ErrNoMarks)
+		return nil, gabcErrors.ErrNoMarks
 	}
 }
 
@@ -70,7 +70,7 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 	for _, ph := range preface.Phrases {
 		gabcPhrase, err := ph.ApplyMelody()
 		if err != nil {
-			return "", fmt.Errorf("applying melody: %w ", err)
+			return "", fmt.Errorf("applying melody to %w", err)
 		}
 		composedGABC = composedGABC + gabcPhrase
 	}
@@ -78,37 +78,12 @@ func (preface *preface) ApplyGabcMelodies() (string, error) {
 
 }
 
-// applyMelodySwitch route to the correct applyMelody function based on the phrase type.
-/*func (preface *preface) applyMelodySwitch(ph *phrases.Phrase) (string, error) {
-
-	switch ph.PhraseTyped {
-	case firsts:
-		gabcPhrase, err := ph.applyMelodyFirsts()
-		if err != nil {
-			return "", err
-		}
-		return gabcPhrase, nil
-
-	case "last":
-		/*	for i := len(ph.Syllables) - 1; ph.Syllables[i].IsTonic; i-- { //reading Syllables from the end
-					if ph.Syllables[i].IsLast && ph.Syllables[i].IsFirst { //it means it's an oxytone
-						ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fgf)"
-					} else {
-						ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fgf)"
-					}
-				}
-
-		}
-	}
-	return "", fmt.Errorf("Phrase type is none of the accepted ones: %v ", ph.PhraseTyped)
-}*/
-
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
 func (ph firsts) ApplyMelody() (string, error) {
 
 	i := len(ph.Syllables) - 1 //reading Syllables from the end:
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//last unstressed Syllables:
@@ -116,7 +91,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -124,14 +99,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -139,13 +114,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -154,7 +129,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("error at firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	}
 
@@ -164,3 +139,15 @@ func (ph firsts) ApplyMelody() (string, error) {
 	end := "(;)"
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
+
+/* TODO: write logic to other preface types
+
+case "last":
+		for i := len(ph.Syllables) - 1; ph.Syllables[i].IsTonic; i-- { //reading Syllables from the end
+				if ph.Syllables[i].IsLast && ph.Syllables[i].IsFirst { //it means it's an oxytone
+					ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fgf)"
+				} else {
+					ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fgf)"
+				}
+			} ...
+	} */

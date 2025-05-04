@@ -2,6 +2,7 @@ package gabcGen
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -30,33 +31,34 @@ type scoreFile struct {
 }
 
 func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
+	var score scoreFile
+
 	marks := "=+*$" //Possible preface marks
 
 	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
 	if err != nil {
-		return scoreFile{}, err //TODO: handle error
+		return score, fmt.Errorf("generating Preface: %w", err)
 	}
 
 	for _, v := range newPhrases {
 		v.Syllabifier = gen.Syllabifier
 
 		if err := v.BuildPhraseSyllables(ctx); err != nil {
-			//TODO handle error
+			return score, fmt.Errorf("generating Preface: %w", err)
 		}
 	}
 
 	preface := preface.New(markedText)
 
 	if err := preface.TypePhrases(newPhrases); err != nil {
-		return scoreFile{}, err //TODO: handle error
+		return score, fmt.Errorf("generating Preface: %w", err)
 	}
 
 	composedGABC, err := preface.ApplyGabcMelodies()
 	if err != nil {
-		return scoreFile{}, err //TODO: handle error
+		return score, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	var score scoreFile
 	//score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
 	//TODO: handle error
 
@@ -68,13 +70,17 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scor
 func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
 	var newPhrases []*phrases.Phrase
 
+	if MarkedText == "" {
+		return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoText)
+	}
+
 	for v := range strings.Lines(MarkedText) {
-		//TODO handle errors with empty lines between pharagraphs
+		//TODO handle empty lines between pharagraphs
 
 		//Parse suffix mark:
 		index := strings.LastIndexAny(v, marks)
 		if index == -1 {
-			return newPhrases, gabcErrors.ErrNoMarks
+			return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoMarks)
 		}
 		mark := string(v[index])
 		text, _ := strings.CutSuffix(v, mark)
@@ -83,7 +89,7 @@ func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases
 	}
 
 	if len(newPhrases) == 0 {
-		return newPhrases, gabcErrors.ErrNoText
+		return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoText)
 	}
 
 	return newPhrases, nil

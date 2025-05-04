@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"strings"
 	"unicode"
+
+	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 )
 
 type Syllabifier interface {
@@ -35,7 +37,7 @@ func New(word string) *WordMaped {
 }
 
 // ParseWord populates all possible WordMap fields before syllabifying the word.
-func (wMap *WordMaped) ParseWord() {
+func (wMap *WordMaped) ParseWord() error {
 
 	wMap.originalRunes = []rune(wMap.word)
 	wMap.justLetters = []rune{}
@@ -53,6 +55,11 @@ func (wMap *WordMaped) ParseWord() {
 			wMap.justLetters = append(wMap.justLetters, v)
 		}
 	}
+
+	if len(wMap.justLetters) == 0 {
+		return gabcErrors.ErrNoLetters
+	}
+	return nil
 }
 
 // Syllabify takes a word and uses the Syllabifier to split it into syllables.
