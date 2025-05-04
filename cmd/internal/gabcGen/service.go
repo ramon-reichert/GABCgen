@@ -14,13 +14,13 @@ type Renderer interface {
 	Render(ctx context.Context, composedGABC string) (string, error)
 }
 
-type GabcGenAPI struct {
+type GabcGen struct {
 	Syllabifier words.Syllabifier
 	//	renderer    Renderer
 }
 
-func NewGabcGenAPI(syllab words.Syllabifier) GabcGenAPI {
-	return GabcGenAPI{
+func NewGabcGenAPI(syllab words.Syllabifier) GabcGen {
+	return GabcGen{
 		Syllabifier: syllab,
 	}
 }
@@ -29,7 +29,7 @@ type scoreFile struct {
 	Url string
 }
 
-func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
+func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	marks := "=+*$" //Possible preface marks
 
 	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
@@ -65,7 +65,7 @@ func (gen GabcGenAPI) GeneratePreface(ctx context.Context, markedText string) (s
 	return score, nil
 }
 
-func (gen GabcGenAPI) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
+func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
 	var newPhrases []*phrases.Phrase
 
 	for v := range strings.Lines(MarkedText) {
