@@ -1,10 +1,12 @@
-# fly.toml app configuration file generated for gabcgen on 2025-05-19T15:37:35-03:00
+# fly.toml app configuration file generated for gabcgen on 2025-05-19T20:46:20-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'gabcgen'
 primary_region = 'gru'
+
+[build]
 
 [http_service]
   internal_port = 8080
@@ -13,3 +15,8 @@ primary_region = 'gru'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
