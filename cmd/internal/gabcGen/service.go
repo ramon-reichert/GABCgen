@@ -34,7 +34,7 @@ type scoreFile struct {
 // GeneratePreface attaches GABC code to each syllable of the incomming marked text following the preface melody rules.
 func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
 	var score scoreFile
-
+	//TODO: PARSE THE INCOMING PARAGRAPH TO DEFINE PHRASE  TYPES ACORDING JUST TO THE LINES, INSTEAD OF THE MARKS
 	marks := "=+*$" //Possible preface marks
 
 	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)

@@ -6,6 +6,7 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
 )
 
 type preface struct {
@@ -83,7 +84,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 
 	//last unstressed Syllables:
 	for !ph.Syllables[i].IsTonic {
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
 			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
@@ -91,14 +92,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	}
 
 	//last tonic syllable:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(fg)"
+	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.LaSi
 	i--
 	if i < 0 {
 		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 	}
 
 	//syllable before the last tonic:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(gf)"
+	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SiLa
 	i--
 	if i < 0 {
 		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
@@ -106,13 +107,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 
 	//testing the exception at last unstressed reciting syllable:
 	if ph.Syllables[i].IsTonic { //default case
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Do
 		i--
 		if i < 0 {
 			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(g)"
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
 			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
@@ -121,7 +122,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 
 	// completing reciting Syllables:
 	for i > 0 {
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(h)"
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Do
 		i--
 		if i < 0 {
 			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
@@ -129,7 +130,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 	}
 
 	//first intonation syllable:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + "(f)"
+	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 
 	end := "(;)" //gabc code for the "half bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
