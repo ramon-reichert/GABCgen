@@ -7,6 +7,9 @@ const (
 	La  = "(f)"
 	Sol = "(e)"
 
-	LaSi = "(fg)"
-	SiLa = "(gf)"
+	LaSi   = "(fg)"
+	LaSiLa = "(fgf)"
+	SiLa   = "(gf)"
+	LaSol  = "(fe)"
+	SolLa  = "(ef)"
 )
