@@ -35,6 +35,12 @@ func (syllab MockSyllabifier) Syllabify(ctx context.Context, word string) (strin
 	case "justo":
 		hyphen = "jus/to"
 		tonic = 1
+	case "por":
+		hyphen = "por"
+		tonic = 1
+	case "isso":
+		hyphen = "is/so"
+		tonic = 1
 	}
 
 	//TODO: fetch the word in a list of already used words. Could be a map["palavra"]Syllab{hyphen: "pa-la-vra", tonic: "la"}

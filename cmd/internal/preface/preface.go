@@ -62,6 +62,11 @@ func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelody
 			Text:      ph.Text,
 			Syllables: ph.Syllables,
 		}, nil
+	case "+":
+		return conclusion{
+			Text:      ph.Text,
+			Syllables: ph.Syllables,
+		}, nil
 	// TODO test the other preface types cases
 
 	default:
@@ -258,4 +263,40 @@ func (ph mediant) ApplyMelody() (string, error) {
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 
-// TODO: write logic to other preface types
+// applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
+func (ph conclusion) ApplyMelody() (string, error) {
+
+	//reading Syllables from the end:
+	i := len(ph.Syllables) - 1
+	if i < 0 {
+		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+	}
+
+	//last unstressed Syllables:
+	for !ph.Syllables[i].IsTonic {
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
+		i--
+		if i < 0 {
+			return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		}
+	}
+
+	//last tonic syllable:
+	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLa
+	i--
+	if i < 0 {
+		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+	}
+
+	// completing reciting Syllables:
+	for i > 0 {
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
+		i--
+	}
+	if i == 0 {
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
+	}
+
+	end := "(,)" //gabc code for the "quarter bar", to be added at the end of the phrase
+	return phrases.JoinSyllables(ph.Syllables, end), nil
+}

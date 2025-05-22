@@ -122,4 +122,26 @@ func TestGeneratePreface(t *testing.T) {
 
 		is.Equal(mediantPhrase.Url, expectedGABC)
 	})
+
+	t.Run("apply gabc melody to a preface conclusion phrase - short", func(t *testing.T) {
+		is := is.New(t)
+
+		conclusionPhrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, "Por isso+")
+		is.NoErr(err)
+
+		expectedGABC := "Por(f) is(ef)so(f) (,)"
+
+		is.Equal(conclusionPhrase.Url, expectedGABC)
+	})
+
+	t.Run("apply gabc melody to a preface conclusion phrase - long", func(t *testing.T) {
+		is := is.New(t)
+
+		conclusionPhrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, "Por isso, na verdade,+")
+		is.NoErr(err)
+
+		expectedGABC := "Por(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)"
+
+		is.Equal(conclusionPhrase.Url, expectedGABC)
+	})
 }
