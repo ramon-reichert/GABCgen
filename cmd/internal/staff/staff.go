@@ -12,4 +12,5 @@ const (
 	SiLa   = "(gf)"
 	LaSol  = "(fe)"
 	SolLa  = "(ef)"
+	LaSiDo = "(fgh)"
 )
