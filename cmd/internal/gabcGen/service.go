@@ -32,41 +32,36 @@ type scoreFile struct {
 }
 
 // GeneratePreface attaches GABC code to each syllable of the incomming marked text following the preface melody rules.
-func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (scoreFile, error) {
-	var score scoreFile
+func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (string, error) {
+	var composedGABC string
 	//TODO: PARSE THE INCOMING PARAGRAPH TO DEFINE PHRASE  TYPES ACORDING JUST TO THE LINES, INSTEAD OF THE MARKS
 	marks := "=+*$" //Possible preface marks
 
 	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
 	if err != nil {
-		return score, fmt.Errorf("generating Preface: %w", err)
+		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
 
 	for _, v := range newPhrases {
 		v.Syllabifier = gen.Syllabifier
 
 		if err := v.BuildPhraseSyllables(ctx); err != nil {
-			return score, fmt.Errorf("generating Preface: %w", err)
+			return composedGABC, fmt.Errorf("generating Preface: %w", err)
 		}
 	}
 
 	preface := preface.New(markedText)
 
 	if err := preface.TypePhrases(newPhrases); err != nil {
-		return score, fmt.Errorf("generating Preface: %w", err)
+		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	composedGABC, err := preface.ApplyGabcMelodies()
+	composedGABC, err = preface.ApplyGabcMelodies()
 	if err != nil {
-		return score, fmt.Errorf("generating Preface: %w", err)
+		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	//score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
-	//TODO: handle error
-
-	score.Url = composedGABC // REMOVE LATER. JUST TO ENABLE PRE TESTING!
-
-	return score, nil
+	return composedGABC, nil
 }
 
 // distributeTextToPhrases takes a marked text and stores each line in a new Phrase struct.
@@ -97,4 +92,11 @@ func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases
 	}
 
 	return newPhrases, nil
+}
+
+func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {
+	var score scoreFile
+	//score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
+	//TODO: handle error
+	return score, nil
 }

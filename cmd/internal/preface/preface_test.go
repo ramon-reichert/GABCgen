@@ -21,7 +21,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)"
 
-		is.Equal(firstsPhrase.Url, expectedGABC)
+		is.Equal(firstsPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface firsts phrase - paroxytone without exception", func(t *testing.T) {
@@ -32,7 +32,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)"
 
-		is.Equal(firstsPhrase.Url, expectedGABC)
+		is.Equal(firstsPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface firsts phrase - oxytone", func(t *testing.T) {
@@ -43,7 +43,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)"
 
-		is.Equal(firstsPhrase.Url, expectedGABC)
+		is.Equal(firstsPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface last phrase - paroxytone", func(t *testing.T) {
@@ -54,7 +54,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)"
 
-		is.Equal(lastPhrase.Url, expectedGABC)
+		is.Equal(lastPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface last phrase - oxytone", func(t *testing.T) {
@@ -65,7 +65,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)"
 
-		is.Equal(lastPhrase.Url, expectedGABC)
+		is.Equal(lastPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface mediant phrase - paroxytone", func(t *testing.T) {
@@ -76,7 +76,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)"
 
-		is.Equal(mediantPhrase.Url, expectedGABC)
+		is.Equal(mediantPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface mediant phrase - oxytone", func(t *testing.T) {
@@ -87,7 +87,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(g) ver(g)da(g)de,(g) é(g) dig(f)no(g) e(h) (,)"
 
-		is.Equal(mediantPhrase.Url, expectedGABC)
+		is.Equal(mediantPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface mediant phrase - 3 syllables", func(t *testing.T) {
@@ -98,7 +98,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Na(g) ver(g)da(fgh)de(g) (,)"
 
-		is.Equal(mediantPhrase.Url, expectedGABC)
+		is.Equal(mediantPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface mediant phrase - 2 syllables", func(t *testing.T) {
@@ -109,7 +109,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "É(g) dig(fgh)no(g) (,)"
 
-		is.Equal(mediantPhrase.Url, expectedGABC)
+		is.Equal(mediantPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface mediant phrase - 1 syllable", func(t *testing.T) {
@@ -120,7 +120,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "dig(fgh)no(g) (,)"
 
-		is.Equal(mediantPhrase.Url, expectedGABC)
+		is.Equal(mediantPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface conclusion phrase - short", func(t *testing.T) {
@@ -131,7 +131,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Por(f) is(ef)so(f) (,)"
 
-		is.Equal(conclusionPhrase.Url, expectedGABC)
+		is.Equal(conclusionPhrase, expectedGABC)
 	})
 
 	t.Run("apply gabc melody to a preface conclusion phrase - long", func(t *testing.T) {
@@ -142,6 +142,17 @@ func TestGeneratePreface(t *testing.T) {
 
 		expectedGABC := "Por(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)"
 
-		is.Equal(conclusionPhrase.Url, expectedGABC)
+		is.Equal(conclusionPhrase, expectedGABC)
+	})
+
+	t.Run("apply gabc melodies to a group of phrases", func(t *testing.T) {
+		is := is.New(t)
+
+		conclusionPhrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, "Por isso, na verdade,+")
+		is.NoErr(err)
+
+		expectedGABC := "Por(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)"
+
+		is.Equal(conclusionPhrase, expectedGABC)
 	})
 }
