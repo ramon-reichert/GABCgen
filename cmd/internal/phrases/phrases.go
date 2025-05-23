@@ -13,7 +13,6 @@ import (
 
 type Phrase struct {
 	Text        string            // the text of the phrase
-	Mark        string            // the mark to allow typing this phrase according to the Mass part
 	Syllables   []*words.Syllable // the syllables of the phrase
 	Syllabifier words.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
 }
@@ -22,10 +21,9 @@ type PhraseMelodyer interface {
 	ApplyMelody() (string, error) //Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
 }
 
-func New(text, mark string) *Phrase {
+func New(text string) *Phrase {
 	return &Phrase{
 		Text: text,
-		Mark: mark,
 	}
 }
 

@@ -4,10 +4,8 @@ package gabcGen
 import (
 	"context"
 	"fmt"
-	"strings"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
@@ -31,28 +29,28 @@ type scoreFile struct {
 	Url string
 }
 
-// GeneratePreface attaches GABC code to each syllable of the incomming marked text following the preface melody rules.
-func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (string, error) {
+// GeneratePreface attaches GABC code to each syllable of the incomming lined text following the preface melody rules.
+func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (string, error) {
 	var composedGABC string
-	//TODO: PARSE THE INCOMING PARAGRAPH TO DEFINE PHRASE  TYPES ACORDING JUST TO THE LINES, INSTEAD OF THE MARKS
-	marks := "=+*$" //Possible preface marks
 
-	newPhrases, err := gen.distributeTextToPhrases(markedText, marks)
+	newParagraphs, err := paragraph.DistrbuteText(linedText)
 	if err != nil {
 		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	for _, v := range newPhrases {
-		v.Syllabifier = gen.Syllabifier
+	for _, p := range newParagraphs {
+		for _, v := range p.Phrases {
+			v.Syllabifier = gen.Syllabifier
 
-		if err := v.BuildPhraseSyllables(ctx); err != nil {
-			return composedGABC, fmt.Errorf("generating Preface: %w", err)
+			if err := v.BuildPhraseSyllables(ctx); err != nil {
+				return composedGABC, fmt.Errorf("generating Preface: %w", err)
+			}
 		}
 	}
 
-	preface := preface.New(markedText)
+	preface := preface.New(linedText)
 
-	if err := preface.TypePhrases(newPhrases); err != nil {
+	if err := preface.TypePhrases(newParagraphs); err != nil {
 		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
 
@@ -62,36 +60,6 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, markedText string) (stri
 	}
 
 	return composedGABC, nil
-}
-
-// distributeTextToPhrases takes a marked text and stores each line in a new Phrase struct.
-// The last character of each line is considered a mark and is removed from the text.
-func (gen GabcGen) distributeTextToPhrases(MarkedText, marks string) ([]*phrases.Phrase, error) {
-	var newPhrases []*phrases.Phrase
-
-	if MarkedText == "" {
-		return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoText)
-	}
-
-	for v := range strings.Lines(MarkedText) {
-		//TODO handle empty lines between pharagraphs
-
-		//Remove suffix mark from the text and store it in another field of the Phrase struct.
-		index := strings.LastIndexAny(v, marks)
-		if index == -1 {
-			return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoMarks)
-		}
-		mark := string(v[index])
-		text, _ := strings.CutSuffix(v, mark)
-
-		newPhrases = append(newPhrases, phrases.New(text, mark))
-	}
-
-	if len(newPhrases) == 0 {
-		return newPhrases, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoText)
-	}
-
-	return newPhrases, nil
 }
 
 func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {

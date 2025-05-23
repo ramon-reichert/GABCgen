@@ -5,73 +5,64 @@ import (
 	"fmt"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
 )
 
 type preface struct {
-	MarkedText string //each line must end with a mark: =, *, $ or +.
-	Phrases    []phrases.PhraseMelodyer
+	LinedText string
+	Phrases   []phrases.PhraseMelodyer
 }
 
 type ( // Phrase types that can occur in a Preface
-	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same); Special treatment, since it is always the same
-	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence; Must end with "="
-	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence; Must end with "$"
-	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence; Must end with "*"
-	conclusion phrases.Phrase // conclusion = Beginning of conclusion paragraph (often "Por isso") Must end with "+"
+	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same text); Special treatment: just the melody can differ between simple or solemn tones
+	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence;
+	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence;
+	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence;
+	conclusion phrases.Phrase // conclusion = Beginning of conclusion paragraph (often "Por isso")
 )
 
-// New creates a new preface struct with the marked text.
-func New(markedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
+// New creates a new preface struct with the lined text.
+func New(linedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
 	return &preface{
-		MarkedText: markedText,
+		LinedText: linedText,
 	}
 }
 
-// TypePhrases types the already built phrases based on the given mark suffix.
-func (preface *preface) TypePhrases(newPhrases []*phrases.Phrase) error {
+// TypePhrases types the already built phrases based on the position of the phrases in the paragraph.
+func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 
-	for _, v := range newPhrases {
-		typedPhrase, err := preface.newTypedPhrase(v)
-		if err != nil {
-			return fmt.Errorf("typing built Phrases: %w", err)
+	for _, p := range newParagraphs {
+
+		if len(p.Phrases) < 3 { //each paragraph must have at least three phrases to enable applying the melody
+			return fmt.Errorf("typing phrase: %v - %w", p.Phrases[0].Text, gabcErrors.ErrShortParagraph)
 		}
 
-		preface.Phrases = append(preface.Phrases, typedPhrase)
+		for i := 0; i < len(p.Phrases); i++ {
+			//TODO check if the first phrase is a conclusion "Por isso"
+
+			if i < len(p.Phrases)-2 {
+				preface.Phrases = append(preface.Phrases, firsts{
+					Text:      p.Phrases[i].Text,
+					Syllables: p.Phrases[i].Syllables,
+				})
+				continue
+			}
+			if i == len(p.Phrases)-2 {
+				preface.Phrases = append(preface.Phrases, mediant{
+					Text:      p.Phrases[i].Text,
+					Syllables: p.Phrases[i].Syllables,
+				})
+				continue
+			}
+			preface.Phrases = append(preface.Phrases, last{
+				Text:      p.Phrases[i].Text,
+				Syllables: p.Phrases[i].Syllables,
+			})
+		}
 	}
 	return nil
-}
-
-// newTypedPhrase switches between the possible phrase types for Preface.
-func (preface *preface) newTypedPhrase(ph *phrases.Phrase) (phrases.PhraseMelodyer, error) {
-
-	switch ph.Mark {
-	case "=":
-		return firsts{
-			Text:      ph.Text,
-			Syllables: ph.Syllables,
-		}, nil
-	case "$":
-		return last{
-			Text:      ph.Text,
-			Syllables: ph.Syllables,
-		}, nil
-	case "*":
-		return mediant{
-			Text:      ph.Text,
-			Syllables: ph.Syllables,
-		}, nil
-	case "+":
-		return conclusion{
-			Text:      ph.Text,
-			Syllables: ph.Syllables,
-		}, nil
-	// TODO test the other preface types cases
-
-	default:
-		return nil, gabcErrors.ErrNoMarks
-	}
 }
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
@@ -94,7 +85,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 	//reading Syllables from the end:
 	i := len(ph.Syllables) - 1
 	if i < 0 {
-		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//last unstressed Syllables:
@@ -102,7 +93,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
@@ -110,14 +101,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.LaSi
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SiLa
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//testing the exception at last unstressed reciting syllable:
@@ -125,13 +116,13 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Do
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	} else if ph.Syllables[i-1].IsTonic && !ph.Syllables[i-1].IsLast { //exception case
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
@@ -140,14 +131,14 @@ func (ph firsts) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Do
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("firsts phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
 	//first intonation syllable:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 
-	end := "(;)" //gabc code for the "half bar", to be added at the end of the phrase
+	end := "(;)\n" //gabc code for the "half bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 
@@ -157,7 +148,7 @@ func (ph last) ApplyMelody() (string, error) {
 	//reading Syllables from the end:
 	i := len(ph.Syllables) - 1
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//last unstressed Syllables:
@@ -165,7 +156,7 @@ func (ph last) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
@@ -177,28 +168,28 @@ func (ph last) ApplyMelody() (string, error) {
 	}
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//first syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//second syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLa
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//third syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.LaSol
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	// completing reciting Syllables:
@@ -206,14 +197,14 @@ func (ph last) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
 	//first syllable of the phrase:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 
-	end := "(:)" //gabc code for the "whole bar", to be added at the end of the phrase
+	end := "(:)\n\n" //gabc code for the "whole bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 
@@ -225,7 +216,7 @@ func (ph mediant) ApplyMelody() (string, error) {
 	//reading Syllables from the end:
 	i := len(ph.Syllables) - 1
 	if i < 0 {
-		return "", fmt.Errorf("mediant phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("mediant phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//last unstressed Syllables:
@@ -233,7 +224,7 @@ func (ph mediant) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("mediant phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("mediant phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
@@ -259,7 +250,7 @@ func (ph mediant) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 	}
 
-	end := "(,)" //gabc code for the "quarter bar", to be added at the end of the phrase
+	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 
@@ -269,7 +260,7 @@ func (ph conclusion) ApplyMelody() (string, error) {
 	//reading Syllables from the end:
 	i := len(ph.Syllables) - 1
 	if i < 0 {
-		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	//last unstressed Syllables:
@@ -277,7 +268,7 @@ func (ph conclusion) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+			return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 		}
 	}
 
@@ -285,7 +276,7 @@ func (ph conclusion) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLa
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrToShort)
+		return "", fmt.Errorf("conclusion phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
 	}
 
 	// completing reciting Syllables:
@@ -297,6 +288,6 @@ func (ph conclusion) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 	}
 
-	end := "(,)" //gabc code for the "quarter bar", to be added at the end of the phrase
+	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
