@@ -33,7 +33,7 @@ type scoreFile struct {
 func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (string, error) {
 	var composedGABC string
 
-	newParagraphs, err := paragraph.DistrbuteText(linedText)
+	newParagraphs, err := paragraph.DistributeText(linedText)
 	if err != nil {
 		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}

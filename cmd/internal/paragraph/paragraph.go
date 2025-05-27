@@ -13,7 +13,7 @@ type Paragraph struct {
 	Phrases []*phrases.Phrase
 }
 
-func DistrbuteText(linedText string) ([]Paragraph, error) {
+func DistributeText(linedText string) ([]Paragraph, error) {
 	var newPhrases []*phrases.Phrase
 	var paragraphs []Paragraph
 
