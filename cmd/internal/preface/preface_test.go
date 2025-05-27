@@ -15,29 +15,6 @@ var ctx context.Context = context.Background()
 
 func TestGeneratePreface(t *testing.T) {
 
-	/* TODO activate these tests when implement conclusion phrase detection
-	t.Run("apply gabc melody to a preface conclusion phrase - short", func(t *testing.T) {
-		is := is.New(t)
-
-		conclusionPhrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, "Por isso+")
-		is.NoErr(err)
-
-		expectedGABC := "Por(f) is(ef)so(f) (,)"
-
-		is.Equal(conclusionPhrase, expectedGABC)
-	})
-
-	t.Run("apply gabc melody to a preface conclusion phrase - long", func(t *testing.T) {
-		is := is.New(t)
-
-		conclusionPhrase, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, "Por isso, na verdade,+")
-		is.NoErr(err)
-
-		expectedGABC := "Por(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)"
-
-		is.Equal(conclusionPhrase, expectedGABC)
-	}) */
-
 	t.Run("apply gabc melodies to a group of phrases", func(t *testing.T) {
 		is := is.New(t)
 
@@ -49,22 +26,24 @@ func TestGeneratePreface(t *testing.T) {
 		f := "-Na: verd'ade, é .digno e justo,\n" //paroxytone - last
 		g := "\n"                                 //new line separating paragraphs
 		h := " \n"                                //spare new line and space
+		l := "Por isso, na verdade,\n"            //conclusion phrase short
 		//b again
 		i := "Na verdade\n"                   //mediant phrase - 3 syllables
 		j := "Na verdade, digno e justo é,\n" //last phrase - oxytone
 		//g again
+		//l again
 		//c again
 		k := "digno\n" //mediant phrase - 1 syllable
 		//f again
 		//a again
 
-		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + b + i + j + g + c + k + f + a)
+		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
 		log.Println("inputText: ", inputText)
 
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabification.NewSyllabifier()).GeneratePreface(ctx, inputText)
 		is.NoErr(err)
 
-		expectedGABC := "-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)\nNa(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)\n\n-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(g) ver(g)da(fgh)de(g) (,)\nNa(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)\n\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\ndig(fgh)no(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)\n\n"
+		expectedGABC := "-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)\nNa(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)\n\nPor(f) is(h)so,(h) na(h) ver(gf)da(fg)de,(g) (;)\n-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(g) ver(g)da(fgh)de(g) (,)\nNa(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)\n\nPor(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\ndig(fgh)no(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)\n\n"
 
 		is.Equal(composedGABC, expectedGABC)
 

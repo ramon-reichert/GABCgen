@@ -3,6 +3,7 @@ package preface
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
@@ -33,14 +34,22 @@ func New(linedText string) *preface { //returning a pointer because this struct 
 // TypePhrases types the already built phrases based on the position of the phrases in the paragraph.
 func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 
-	for _, p := range newParagraphs {
+	for n, p := range newParagraphs {
 
-		if len(p.Phrases) < 3 { //each paragraph must have at least three phrases to enable applying the melody
+		if n == len(newParagraphs)-1 && strings.HasPrefix(p.Phrases[0].Text, "Por isso") { //"Por isso" is a special conclusion expression that can start the last paragraph, and has its own melody
+			preface.Phrases = append(preface.Phrases, conclusion{
+				Text:      p.Phrases[0].Text,
+				Syllables: p.Phrases[0].Syllables,
+			})
+
+			p.Phrases = p.Phrases[1:] //removing the conclusion phrase from the paragraph, so it won't be processed again
+		}
+
+		if len(p.Phrases) < 3 { //each paragraph must have at least three phrases to enable applying the melody, not counting the conclusion phrase - which can start the last paragraph
 			return fmt.Errorf("typing phrase: %v - %w", p.Phrases[0].Text, gabcErrors.ErrShortParagraph)
 		}
 
 		for i := 0; i < len(p.Phrases); i++ {
-			//TODO check if the first phrase is a conclusion "Por isso"
 
 			if i < len(p.Phrases)-2 {
 				preface.Phrases = append(preface.Phrases, firsts{
