@@ -1,0 +1,18 @@
+package syllabification_test
+
+import (
+	"context"
+	"testing"
+
+	"github.com/matryer/is"
+)
+
+var ctx context.Context = context.Background()
+
+func TestSyllabify(t *testing.T) {
+
+	t.Run("apply gabc melodies to a group of phrases", func(t *testing.T) {
+		is := is.New(t)
+		
+	})
+}

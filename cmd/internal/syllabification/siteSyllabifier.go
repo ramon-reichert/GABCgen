@@ -1,6 +1,7 @@
-package main
+package syllabification
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,80 +12,71 @@ import (
 	"strings"
 )
 
+type Syllabifier struct {
+	userSyllabs map[string]SyllableInfo
+}
+
+func NewSyllabifier() *Syllabifier {
+	return &Syllabifier{}
+}
+
 type SyllableInfo struct {
 	Slashed    string `json:"slashed"`
 	TonicIndex int    `json:"tonic_index"`
 }
 
-var userSyllabs map[string]SyllableInfo
+func (s Syllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
 
-func main() {
-	var err error
-	userSyllabs, err = LoadSyllables("user_syllables.json")
-	if err != nil {
-		log.Println("loading user syllables file:", err)
-		return
-	}
-
-	word := "abraçado"
-	sInfo, err := Syllabify(word)
-	if err != nil {
-		log.Printf("syllabifying word %v: %v", word, err)
-		return
-	}
-
-	fmt.Println(sInfo)
-}
-
-func Syllabify(word string) (SyllableInfo, error) {
-
-	//TODO: check if the word is already syllabified in the embedded json database
+	//TODO: check if the word is already syllabified in the embedded json database of liturgical words
 
 	//TODO: check if the word is already syllabified in the user database of new words
-	if info, ok := userSyllabs[word]; ok {
-		return info, nil
+	if info, ok := s.userSyllabs[word]; ok {
+		return info.Slashed, info.TonicIndex, nil
 	}
 
 	//if the word is not found in the databases, fetch it from a external website:
 	info, err := fetchSyllabs(word)
 	if err != nil {
-		return SyllableInfo{}, fmt.Errorf("syllabifying new word: %w", err)
+		return "", 0, fmt.Errorf("syllabifying new word: %w", err)
 	}
+
+	//debug code:
+	log.Printf("Syllabified new word %v: %v", word, info)
+	log.Println("userSyllabs before adding new word: ", s.userSyllabs)
+	log.Printf("adress of userSyllabs: %p", &s.userSyllabs)
 
 	//add the word to the user database of new words
-	userSyllabs[word] = info
+	s.userSyllabs[word] = info
 
-	//save the user syllables to the file TODO: make it at once with all new words
-	if SaveSyllables("user_syllables.json", userSyllabs) != nil {
-		return SyllableInfo{}, fmt.Errorf("saving user syllables: %w", err)
-	}
-
-	return info, nil
+	return info.Slashed, info.TonicIndex, nil
 }
 
-func LoadSyllables(jsonFileName string) (map[string]SyllableInfo, error) {
-	data, err := os.ReadFile(jsonFileName)
+func (s Syllabifier) LoadSyllables(fileName string) error {
+	data, err := os.ReadFile(fileName)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	var infos map[string]SyllableInfo
-	err = json.Unmarshal(data, &infos)
-	if err != nil {
-		return nil, err
+	if json.Unmarshal(data, &s.userSyllabs) != nil {
+		return fmt.Errorf("unmarshaling file %v: %w", fileName, err)
 	}
-	return infos, nil
+
+	//debug code:
+	log.Println("Loaded syllables from userSyllabs: ", s.userSyllabs)
+	log.Printf("adress of userSyllabs: %p", &s.userSyllabs)
+
+	return nil
 }
 
-func SaveSyllables(jsonFileName string, syllabs map[string]SyllableInfo) error {
-	data, err := json.MarshalIndent(syllabs, "", "  ")
+func (s Syllabifier) SaveSyllables(fileName string) error {
+	data, err := json.MarshalIndent(s.userSyllabs, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshalling syllables to JSON: %w", err)
 	}
 
-	err = os.WriteFile(jsonFileName, data, 0644)
+	err = os.WriteFile(fileName, data, 0644)
 	if err != nil {
-		return fmt.Errorf("writing syllables to file %s: %w", jsonFileName, err)
+		return fmt.Errorf("writing syllables to file %s: %w", fileName, err)
 	}
 	return nil
 }

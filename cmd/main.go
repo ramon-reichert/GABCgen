@@ -27,6 +27,10 @@ func main() {
 func run() error {
 	//Init dependencies:
 	syllabifier := syllabification.NewSyllabifier()
+	err := syllabifier.LoadSyllables("user_syllables.json")
+	if err != nil {
+		return fmt.Errorf("loading user syllables file: %w", err)
+	}
 
 	//Init service with its dependencies:
 	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
