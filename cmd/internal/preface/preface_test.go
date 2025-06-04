@@ -8,7 +8,7 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/mockSyllabifier"
 )
 
 var ctx context.Context = context.Background()
@@ -40,9 +40,7 @@ func TestGeneratePreface(t *testing.T) {
 		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
 		log.Println("inputText: ", inputText)
 
-		syllabifier := syllabification.NewSyllabifier("B:/dev/GABCgen/cmd/user_syllables.json")
-
-		is.NoErr(syllabifier.LoadSyllables())
+		syllabifier := mockSyllabifier.NewSyllabifier()
 
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
 		is.NoErr(err)

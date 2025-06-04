@@ -1,4 +1,4 @@
-package syllabification
+package siteSyllabifier
 
 import (
 	"context"
