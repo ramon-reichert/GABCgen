@@ -40,9 +40,9 @@ func TestGeneratePreface(t *testing.T) {
 		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
 		log.Println("inputText: ", inputText)
 
-		syllabifier := syllabification.NewSyllabifier()
+		syllabifier := syllabification.NewSyllabifier("B:/dev/GABCgen/cmd/user_syllables.json")
 
-		is.NoErr(syllabifier.LoadSyllables("B:/dev/GABCgen/cmd/user_syllables.json"))
+		is.NoErr(syllabifier.LoadSyllables())
 
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
 		is.NoErr(err)

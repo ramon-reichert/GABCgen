@@ -16,8 +16,8 @@ type Syllabifier interface {
 }
 
 type SyllabDb interface {
-	LoadSyllables(fileName string) error //Load the syllables from a file
-	SaveSyllables(fileName string) error //Save the syllables to a file
+	LoadSyllables() error //Load the syllables from a file
+	SaveSyllables() error //Save the syllables to a file
 }
 
 type Syllable struct {

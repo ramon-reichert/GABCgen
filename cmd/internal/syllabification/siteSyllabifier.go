@@ -12,12 +12,15 @@ import (
 	"strings"
 )
 
-type Syllabifier struct {
-	userSyllabs map[string]SyllableInfo
+type SiteSyllabifier struct {
+	userSyllabs  map[string]SyllableInfo
+	userFilePath string //path to the user syllables file
 }
 
-func NewSyllabifier() *Syllabifier {
-	return &Syllabifier{}
+func NewSyllabifier(userSyllabsPath string) *SiteSyllabifier {
+	return &SiteSyllabifier{
+		userFilePath: userSyllabsPath,
+	}
 }
 
 type SyllableInfo struct {
@@ -25,7 +28,7 @@ type SyllableInfo struct {
 	TonicIndex int    `json:"tonic_index"`
 }
 
-func (s Syllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
+func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
 
 	//TODO: check if the word is already syllabified in the embedded json database of liturgical words
 
@@ -51,14 +54,14 @@ func (s Syllabifier) Syllabify(ctx context.Context, word string) (string, int, e
 	return info.Slashed, info.TonicIndex, nil
 }
 
-func (s Syllabifier) LoadSyllables(fileName string) error {
-	data, err := os.ReadFile(fileName)
+func (s *SiteSyllabifier) LoadSyllables() error {
+	data, err := os.ReadFile(s.userFilePath)
 	if err != nil {
 		return err
 	}
 
 	if json.Unmarshal(data, &s.userSyllabs) != nil {
-		return fmt.Errorf("unmarshaling file %v: %w", fileName, err)
+		return fmt.Errorf("unmarshaling file %v: %w", s.userFilePath, err)
 	}
 
 	//debug code:
@@ -68,15 +71,15 @@ func (s Syllabifier) LoadSyllables(fileName string) error {
 	return nil
 }
 
-func (s Syllabifier) SaveSyllables(fileName string) error {
+func (s *SiteSyllabifier) SaveSyllables() error {
 	data, err := json.MarshalIndent(s.userSyllabs, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshalling syllables to JSON: %w", err)
 	}
 
-	err = os.WriteFile(fileName, data, 0644)
+	err = os.WriteFile(s.userFilePath, data, 0644)
 	if err != nil {
-		return fmt.Errorf("writing syllables to file %s: %w", fileName, err)
+		return fmt.Errorf("writing syllables to file %s: %w", s.userFilePath, err)
 	}
 	return nil
 }
