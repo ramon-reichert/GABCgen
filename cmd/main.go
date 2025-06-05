@@ -26,7 +26,7 @@ func main() {
 
 func run() error {
 	//Init dependencies:
-	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/user_syllables.json")
+	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/liturgical_syllables.json", "B:/dev/GABCgen/cmd/user_syllables.json")
 	err := syllabifier.LoadSyllables()
 	if err != nil {
 		return fmt.Errorf("loading user syllables file: %w", err)

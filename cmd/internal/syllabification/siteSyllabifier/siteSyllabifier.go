@@ -13,13 +13,16 @@ import (
 )
 
 type SiteSyllabifier struct {
-	userSyllabs  map[string]SyllableInfo
-	userFilePath string //path to the user syllables file
+	userSyllabs        map[string]SyllableInfo
+	userFilePath       string                  //path to the user syllables file
+	liturgicalSyllabs  map[string]SyllableInfo //map of liturgical syllables, loaded from a file
+	liturgicalFilePath string                  //path to the liturgical syllables file
 }
 
-func NewSyllabifier(userSyllabsPath string) *SiteSyllabifier {
+func NewSyllabifier(liturgicalSyllabsPath, userSyllabsPath string) *SiteSyllabifier {
 	return &SiteSyllabifier{
-		userFilePath: userSyllabsPath,
+		userFilePath:       userSyllabsPath,
+		liturgicalFilePath: liturgicalSyllabsPath,
 	}
 }
 
@@ -30,9 +33,12 @@ type SyllableInfo struct {
 
 func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
 
-	//TODO: check if the word is already syllabified in the embedded json database of liturgical words
+	//check if the word is already syllabified in the embedded json database of liturgical words:
+	if info, ok := s.liturgicalSyllabs[word]; ok {
+		return info.Slashed, info.TonicIndex, nil
+	}
 
-	//TODO: check if the word is already syllabified in the user database of new words
+	//check if the word is already syllabified in the user database of new words:
 	if info, ok := s.userSyllabs[word]; ok {
 		return info.Slashed, info.TonicIndex, nil
 	}
@@ -55,18 +61,23 @@ func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, i
 }
 
 func (s *SiteSyllabifier) LoadSyllables() error {
-	data, err := os.ReadFile(s.userFilePath)
+	dataL, err := os.ReadFile(s.liturgicalFilePath)
 	if err != nil {
 		return err
 	}
 
-	if json.Unmarshal(data, &s.userSyllabs) != nil {
+	if json.Unmarshal(dataL, &s.liturgicalSyllabs) != nil {
 		return fmt.Errorf("unmarshaling file %v: %w", s.userFilePath, err)
 	}
 
-	//debug code:
-	log.Println("Loaded syllables from userSyllabs: ", s.userSyllabs)
-	log.Printf("adress of userSyllabs: %p", &s.userSyllabs)
+	dataU, err := os.ReadFile(s.userFilePath)
+	if err != nil {
+		return err
+	}
+
+	if json.Unmarshal(dataU, &s.userSyllabs) != nil {
+		return fmt.Errorf("unmarshaling file %v: %w", s.userFilePath, err)
+	}
 
 	return nil
 }
