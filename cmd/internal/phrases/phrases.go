@@ -33,7 +33,7 @@ func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) error {
 	words := strings.Fields(ph.Text)
 	for _, v := range words {
 
-		//TODO: verify if word is composed and divide it at the hyphen
+		//TODO: verify if word is composed and divide it at the hyphen, or not (ave-maria, compará-lo)
 
 		syllables, err := ph.classifyWordSyllables(ctx, v)
 		if err != nil {
