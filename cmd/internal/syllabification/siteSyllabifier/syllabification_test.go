@@ -14,8 +14,8 @@ var ctx context.Context = context.Background()
 
 func TestSyllabify(t *testing.T) {
 	is := is.New(t)
-	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/test_liturgical_syllables.json", "B:/dev/GABCgen/cmd/test_user_syllables.json", "B:/dev/GABCgen/cmd/not_syllabified.txt")
-	is.NoErr(os.WriteFile("B:/dev/GABCgen/cmd/test_user_syllables.json", []byte("{}"), 0644)) //write an empty json file to the user syllables path
+	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/syllable_databases/test_liturgical_syllables.json", "B:/dev/GABCgen/cmd/syllable_databases/test_user_syllables.json", "B:/dev/GABCgen/cmd/syllable_databases/not_syllabified.txt")
+	is.NoErr(os.WriteFile("B:/dev/GABCgen/cmd/syllable_databases/test_user_syllables.json", []byte("{}"), 0644)) //write an empty json file to the user syllables path
 
 	t.Run("fetch syllables from words that are already at liturgical syllabs db file", func(t *testing.T) {
 		is := is.New(t)
@@ -27,7 +27,7 @@ func TestSyllabify(t *testing.T) {
 			}}
 		data, err := json.MarshalIndent(jsonWord, "", "  ")
 		is.NoErr(err)
-		is.NoErr(os.WriteFile("B:/dev/GABCgen/cmd/test_liturgical_syllables.json", data, 0644))
+		is.NoErr(os.WriteFile("B:/dev/GABCgen/cmd/syllable_databases/test_liturgical_syllables.json", data, 0644))
 		is.NoErr(syllabifier.LoadSyllables())
 
 		slashed, tonicIndex, err := syllabifier.Syllabify(ctx, "litúrgicas")
@@ -56,7 +56,7 @@ func TestSyllabify(t *testing.T) {
 		}
 		data, err := json.MarshalIndent(jsonWord, "", "  ")
 		is.NoErr(err)
-		fileContent, err := os.ReadFile("B:/dev/GABCgen/cmd/test_user_syllables.json")
+		fileContent, err := os.ReadFile("B:/dev/GABCgen/cmd/syllable_databases/test_user_syllables.json")
 		is.NoErr(err)
 		is.Equal(fileContent, data) //check if the user db file was created with the new word
 
