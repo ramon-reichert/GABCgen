@@ -14,7 +14,7 @@ var ctx context.Context = context.Background()
 
 func TestSyllabify(t *testing.T) {
 	is := is.New(t)
-	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/test_liturgical_syllables.json", "B:/dev/GABCgen/cmd/test_user_syllables.json")
+	syllabifier := siteSyllabifier.NewSyllabifier("B:/dev/GABCgen/cmd/test_liturgical_syllables.json", "B:/dev/GABCgen/cmd/test_user_syllables.json", "B:/dev/GABCgen/cmd/not_syllabified.txt")
 	is.NoErr(os.WriteFile("B:/dev/GABCgen/cmd/test_user_syllables.json", []byte("{}"), 0644)) //write an empty json file to the user syllables path
 
 	t.Run("fetch syllables from words that are already at liturgical syllabs db file", func(t *testing.T) {
@@ -61,5 +61,4 @@ func TestSyllabify(t *testing.T) {
 		is.Equal(fileContent, data) //check if the user db file was created with the new word
 
 	})
-
 }
