@@ -13,7 +13,7 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/cmd/httpGabcGen"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/siteSyllabifier"
 )
 
 func main() {
@@ -26,7 +26,11 @@ func main() {
 
 func run() error {
 	//Init dependencies:
-	syllabifier := syllabification.NewSyllabifier()
+	syllabifier := siteSyllabifier.NewSyllabifier("cmd/syllable_databases/liturgical_syllables.json", "cmd/syllable_databases/user_syllables.json", "cmd/syllable_databases/not_syllabified.txt")
+	err := syllabifier.LoadSyllables()
+	if err != nil {
+		return fmt.Errorf("loading syllables db files: %w", err)
+	}
 
 	//Init service with its dependencies:
 	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)

@@ -12,6 +12,12 @@ import (
 
 type Syllabifier interface {
 	Syllabify(ctx context.Context, word string) (string, int, error)
+	SyllabDb
+}
+
+type SyllabDb interface {
+	LoadSyllables() error //Load the syllables from a file
+	SaveSyllables() error //Save the syllables to a file
 }
 
 type Syllable struct {

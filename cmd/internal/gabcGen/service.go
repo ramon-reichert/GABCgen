@@ -48,6 +48,12 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (strin
 		}
 	}
 
+	//save the user syllables to the file at once with all new words
+	err = gen.Syllabifier.SaveSyllables()
+	if err != nil {
+		return composedGABC, fmt.Errorf("saving user syllables: %w", err)
+	}
+
 	preface := preface.New(linedText)
 
 	if err := preface.TypePhrases(newParagraphs); err != nil {

@@ -1,0 +1,5155 @@
+{
+  "abandonais": {
+    "slashed": "a/ban/do/nais",
+    "tonic_index": 4
+  },
+  "aberto": {
+    "slashed": "a/ber/to",
+    "tonic_index": 2
+  },
+  "abraão": {
+    "slashed": "a/bra/ã/o",
+    "tonic_index": 3
+  },
+  "abre": {
+    "slashed": "a/bre",
+    "tonic_index": 1
+  },
+  "abrem": {
+    "slashed": "a/brem",
+    "tonic_index": 1
+  },
+  "abrir": {
+    "slashed": "a/brir",
+    "tonic_index": 2
+  },
+  "abristes": {
+    "slashed": "a/bris/tes",
+    "tonic_index": 2
+  },
+  "abriu": {
+    "slashed": "a/briu",
+    "tonic_index": 2
+  },
+  "absolvidos": {
+    "slashed": "ab/sol/vi/dos",
+    "tonic_index": 3
+  },
+  "abstinência": {
+    "slashed": "abs/ti/nên/cia",
+    "tonic_index": 3
+  },
+  "acalentou": {
+    "slashed": "a/ca/len/tou",
+    "tonic_index": 4
+  },
+  "aceito": {
+    "slashed": "a/cei/to",
+    "tonic_index": 2
+  },
+  "aceitou": {
+    "slashed": "a/cei/tou",
+    "tonic_index": 3
+  },
+  "acendeu": {
+    "slashed": "a/cen/deu",
+    "tonic_index": 3
+  },
+  "acima": {
+    "slashed": "a/ci/ma",
+    "tonic_index": 2
+  },
+  "aclamamos": {
+    "slashed": "a/cla/ma/mos",
+    "tonic_index": 3
+  },
+  "acolhamos": {
+    "slashed": "a/co/lha/mos",
+    "tonic_index": 3
+  },
+  "acolhendo": {
+    "slashed": "a/co/lhen/do",
+    "tonic_index": 3
+  },
+  "acolhestes": {
+    "slashed": "a/co/lhes/tes",
+    "tonic_index": 3
+  },
+  "acolheu": {
+    "slashed": "a/co/lheu",
+    "tonic_index": 3
+  },
+  "acompanha": {
+    "slashed": "a/com/pa/nha",
+    "tonic_index": 3
+  },
+  "acreditar": {
+    "slashed": "a/cre/di/tar",
+    "tonic_index": 4
+  },
+  "acrescentam": {
+    "slashed": "a/cres/cen/tam",
+    "tonic_index": 3
+  },
+  "admiravelmente": {
+    "slashed": "ad/mi/ra/vel/men/te",
+    "tonic_index": 5
+  },
+  "admiração": {
+    "slashed": "ad/mi/ra/ção",
+    "tonic_index": 4
+  },
+  "admiráveis": {
+    "slashed": "ad/mi/rá/veis",
+    "tonic_index": 3
+  },
+  "admirável": {
+    "slashed": "ad/mi/rá/vel",
+    "tonic_index": 3
+  },
+  "adoram": {
+    "slashed": "a/do/ram",
+    "tonic_index": 2
+  },
+  "adoramos": {
+    "slashed": "a/do/ra/mos",
+    "tonic_index": 3
+  },
+  "adorando": {
+    "slashed": "a/do/ran/do",
+    "tonic_index": 3
+  },
+  "adoração": {
+    "slashed": "a/do/ra/ção",
+    "tonic_index": 4
+  },
+  "adoção": {
+    "slashed": "a/do/ção",
+    "tonic_index": 3
+  },
+  "adquirir": {
+    "slashed": "ad/qui/rir",
+    "tonic_index": 3
+  },
+  "adversário": {
+    "slashed": "ad/ver/sá/rio",
+    "tonic_index": 3
+  },
+  "advogada": {
+    "slashed": "ad/vo/ga/da",
+    "tonic_index": 3
+  },
+  "adão": {
+    "slashed": "a/dão",
+    "tonic_index": 2
+  },
+  "afastar": {
+    "slashed": "a/fas/tar",
+    "tonic_index": 3
+  },
+  "afetos": {
+    "slashed": "a/fe/tos",
+    "tonic_index": 2
+  },
+  "agora": {
+    "slashed": "a/go/ra",
+    "tonic_index": 2
+  },
+  "agradecido": {
+    "slashed": "a/gra/de/ci/do",
+    "tonic_index": 4
+  },
+  "aguardamos": {
+    "slashed": "a/guar/da/mos",
+    "tonic_index": 3
+  },
+  "aguardando": {
+    "slashed": "a/guar/dan/do",
+    "tonic_index": 3
+  },
+  "ainda": {
+    "slashed": "a/in/da",
+    "tonic_index": 2
+  },
+  "ajuda": {
+    "slashed": "a/ju/da",
+    "tonic_index": 2
+  },
+  "ajudam": {
+    "slashed": "a/ju/dam",
+    "tonic_index": 2
+  },
+  "ajudá": {
+    "slashed": "a/ju/dá",
+    "tonic_index": 3
+  },
+  "alcancem": {
+    "slashed": "al/can/cem",
+    "tonic_index": 2
+  },
+  "alcançar": {
+    "slashed": "al/can/çar",
+    "tonic_index": 3
+  },
+  "alcançarmos": {
+    "slashed": "al/can/çar/mos",
+    "tonic_index": 3
+  },
+  "alegrais": {
+    "slashed": "a/le/grais",
+    "tonic_index": 3
+  },
+  "alegram": {
+    "slashed": "a/le/gram",
+    "tonic_index": 2
+  },
+  "alegrando": {
+    "slashed": "a/le/gran/do",
+    "tonic_index": 3
+  },
+  "alegre": {
+    "slashed": "a/le/gre",
+    "tonic_index": 2
+  },
+  "alegremente": {
+    "slashed": "a/le/gre/men/te",
+    "tonic_index": 4
+  },
+  "alegres": {
+    "slashed": "a/le/gres",
+    "tonic_index": 2
+  },
+  "alegria": {
+    "slashed": "a/le/gri/a",
+    "tonic_index": 3
+  },
+  "aliança": {
+    "slashed": "a/li/an/ça",
+    "tonic_index": 3
+  },
+  "alicerce": {
+    "slashed": "a/li/cer/ce",
+    "tonic_index": 3
+  },
+  "alimenta": {
+    "slashed": "a/li/men/ta",
+    "tonic_index": 3
+  },
+  "alimentados": {
+    "slashed": "a/li/men/ta/dos",
+    "tonic_index": 4
+  },
+  "alimentais": {
+    "slashed": "a/li/men/tais",
+    "tonic_index": 4
+  },
+  "alimento": {
+    "slashed": "a/li/men/to",
+    "tonic_index": 3
+  },
+  "alma": {
+    "slashed": "al/ma",
+    "tonic_index": 1
+  },
+  "altar": {
+    "slashed": "al/tar",
+    "tonic_index": 2
+  },
+  "alto": {
+    "slashed": "al/to",
+    "tonic_index": 1
+  },
+  "alturas": {
+    "slashed": "al/tu/ras",
+    "tonic_index": 2
+  },
+  "amado": {
+    "slashed": "a/ma/do",
+    "tonic_index": 2
+  },
+  "amar": {
+    "slashed": "a/mar",
+    "tonic_index": 2
+  },
+  "amardes": {
+    "slashed": "a/mar/des",
+    "tonic_index": 2
+  },
+  "amastes": {
+    "slashed": "a/mas/tes",
+    "tonic_index": 2
+  },
+  "amigo": {
+    "slashed": "a/mi/go",
+    "tonic_index": 2
+  },
+  "amor": {
+    "slashed": "a/mor",
+    "tonic_index": 2
+  },
+  "amorosas": {
+    "slashed": "a/mo/ro/sas",
+    "tonic_index": 3
+  },
+  "angélicas": {
+    "slashed": "an/gé/li/cas",
+    "tonic_index": 2
+  },
+  "angélicos": {
+    "slashed": "an/gé/li/cos",
+    "tonic_index": 2
+  },
+  "anjo": {
+    "slashed": "an/jo",
+    "tonic_index": 1
+  },
+  "anjos": {
+    "slashed": "an/jos",
+    "tonic_index": 1
+  },
+  "anos": {
+    "slashed": "a/nos",
+    "tonic_index": 1
+  },
+  "ante": {
+    "slashed": "an/te",
+    "tonic_index": 1
+  },
+  "antes": {
+    "slashed": "an/tes",
+    "tonic_index": 1
+  },
+  "antiga": {
+    "slashed": "an/ti/ga",
+    "tonic_index": 2
+  },
+  "antigo": {
+    "slashed": "an/ti/go",
+    "tonic_index": 2
+  },
+  "antigos": {
+    "slashed": "an/ti/gos",
+    "tonic_index": 2
+  },
+  "anunciar": {
+    "slashed": "a/nun/ci/ar",
+    "tonic_index": 4
+  },
+  "anunciarmos": {
+    "slashed": "a/nun/ci/ar/mos",
+    "tonic_index": 4
+  },
+  "anuncie": {
+    "slashed": "a/nun/ci/e",
+    "tonic_index": 3
+  },
+  "anunciou": {
+    "slashed": "a/nun/ci/ou",
+    "tonic_index": 4
+  },
+  "anúncio": {
+    "slashed": "a/nún/cio",
+    "tonic_index": 2
+  },
+  "ao": {
+    "slashed": "ao",
+    "tonic_index": 1
+  },
+  "aos": {
+    "slashed": "a/os",
+    "tonic_index": 1
+  },
+  "apagou": {
+    "slashed": "a/pa/gou",
+    "tonic_index": 3
+  },
+  "aparecerá": {
+    "slashed": "a/pa/re/ce/rá",
+    "tonic_index": 5
+  },
+  "apareceu": {
+    "slashed": "a/pa/re/ceu",
+    "tonic_index": 4
+  },
+  "apascentar": {
+    "slashed": "a/pas/cen/tar",
+    "tonic_index": 4
+  },
+  "apostólica": {
+    "slashed": "a/pos/tó/li/ca",
+    "tonic_index": 3
+  },
+  "aprendemos": {
+    "slashed": "a/pren/de/mos",
+    "tonic_index": 3
+  },
+  "apresenta": {
+    "slashed": "a/pre/sen/ta",
+    "tonic_index": 3
+  },
+  "apresentado": {
+    "slashed": "a/pre/sen/ta/do",
+    "tonic_index": 4
+  },
+  "apressamos": {
+    "slashed": "a/pres/sa/mos",
+    "tonic_index": 3
+  },
+  "aproximam": {
+    "slashed": "a/pro/xi/mam",
+    "tonic_index": 3
+  },
+  "aproximamos": {
+    "slashed": "a/pro/xi/ma/mos",
+    "tonic_index": 4
+  },
+  "apóstolos": {
+    "slashed": "a/pós/to/los",
+    "tonic_index": 2
+  },
+  "aquela": {
+    "slashed": "a/que/la",
+    "tonic_index": 2
+  },
+  "aquele": {
+    "slashed": "a/que/le",
+    "tonic_index": 2
+  },
+  "aqueles": {
+    "slashed": "a/que/les",
+    "tonic_index": 2
+  },
+  "aqui": {
+    "slashed": "a/qui",
+    "tonic_index": 2
+  },
+  "arcanjos": {
+    "slashed": "ar/can/jos",
+    "tonic_index": 2
+  },
+  "ardor": {
+    "slashed": "ar/dor",
+    "tonic_index": 2
+  },
+  "artífice": {
+    "slashed": "ar/tí/fi/ce",
+    "tonic_index": 2
+  },
+  "as": {
+    "slashed": "as",
+    "tonic_index": 1
+  },
+  "assembleia": {
+    "slashed": "as/sem/blei/a",
+    "tonic_index": 3
+  },
+  "assim": {
+    "slashed": "as/sim",
+    "tonic_index": 2
+  },
+  "associados": {
+    "slashed": "as/so/ci/a/dos",
+    "tonic_index": 4
+  },
+  "associar": {
+    "slashed": "as/so/ci/ar",
+    "tonic_index": 4
+  },
+  "assume": {
+    "slashed": "as/su/me",
+    "tonic_index": 2
+  },
+  "assumiu": {
+    "slashed": "as/su/miu",
+    "tonic_index": 3
+  },
+  "atraídos": {
+    "slashed": "a/tra/í/dos",
+    "tonic_index": 3
+  },
+  "atribuímos": {
+    "slashed": "a/tri/bu/í/mos",
+    "tonic_index": 4
+  },
+  "até": {
+    "slashed": "a/té",
+    "tonic_index": 2
+  },
+  "autor": {
+    "slashed": "au/tor",
+    "tonic_index": 2
+  },
+  "auxílio": {
+    "slashed": "au/xí/lio",
+    "tonic_index": 2
+  },
+  "aventurada": {
+    "slashed": "a/ven/tu/ra/da",
+    "tonic_index": 4
+  },
+  "aí": {
+    "slashed": "a/í",
+    "tonic_index": 2
+  },
+  "banquete": {
+    "slashed": "ban/que/te",
+    "tonic_index": 2
+  },
+  "batismo": {
+    "slashed": "ba/tis/mo",
+    "tonic_index": 2
+  },
+  "batista": {
+    "slashed": "ba/tis/ta",
+    "tonic_index": 2
+  },
+  "batizou": {
+    "slashed": "ba/ti/zou",
+    "tonic_index": 3
+  },
+  "beatos": {
+    "slashed": "be/a/tos",
+    "tonic_index": 2
+  },
+  "beber": {
+    "slashed": "be/ber",
+    "tonic_index": 2
+  },
+  "bebida": {
+    "slashed": "be/bi/da",
+    "tonic_index": 2
+  },
+  "beleza": {
+    "slashed": "be/le/za",
+    "tonic_index": 2
+  },
+  "bem": {
+    "slashed": "bem",
+    "tonic_index": 1
+  },
+  "bendito": {
+    "slashed": "ben/di/to",
+    "tonic_index": 2
+  },
+  "bendizem": {
+    "slashed": "ben/di/zem",
+    "tonic_index": 2
+  },
+  "bendizemos": {
+    "slashed": "ben/di/ze/mos",
+    "tonic_index": 3
+  },
+  "bendizer": {
+    "slashed": "ben/di/zer",
+    "tonic_index": 3
+  },
+  "benefícios": {
+    "slashed": "be/ne/fí/cios",
+    "tonic_index": 3
+  },
+  "benevolência": {
+    "slashed": "be/ne/vo/lên/cia",
+    "tonic_index": 4
+  },
+  "boa": {
+    "slashed": "bo/a",
+    "tonic_index": 1
+  },
+  "bom": {
+    "slashed": "bom",
+    "tonic_index": 1
+  },
+  "bondade": {
+    "slashed": "bon/da/de",
+    "tonic_index": 2
+  },
+  "braços": {
+    "slashed": "bra/ços",
+    "tonic_index": 1
+  },
+  "brilha": {
+    "slashed": "bri/lha",
+    "tonic_index": 1
+  },
+  "brilho": {
+    "slashed": "bri/lho",
+    "tonic_index": 1
+  },
+  "brilhou": {
+    "slashed": "bri/lhou",
+    "tonic_index": 2
+  },
+  "brotam": {
+    "slashed": "bro/tam",
+    "tonic_index": 1
+  },
+  "brotar": {
+    "slashed": "bro/tar",
+    "tonic_index": 2
+  },
+  "brotaram": {
+    "slashed": "bro/ta/ram",
+    "tonic_index": 2
+  },
+  "cabeça": {
+    "slashed": "ca/be/ça",
+    "tonic_index": 2
+  },
+  "cada": {
+    "slashed": "ca/da",
+    "tonic_index": 1
+  },
+  "caminha": {
+    "slashed": "ca/mi/nha",
+    "tonic_index": 2
+  },
+  "caminhada": {
+    "slashed": "ca/mi/nha/da",
+    "tonic_index": 3
+  },
+  "caminhava": {
+    "slashed": "ca/mi/nha/va",
+    "tonic_index": 3
+  },
+  "caminho": {
+    "slashed": "ca/mi/nho",
+    "tonic_index": 2
+  },
+  "caminhos": {
+    "slashed": "ca/mi/nhos",
+    "tonic_index": 2
+  },
+  "canta": {
+    "slashed": "can/ta",
+    "tonic_index": 1
+  },
+  "cantamos": {
+    "slashed": "can/ta/mos",
+    "tonic_index": 2
+  },
+  "cantando": {
+    "slashed": "can/tan/do",
+    "tonic_index": 2
+  },
+  "cantar": {
+    "slashed": "can/tar",
+    "tonic_index": 2
+  },
+  "cantou": {
+    "slashed": "can/tou",
+    "tonic_index": 2
+  },
+  "caridade": {
+    "slashed": "ca/ri/da/de",
+    "tonic_index": 3
+  },
+  "carinho": {
+    "slashed": "ca/ri/nho",
+    "tonic_index": 2
+  },
+  "carismas": {
+    "slashed": "ca/ris/mas",
+    "tonic_index": 2
+  },
+  "carne": {
+    "slashed": "car/ne",
+    "tonic_index": 1
+  },
+  "casa": {
+    "slashed": "ca/sa",
+    "tonic_index": 1
+  },
+  "casta": {
+    "slashed": "cas/ta",
+    "tonic_index": 1
+  },
+  "causa": {
+    "slashed": "cau/sa",
+    "tonic_index": 1
+  },
+  "ceia": {
+    "slashed": "cei/a",
+    "tonic_index": 1
+  },
+  "celebra": {
+    "slashed": "ce/le/bra",
+    "tonic_index": 2
+  },
+  "celebrado": {
+    "slashed": "ce/le/bra/do",
+    "tonic_index": 3
+  },
+  "celebram": {
+    "slashed": "ce/le/bram",
+    "tonic_index": 2
+  },
+  "celebramos": {
+    "slashed": "ce/le/bra/mos",
+    "tonic_index": 3
+  },
+  "celebrando": {
+    "slashed": "ce/le/bran/do",
+    "tonic_index": 3
+  },
+  "celebrar": {
+    "slashed": "ce/le/brar",
+    "tonic_index": 3
+  },
+  "celebração": {
+    "slashed": "ce/le/bra/ção",
+    "tonic_index": 4
+  },
+  "celeste": {
+    "slashed": "ce/les/te",
+    "tonic_index": 2
+  },
+  "celestes": {
+    "slashed": "ce/les/tes",
+    "tonic_index": 2
+  },
+  "celestiais": {
+    "slashed": "ce/les/ti/ais",
+    "tonic_index": 4
+  },
+  "certeza": {
+    "slashed": "cer/te/za",
+    "tonic_index": 2
+  },
+  "cessais": {
+    "slashed": "ces/sais",
+    "tonic_index": 2
+  },
+  "cessam": {
+    "slashed": "ces/sam",
+    "tonic_index": 1
+  },
+  "cessar": {
+    "slashed": "ces/sar",
+    "tonic_index": 2
+  },
+  "chama": {
+    "slashed": "cha/ma",
+    "tonic_index": 1
+  },
+  "chamada": {
+    "slashed": "cha/ma/da",
+    "tonic_index": 2
+  },
+  "chamado": {
+    "slashed": "cha/ma/do",
+    "tonic_index": 2
+  },
+  "chamados": {
+    "slashed": "cha/ma/dos",
+    "tonic_index": 2
+  },
+  "chamais": {
+    "slashed": "cha/mais",
+    "tonic_index": 2
+  },
+  "chamar": {
+    "slashed": "cha/mar",
+    "tonic_index": 2
+  },
+  "chamastes": {
+    "slashed": "cha/mas/tes",
+    "tonic_index": 2
+  },
+  "chamou": {
+    "slashed": "cha/mou",
+    "tonic_index": 2
+  },
+  "chegada": {
+    "slashed": "che/ga/da",
+    "tonic_index": 2
+  },
+  "chegará": {
+    "slashed": "che/ga/rá",
+    "tonic_index": 3
+  },
+  "cheguem": {
+    "slashed": "che/guem",
+    "tonic_index": 1
+  },
+  "cheio": {
+    "slashed": "chei/o",
+    "tonic_index": 1
+  },
+  "cheios": {
+    "slashed": "chei/os",
+    "tonic_index": 1
+  },
+  "chorou": {
+    "slashed": "cho/rou",
+    "tonic_index": 2
+  },
+  "cidade": {
+    "slashed": "ci/da/de",
+    "tonic_index": 2
+  },
+  "ciladas": {
+    "slashed": "ci/la/das",
+    "tonic_index": 2
+  },
+  "clamamos": {
+    "slashed": "cla/ma/mos",
+    "tonic_index": 2
+  },
+  "claro": {
+    "slashed": "cla/ro",
+    "tonic_index": 1
+  },
+  "clemência": {
+    "slashed": "cle/mên/cia",
+    "tonic_index": 2
+  },
+  "coisas": {
+    "slashed": "coi/sas",
+    "tonic_index": 1
+  },
+  "colaborar": {
+    "slashed": "co/la/bo/rar",
+    "tonic_index": 4
+  },
+  "colocastes": {
+    "slashed": "co/lo/cas/tes",
+    "tonic_index": 3
+  },
+  "com": {
+    "slashed": "com",
+    "tonic_index": 1
+  },
+  "combate": {
+    "slashed": "com/ba/te",
+    "tonic_index": 2
+  },
+  "comemoração": {
+    "slashed": "co/me/mo/ra/ção",
+    "tonic_index": 5
+  },
+  "começo": {
+    "slashed": "co/me/ço",
+    "tonic_index": 2
+  },
+  "comida": {
+    "slashed": "co/mi/da",
+    "tonic_index": 2
+  },
+  "como": {
+    "slashed": "co/mo",
+    "tonic_index": 1
+  },
+  "compadecendo": {
+    "slashed": "com/pa/de/cen/do",
+    "tonic_index": 4
+  },
+  "compadecido": {
+    "slashed": "com/pa/de/ci/do",
+    "tonic_index": 4
+  },
+  "compartilhando": {
+    "slashed": "com/par/ti/lhan/do",
+    "tonic_index": 4
+  },
+  "comprazia": {
+    "slashed": "com/pra/zi/a",
+    "tonic_index": 3
+  },
+  "comunhão": {
+    "slashed": "co/mu/nhão",
+    "tonic_index": 3
+  },
+  "comunidade": {
+    "slashed": "co/mu/ni/da/de",
+    "tonic_index": 4
+  },
+  "concebeu": {
+    "slashed": "con/ce/beu",
+    "tonic_index": 3
+  },
+  "concebido": {
+    "slashed": "con/ce/bi/do",
+    "tonic_index": 3
+  },
+  "concebê": {
+    "slashed": "con/ce/bê",
+    "tonic_index": 3
+  },
+  "concedei": {
+    "slashed": "con/ce/dei",
+    "tonic_index": 3
+  },
+  "concedeis": {
+    "slashed": "con/ce/deis",
+    "tonic_index": 3
+  },
+  "conceder": {
+    "slashed": "con/ce/der",
+    "tonic_index": 3
+  },
+  "concedestes": {
+    "slashed": "con/ce/des/tes",
+    "tonic_index": 3
+  },
+  "concedeu": {
+    "slashed": "con/ce/deu",
+    "tonic_index": 3
+  },
+  "condenado": {
+    "slashed": "con/de/na/do",
+    "tonic_index": 3
+  },
+  "condenados": {
+    "slashed": "con/de/na/dos",
+    "tonic_index": 3
+  },
+  "condição": {
+    "slashed": "con/di/ção",
+    "tonic_index": 3
+  },
+  "conduz": {
+    "slashed": "con/duz",
+    "tonic_index": 2
+  },
+  "conduzi": {
+    "slashed": "con/du/zi",
+    "tonic_index": 3
+  },
+  "conduzido": {
+    "slashed": "con/du/zi/do",
+    "tonic_index": 3
+  },
+  "conduzis": {
+    "slashed": "con/du/zis",
+    "tonic_index": 3
+  },
+  "conduziu": {
+    "slashed": "con/du/ziu",
+    "tonic_index": 3
+  },
+  "confessar": {
+    "slashed": "con/fes/sar",
+    "tonic_index": 3
+  },
+  "confiança": {
+    "slashed": "con/fi/an/ça",
+    "tonic_index": 3
+  },
+  "confiastes": {
+    "slashed": "con/fi/as/tes",
+    "tonic_index": 3
+  },
+  "confirmados": {
+    "slashed": "con/fir/ma/dos",
+    "tonic_index": 3
+  },
+  "confirmais": {
+    "slashed": "con/fir/mais",
+    "tonic_index": 3
+  },
+  "conforta": {
+    "slashed": "con/for/ta",
+    "tonic_index": 2
+  },
+  "congregado": {
+    "slashed": "con/gre/ga/do",
+    "tonic_index": 3
+  },
+  "congregar": {
+    "slashed": "con/gre/gar",
+    "tonic_index": 3
+  },
+  "congregaram": {
+    "slashed": "con/gre/ga/ram",
+    "tonic_index": 3
+  },
+  "congregá": {
+    "slashed": "con/gre/gá",
+    "tonic_index": 3
+  },
+  "conhecimento": {
+    "slashed": "co/nhe/ci/men/to",
+    "tonic_index": 4
+  },
+  "consagrado": {
+    "slashed": "con/sa/gra/do",
+    "tonic_index": 3
+  },
+  "consagraram": {
+    "slashed": "con/sa/gra/ram",
+    "tonic_index": 3
+  },
+  "consagrou": {
+    "slashed": "con/sa/grou",
+    "tonic_index": 3
+  },
+  "consciência": {
+    "slashed": "cons/ci/ên/cia",
+    "tonic_index": 3
+  },
+  "consolação": {
+    "slashed": "con/so/la/ção",
+    "tonic_index": 4
+  },
+  "consolo": {
+    "slashed": "con/so/lo",
+    "tonic_index": 2
+  },
+  "constantemente": {
+    "slashed": "cons/tan/te/men/te",
+    "tonic_index": 4
+  },
+  "constituis": {
+    "slashed": "cons/ti/tuis",
+    "tonic_index": 3
+  },
+  "constituí": {
+    "slashed": "cons/ti/tu/í",
+    "tonic_index": 4
+  },
+  "constituído": {
+    "slashed": "cons/ti/tu/í/do",
+    "tonic_index": 4
+  },
+  "contemplaremos": {
+    "slashed": "con/tem/pla/re/mos",
+    "tonic_index": 4
+  },
+  "continua": {
+    "slashed": "con/ti/nu/a",
+    "tonic_index": 3
+  },
+  "contém": {
+    "slashed": "con/tém",
+    "tonic_index": 2
+  },
+  "convocado": {
+    "slashed": "con/vo/ca/do",
+    "tonic_index": 3
+  },
+  "convosco": {
+    "slashed": "con/vos/co",
+    "tonic_index": 2
+  },
+  "convém": {
+    "slashed": "con/vém",
+    "tonic_index": 2
+  },
+  "coragem": {
+    "slashed": "co/ra/gem",
+    "tonic_index": 2
+  },
+  "coração": {
+    "slashed": "co/ra/ção",
+    "tonic_index": 3
+  },
+  "corações": {
+    "slashed": "co/ra/ções",
+    "tonic_index": 3
+  },
+  "cordeiro": {
+    "slashed": "cor/dei/ro",
+    "tonic_index": 2
+  },
+  "coro": {
+    "slashed": "co/ro",
+    "tonic_index": 1
+  },
+  "coroa": {
+    "slashed": "co/ro/a",
+    "tonic_index": 2
+  },
+  "coroando": {
+    "slashed": "co/ro/an/do",
+    "tonic_index": 3
+  },
+  "coros": {
+    "slashed": "co/ros",
+    "tonic_index": 1
+  },
+  "corpo": {
+    "slashed": "cor/po",
+    "tonic_index": 1
+  },
+  "corporal": {
+    "slashed": "cor/po/ral",
+    "tonic_index": 3
+  },
+  "corremos": {
+    "slashed": "cor/re/mos",
+    "tonic_index": 2
+  },
+  "corrigis": {
+    "slashed": "cor/ri/gis",
+    "tonic_index": 3
+  },
+  "corrupção": {
+    "slashed": "cor/rup/ção",
+    "tonic_index": 3
+  },
+  "creem": {
+    "slashed": "cre/em",
+    "tonic_index": 1
+  },
+  "cremos": {
+    "slashed": "cre/mos",
+    "tonic_index": 1
+  },
+  "crescer": {
+    "slashed": "cres/cer",
+    "tonic_index": 2
+  },
+  "criada": {
+    "slashed": "cri/a/da",
+    "tonic_index": 2
+  },
+  "criador": {
+    "slashed": "cri/a/dor",
+    "tonic_index": 3
+  },
+  "criastes": {
+    "slashed": "cri/as/tes",
+    "tonic_index": 2
+  },
+  "criaturas": {
+    "slashed": "cri/a/tu/ras",
+    "tonic_index": 3
+  },
+  "criação": {
+    "slashed": "cri/a/ção",
+    "tonic_index": 3
+  },
+  "criminosos": {
+    "slashed": "cri/mi/no/sos",
+    "tonic_index": 3
+  },
+  "crisma": {
+    "slashed": "cris/ma",
+    "tonic_index": 1
+  },
+  "cristo": {
+    "slashed": "cris/to",
+    "tonic_index": 1
+  },
+  "crucificado": {
+    "slashed": "cru/ci/fi/ca/do",
+    "tonic_index": 4
+  },
+  "cruz": {
+    "slashed": "cruz",
+    "tonic_index": 1
+  },
+  "cuidar": {
+    "slashed": "cui/dar",
+    "tonic_index": 2
+  },
+  "cuidassem": {
+    "slashed": "cui/das/sem",
+    "tonic_index": 2
+  },
+  "culpa": {
+    "slashed": "cul/pa",
+    "tonic_index": 1
+  },
+  "cumprir": {
+    "slashed": "cum/prir",
+    "tonic_index": 2
+  },
+  "cumpriram": {
+    "slashed": "cum/pri/ram",
+    "tonic_index": 2
+  },
+  "cântico": {
+    "slashed": "cân/ti/co",
+    "tonic_index": 1
+  },
+  "céu": {
+    "slashed": "céu",
+    "tonic_index": 1
+  },
+  "céus": {
+    "slashed": "céus",
+    "tonic_index": 1
+  },
+  "da": {
+    "slashed": "da",
+    "tonic_index": 1
+  },
+  "dada": {
+    "slashed": "da/da",
+    "tonic_index": 1
+  },
+  "dado": {
+    "slashed": "da/do",
+    "tonic_index": 1
+  },
+  "dais": {
+    "slashed": "dais",
+    "tonic_index": 1
+  },
+  "dando": {
+    "slashed": "dan/do",
+    "tonic_index": 1
+  },
+  "dar": {
+    "slashed": "dar",
+    "tonic_index": 1
+  },
+  "das": {
+    "slashed": "das",
+    "tonic_index": 1
+  },
+  "de": {
+    "slashed": "de",
+    "tonic_index": 1
+  },
+  "decaída": {
+    "slashed": "de/ca/í/da",
+    "tonic_index": 3
+  },
+
+  "decaído": {
+    "slashed": "de/ca/í/do",
+    "tonic_index": 3
+  },
+  "declarado": {
+    "slashed": "de/cla/ra/do",
+    "tonic_index": 3
+  },
+  "dedicando": {
+    "slashed": "de/di/can/do",
+    "tonic_index": 3
+  },
+  "dediquem": {
+    "slashed": "de/di/quem",
+    "tonic_index": 2
+  },
+  "deem": {
+    "slashed": "de/em",
+    "tonic_index": 1
+  },
+  "defensor": {
+    "slashed": "de/fen/sor",
+    "tonic_index": 3
+  },
+  "deixastes": {
+    "slashed": "dei/xas/tes",
+    "tonic_index": 2
+  },
+  "deixe": {
+    "slashed": "dei/xe",
+    "tonic_index": 1
+  },
+  "dela": {
+    "slashed": "de/la",
+    "tonic_index": 1
+  },
+  "dele": {
+    "slashed": "de/le",
+    "tonic_index": 1
+  },
+  "deles": {
+    "slashed": "de/les",
+    "tonic_index": 1
+  },
+  "demos": {
+    "slashed": "de/mos",
+    "tonic_index": 1
+  },
+  "dentre": {
+    "slashed": "den/tre",
+    "tonic_index": 1
+  },
+  "depois": {
+    "slashed": "de/pois",
+    "tonic_index": 2
+  },
+  "derrama": {
+    "slashed": "der/ra/ma",
+    "tonic_index": 2
+  },
+  "derramado": {
+    "slashed": "der/ra/ma/do",
+    "tonic_index": 3
+  },
+  "derramando": {
+    "slashed": "der/ra/man/do",
+    "tonic_index": 3
+  },
+  "derramastes": {
+    "slashed": "der/ra/mas/tes",
+    "tonic_index": 3
+  },
+  "derramou": {
+    "slashed": "der/ra/mou",
+    "tonic_index": 3
+  },
+  "derrotados": {
+    "slashed": "der/ro/ta/dos",
+    "tonic_index": 3
+  },
+  "desarmando": {
+    "slashed": "de/sar/man/do",
+    "tonic_index": 3
+  },
+  "descendo": {
+    "slashed": "des/cen/do",
+    "tonic_index": 2
+  },
+  "descida": {
+    "slashed": "des/ci/da",
+    "tonic_index": 2
+  },
+  "desde": {
+    "slashed": "des/de",
+    "tonic_index": 1
+  },
+  "desfeita": {
+    "slashed": "des/fei/ta",
+    "tonic_index": 2
+  },
+  "desobediência": {
+    "slashed": "de/so/be/di/ên/cia",
+    "tonic_index": 5
+  },
+  "desordenados": {
+    "slashed": "de/sor/de/na/dos",
+    "tonic_index": 4
+  },
+  "despertaremos": {
+    "slashed": "des/per/ta/re/mos",
+    "tonic_index": 4
+  },
+  "despojou": {
+    "slashed": "des/po/jou",
+    "tonic_index": 3
+  },
+  "dessa": {
+    "slashed": "des/sa",
+    "tonic_index": 1
+  },
+  "desse": {
+    "slashed": "des/se",
+    "tonic_index": 1
+  },
+  "deste": {
+    "slashed": "des/te",
+    "tonic_index": 1
+  },
+  "destes": {
+    "slashed": "des/tes",
+    "tonic_index": 1
+  },
+  "destruiu": {
+    "slashed": "des/truiu",
+    "tonic_index": 2
+  },
+  "destruído": {
+    "slashed": "des/tru/í/do",
+    "tonic_index": 3
+  },
+  "desígnio": {
+    "slashed": "de/síg/nio",
+    "tonic_index": 2
+  },
+  "deu": {
+    "slashed": "deu",
+    "tonic_index": 1
+  },
+  "deus": {
+    "slashed": "deus",
+    "tonic_index": 1
+  },
+  "deveis": {
+    "slashed": "de/veis",
+    "tonic_index": 2
+  },
+  "dever": {
+    "slashed": "de/ver",
+    "tonic_index": 2
+  },
+  "devia": {
+    "slashed": "de/via",
+    "tonic_index": 1
+  },
+  "devido": {
+    "slashed": "de/vi/do",
+    "tonic_index": 2
+  },
+  "devidos": {
+    "slashed": "de/vi/dos",
+    "tonic_index": 2
+  },
+  "dia": {
+    "slashed": "di/a",
+    "tonic_index": 1
+  },
+  "dias": {
+    "slashed": "di/as",
+    "tonic_index": 1
+  },
+  "diferentes": {
+    "slashed": "di/fe/ren/tes",
+    "tonic_index": 3
+  },
+  "diferença": {
+    "slashed": "di/fe/ren/ça",
+    "tonic_index": 3
+  },
+  "digna": {
+    "slashed": "dig/na",
+    "tonic_index": 1
+  },
+  "dignidade": {
+    "slashed": "dig/ni/da/de",
+    "tonic_index": 3
+  },
+  "digno": {
+    "slashed": "dig/no",
+    "tonic_index": 1
+  },
+  "dignos": {
+    "slashed": "dig/nos",
+    "tonic_index": 1
+  },
+  "dignou": {
+    "slashed": "dig/nou",
+    "tonic_index": 2
+  },
+  "direita": {
+    "slashed": "di/rei/ta",
+    "tonic_index": 2
+  },
+  "discípulos": {
+    "slashed": "dis/cí/pu/los",
+    "tonic_index": 2
+  },
+  "dispensadores": {
+    "slashed": "dis/pen/sa/do/res",
+    "tonic_index": 4
+  },
+  "dispersos": {
+    "slashed": "dis/per/sos",
+    "tonic_index": 2
+  },
+  "dispusestes": {
+    "slashed": "dis/pu/ses/tes",
+    "tonic_index": 3
+  },
+  "diversas": {
+    "slashed": "di/ver/sas",
+    "tonic_index": 2
+  },
+  "diversos": {
+    "slashed": "di/ver/sos",
+    "tonic_index": 2
+  },
+  "divina": {
+    "slashed": "di/vi/na",
+    "tonic_index": 2
+  },
+  "divindade": {
+    "slashed": "di/vin/da/de",
+    "tonic_index": 3
+  },
+  "divinos": {
+    "slashed": "di/vi/nos",
+    "tonic_index": 2
+  },
+  "diz": {
+    "slashed": "diz",
+    "tonic_index": 1
+  },
+  "do": {
+    "slashed": "do",
+    "tonic_index": 1
+  },
+  "doando": {
+    "slashed": "do/an/do",
+    "tonic_index": 2
+  },
+  "doença": {
+    "slashed": "do/en/ça",
+    "tonic_index": 2
+  },
+  "dois": {
+    "slashed": "dois",
+    "tonic_index": 1
+  },
+  "dom": {
+    "slashed": "dom",
+    "tonic_index": 1
+  },
+  "dominações": {
+    "slashed": "do/mi/na/ções",
+    "tonic_index": 4
+  },
+  "domingo": {
+    "slashed": "do/min/go",
+    "tonic_index": 2
+  },
+  "dons": {
+    "slashed": "dons",
+    "tonic_index": 1
+  },
+  "dor": {
+    "slashed": "dor",
+    "tonic_index": 1
+  },
+  "dos": {
+    "slashed": "dos",
+    "tonic_index": 1
+  },
+  "doutor": {
+    "slashed": "dou/tor",
+    "tonic_index": 2
+  },
+  "doutrina": {
+    "slashed": "dou/tri/na",
+    "tonic_index": 2
+  },
+  "doçura": {
+    "slashed": "do/çu/ra",
+    "tonic_index": 2
+  },
+  "durante": {
+    "slashed": "du/ran/te",
+    "tonic_index": 2
+  },
+  "dá": {
+    "slashed": "dá",
+    "tonic_index": 1
+  },
+  "edificou": {
+    "slashed": "e/di/fi/cou",
+    "tonic_index": 4
+  },
+  "edifique": {
+    "slashed": "e/di/fi/que",
+    "tonic_index": 3
+  },
+  "efusão": {
+    "slashed": "e/fu/são",
+    "tonic_index": 3
+  },
+  "ela": {
+    "slashed": "e/la",
+    "tonic_index": 1
+  },
+  "ele": {
+    "slashed": "e/le",
+    "tonic_index": 1
+  },
+  "eles": {
+    "slashed": "e/les",
+    "tonic_index": 1
+  },
+  "elevada": {
+    "slashed": "e/le/va/da",
+    "tonic_index": 3
+  },
+  "elevado": {
+    "slashed": "e/le/va/do",
+    "tonic_index": 3
+  },
+  "elevais": {
+    "slashed": "e/le/vais",
+    "tonic_index": 3
+  },
+  "elevou": {
+    "slashed": "e/le/vou",
+    "tonic_index": 3
+  },
+  "em": {
+    "slashed": "em",
+    "tonic_index": 1
+  },
+  "embora": {
+    "slashed": "em/bo/ra",
+    "tonic_index": 2
+  },
+  "encarnação": {
+    "slashed": "en/car/na/ção",
+    "tonic_index": 4
+  },
+  "encontrar": {
+    "slashed": "en/con/trar",
+    "tonic_index": 3
+  },
+  "encontro": {
+    "slashed": "en/con/tro",
+    "tonic_index": 2
+  },
+  "enfermidades": {
+    "slashed": "en/fer/mi/da/des",
+    "tonic_index": 4
+  },
+  "enquanto": {
+    "slashed": "en/quan/to",
+    "tonic_index": 2
+  },
+  "enriquecestes": {
+    "slashed": "en/ri/que/ces/tes",
+    "tonic_index": 4
+  },
+  "ensina": {
+    "slashed": "en/si/na",
+    "tonic_index": 2
+  },
+  "ensinamento": {
+    "slashed": "en/si/na/men/to",
+    "tonic_index": 4
+  },
+  "ensinou": {
+    "slashed": "en/si/nou",
+    "tonic_index": 3
+  },
+  "entoam": {
+    "slashed": "en/to/am",
+    "tonic_index": 2
+  },
+  "entoamos": {
+    "slashed": "en/to/a/mos",
+    "tonic_index": 3
+  },
+  "entoando": {
+    "slashed": "en/to/an/do",
+    "tonic_index": 3
+  },
+  "entrar": {
+    "slashed": "en/trar",
+    "tonic_index": 2
+  },
+  "entre": {
+    "slashed": "en/tre",
+    "tonic_index": 1
+  },
+  "entregando": {
+    "slashed": "en/tre/gan/do",
+    "tonic_index": 3
+  },
+  "entregará": {
+    "slashed": "en/tre/ga/rá",
+    "tonic_index": 4
+  },
+  "entregou": {
+    "slashed": "en/tre/gou",
+    "tonic_index": 3
+  },
+  "entristece": {
+    "slashed": "en/tris/te/ce",
+    "tonic_index": 3
+  },
+  "entrou": {
+    "slashed": "en/trou",
+    "tonic_index": 2
+  },
+  "então": {
+    "slashed": "en/tão",
+    "tonic_index": 2
+  },
+  "enviado": {
+    "slashed": "en/vi/a/do",
+    "tonic_index": 3
+  },
+  "enviastes": {
+    "slashed": "en/vi/as/tes",
+    "tonic_index": 3
+  },
+  "epifania": {
+    "slashed": "e/pi/fa/ni/a",
+    "tonic_index": 4
+  },
+  "era": {
+    "slashed": "e/ra",
+    "tonic_index": 1
+  },
+  "eram": {
+    "slashed": "e/ram",
+    "tonic_index": 1
+  },
+  "erguer": {
+    "slashed": "er/guer",
+    "tonic_index": 2
+  },
+  "erguida": {
+    "slashed": "er/gui/da",
+    "tonic_index": 2
+  },
+  "escolheis": {
+    "slashed": "es/co/lheis",
+    "tonic_index": 3
+  },
+  "escolhida": {
+    "slashed": "es/co/lhi/da",
+    "tonic_index": 3
+  },
+  "escolhidas": {
+    "slashed": "es/co/lhi/das",
+    "tonic_index": 3
+  },
+  "escondido": {
+    "slashed": "es/con/di/do",
+    "tonic_index": 3
+  },
+  "escravidão": {
+    "slashed": "es/cra/vi/dão",
+    "tonic_index": 4
+  },
+  "escutar": {
+    "slashed": "es/cu/tar",
+    "tonic_index": 3
+  },
+  "escândalo": {
+    "slashed": "es/cân/da/lo",
+    "tonic_index": 2
+  },
+  "espera": {
+    "slashed": "es/pe/ra",
+    "tonic_index": 2
+  },
+  "esperamos": {
+    "slashed": "es/pe/ra/mos",
+    "tonic_index": 3
+  },
+  "esperando": {
+    "slashed": "es/pe/ran/do",
+    "tonic_index": 3
+  },
+  "esperança": {
+    "slashed": "es/pe/ran/ça",
+    "tonic_index": 3
+  },
+  "esperar": {
+    "slashed": "es/pe/rar",
+    "tonic_index": 3
+  },
+  "esperou": {
+    "slashed": "es/pe/rou",
+    "tonic_index": 3
+  },
+  "espirituais": {
+    "slashed": "es/pi/ri/tu/ais",
+    "tonic_index": 5
+  },
+  "esplendor": {
+    "slashed": "es/plen/dor",
+    "tonic_index": 3
+  },
+  "esposa": {
+    "slashed": "es/po/sa",
+    "tonic_index": 2
+  },
+  "esposo": {
+    "slashed": "es/po/so",
+    "tonic_index": 2
+  },
+  "esposos": {
+    "slashed": "es/po/sos",
+    "tonic_index": 2
+  },
+  "espírito": {
+    "slashed": "es/pí/ri/to",
+    "tonic_index": 2
+  },
+  "esqueça": {
+    "slashed": "es/que/ça",
+    "tonic_index": 2
+  },
+  "essa": {
+    "slashed": "es/sa",
+    "tonic_index": 1
+  },
+  "esse": {
+    "slashed": "es/se",
+    "tonic_index": 1
+  },
+  "esta": {
+    "slashed": "es/ta",
+    "tonic_index": 1
+  },
+  "estabelecestes": {
+    "slashed": "es/ta/be/le/ces/tes",
+    "tonic_index": 5
+  },
+  "estar": {
+    "slashed": "es/tar",
+    "tonic_index": 2
+  },
+  "estava": {
+    "slashed": "es/ta/va",
+    "tonic_index": 2
+  },
+  "estações": {
+    "slashed": "es/ta/ções",
+    "tonic_index": 3
+  },
+  "este": {
+    "slashed": "es/te",
+    "tonic_index": 1
+  },
+  "esteja": {
+    "slashed": "es/te/ja",
+    "tonic_index": 2
+  },
+  "estendeu": {
+    "slashed": "es/ten/deu",
+    "tonic_index": 3
+  },
+  "estes": {
+    "slashed": "es/tes",
+    "tonic_index": 1
+  },
+  "estimula": {
+    "slashed": "es/ti/mu/la",
+    "tonic_index": 3
+  },
+  "estrada": {
+    "slashed": "es/tra/da",
+    "tonic_index": 2
+  },
+  "está": {
+    "slashed": "es/tá",
+    "tonic_index": 2
+  },
+  "estão": {
+    "slashed": "es/tão",
+    "tonic_index": 2
+  },
+  "eterna": {
+    "slashed": "e/ter/na",
+    "tonic_index": 2
+  },
+  "eternamente": {
+    "slashed": "e/ter/na/men/te",
+    "tonic_index": 4
+  },
+  "eternidade": {
+    "slashed": "e/ter/ni/da/de",
+    "tonic_index": 4
+  },
+  "eterno": {
+    "slashed": "e/ter/no",
+    "tonic_index": 2
+  },
+  "eternos": {
+    "slashed": "e/ter/nos",
+    "tonic_index": 2
+  },
+  "eucaristia": {
+    "slashed": "eu/ca/ris/ti/a",
+    "tonic_index": 4
+  },
+  "eucarística": {
+    "slashed": "eu/ca/rís/ti/ca",
+    "tonic_index": 3
+  },
+  "eucarístico": {
+    "slashed": "eu/ca/rís/ti/co",
+    "tonic_index": 3
+  },
+  "eva": {
+    "slashed": "e/va",
+    "tonic_index": 1
+  },
+  "evangelho": {
+    "slashed": "e/van/ge/lho",
+    "tonic_index": 3
+  },
+  "evangelizar": {
+    "slashed": "e/van/ge/li/zar",
+    "tonic_index": 5
+  },
+  "evidentes": {
+    "slashed": "e/vi/den/tes",
+    "tonic_index": 3
+  },
+  "exaltado": {
+    "slashed": "e/xal/ta/do",
+    "tonic_index": 3
+  },
+  "exaltais": {
+    "slashed": "e/xal/tais",
+    "tonic_index": 3
+  },
+  "exaltamos": {
+    "slashed": "e/xal/ta/mos",
+    "tonic_index": 3
+  },
+  "exaltar": {
+    "slashed": "e/xal/tar",
+    "tonic_index": 3
+  },
+  "excessos": {
+    "slashed": "ex/ces/sos",
+    "tonic_index": 2
+  },
+  "exemplo": {
+    "slashed": "e/xem/plo",
+    "tonic_index": 2
+  },
+  "existimos": {
+    "slashed": "e/xis/ti/mos",
+    "tonic_index": 3
+  },
+  "experimentar": {
+    "slashed": "ex/pe/ri/men/tar",
+    "tonic_index": 5
+  },
+  "experiência": {
+    "slashed": "ex/pe/ri/ên/cia",
+    "tonic_index": 4
+  },
+  "exulta": {
+    "slashed": "e/xul/ta",
+    "tonic_index": 2
+  },
+  "exultante": {
+    "slashed": "e/xul/tan/te",
+    "tonic_index": 3
+  },
+  "exultantes": {
+    "slashed": "e/xul/tan/tes",
+    "tonic_index": 3
+  },
+  "exultação": {
+    "slashed": "e/xul/ta/ção",
+    "tonic_index": 4
+  },
+  "exultou": {
+    "slashed": "e/xul/tou",
+    "tonic_index": 3
+  },
+  
+  "face": {
+    "slashed": "fa/ce",
+    "tonic_index": 1
+  },
+  "família": {
+    "slashed": "fa/mí/lia",
+    "tonic_index": 2
+  },
+  "fato": {
+    "slashed": "fa/to",
+    "tonic_index": 1
+  },
+  "favor": {
+    "slashed": "fa/vor",
+    "tonic_index": 2
+  },
+  "faz": {
+    "slashed": "faz",
+    "tonic_index": 1
+  },
+  "fazeis": {
+    "slashed": "fa/zeis",
+    "tonic_index": 2
+  },
+  "fazendo": {
+    "slashed": "fa/zen/do",
+    "tonic_index": 2
+  },
+  "fazer": {
+    "slashed": "fa/zer",
+    "tonic_index": 2
+  },
+  "faça": {
+    "slashed": "fa/ça",
+    "tonic_index": 1
+  },
+  "fecunda": {
+    "slashed": "fe/cun/da",
+    "tonic_index": 2
+  },
+  "fecundais": {
+    "slashed": "fe/cun/dais",
+    "tonic_index": 3
+  },
+  "feitas": {
+    "slashed": "fei/tas",
+    "tonic_index": 1
+  },
+  "feito": {
+    "slashed": "fei/to",
+    "tonic_index": 1
+  },
+  "feitos": {
+    "slashed": "fei/tos",
+    "tonic_index": 1
+  },
+  "feliz": {
+    "slashed": "fe/liz",
+    "tonic_index": 2
+  },
+  "feridas": {
+    "slashed": "fe/ri/das",
+    "tonic_index": 2
+  },
+  "fermento": {
+    "slashed": "fer/men/to",
+    "tonic_index": 2
+  },
+  "festa": {
+    "slashed": "fes/ta",
+    "tonic_index": 1
+  },
+  "festejar": {
+    "slashed": "fes/te/jar",
+    "tonic_index": 3
+  },
+  "festiva": {
+    "slashed": "fes/ti/va",
+    "tonic_index": 2
+  },
+  "festivo": {
+    "slashed": "fes/ti/vo",
+    "tonic_index": 2
+  },
+  "fez": {
+    "slashed": "fez",
+    "tonic_index": 1
+  },
+  "fiel": {
+    "slashed": "fi/el",
+    "tonic_index": 2
+  },
+  "filha": {
+    "slashed": "fi/lha",
+    "tonic_index": 1
+  },
+  "filhas": {
+    "slashed": "fi/lhas",
+    "tonic_index": 1
+  },
+  "filho": {
+    "slashed": "fi/lho",
+    "tonic_index": 1
+  },
+  "filhos": {
+    "slashed": "fi/lhos",
+    "tonic_index": 1
+  },
+  "filiação": {
+    "slashed": "fi/li/a/ção",
+    "tonic_index": 4
+  },
+  "fim": {
+    "slashed": "fim",
+    "tonic_index": 1
+  },
+  "final": {
+    "slashed": "fi/nal",
+    "tonic_index": 2
+  },
+  "firmastes": {
+    "slashed": "fir/mas/tes",
+    "tonic_index": 2
+  },
+  "firme": {
+    "slashed": "fir/me",
+    "tonic_index": 1
+  },
+  "firmeza": {
+    "slashed": "fir/me/za",
+    "tonic_index": 2
+  },
+  "fizestes": {
+    "slashed": "fi/zes/tes",
+    "tonic_index": 2
+  },
+  "fiéis": {
+    "slashed": "fi/éis",
+    "tonic_index": 2
+  },
+  "fogo": {
+    "slashed": "fo/go",
+    "tonic_index": 1
+  },
+  "foi": {
+    "slashed": "foi",
+    "tonic_index": 1
+  },
+  "fomos": {
+    "slashed": "fo/mos",
+    "tonic_index": 1
+  },
+  "fonte": {
+    "slashed": "fon/te",
+    "tonic_index": 1
+  },
+  "fontes": {
+    "slashed": "fon/tes",
+    "tonic_index": 1
+  },
+  "foram": {
+    "slashed": "fo/ram",
+    "tonic_index": 1
+  },
+  "forma": {
+    "slashed": "for/ma",
+    "tonic_index": 1
+  },
+  "formastes": {
+    "slashed": "for/mas/tes",
+    "tonic_index": 2
+  },
+  "fortaleceis": {
+    "slashed": "for/ta/le/ceis",
+    "tonic_index": 4
+  },
+  "força": {
+    "slashed": "for/ça",
+    "tonic_index": 1
+  },
+  "forças": {
+    "slashed": "for/ças",
+    "tonic_index": 1
+  },
+  "fosse": {
+    "slashed": "fos/se",
+    "tonic_index": 1
+  },
+  "fracos": {
+    "slashed": "fra/cos",
+    "tonic_index": 1
+  },
+  "fragilidade": {
+    "slashed": "fra/gi/li/da/de",
+    "tonic_index": 4
+  },
+  "fraqueza": {
+    "slashed": "fra/que/za",
+    "tonic_index": 2
+  },
+  "fraterno": {
+    "slashed": "fra/ter/no",
+    "tonic_index": 2
+  },
+  "frente": {
+    "slashed": "fren/te",
+    "tonic_index": 1
+  },
+  "fulgor": {
+    "slashed": "ful/gor",
+    "tonic_index": 2
+  },
+  "fundador": {
+    "slashed": "fun/da/dor",
+    "tonic_index": 3
+  },
+  "fundastes": {
+    "slashed": "fun/das/tes",
+    "tonic_index": 2
+  },
+  "fundou": {
+    "slashed": "fun/dou",
+    "tonic_index": 2
+  },
+  "futura": {
+    "slashed": "fu/tu/ra",
+    "tonic_index": 2
+  },
+  "fé": {
+    "slashed": "fé",
+    "tonic_index": 1
+  },
+  "garantindo": {
+    "slashed": "ga/ran/tin/do",
+    "tonic_index": 3
+  },
+  "gerado": {
+    "slashed": "ge/ra/do",
+    "tonic_index": 2
+  },
+  "gerados": {
+    "slashed": "ge/ra/dos",
+    "tonic_index": 2
+  },
+  "gerastes": {
+    "slashed": "ge/ras/tes",
+    "tonic_index": 2
+  },
+  "geração": {
+    "slashed": "ge/ra/ção",
+    "tonic_index": 3
+  },
+  "germinou": {
+    "slashed": "ger/mi/nou",
+    "tonic_index": 3
+  },
+  "gerou": {
+    "slashed": "ge/rou",
+    "tonic_index": 2
+  },
+  "gestos": {
+    "slashed": "ges/tos",
+    "tonic_index": 1
+  },
+  "glorificado": {
+    "slashed": "glo/ri/fi/ca/do",
+    "tonic_index": 4
+  },
+  "glorificamos": {
+    "slashed": "glo/ri/fi/ca/mos",
+    "tonic_index": 4
+  },
+  "gloriosa": {
+    "slashed": "glo/ri/o/sa",
+    "tonic_index": 3
+  },
+  "glorioso": {
+    "slashed": "glo/ri/o/so",
+    "tonic_index": 3
+  },
+  "glória": {
+    "slashed": "gló/ria",
+    "tonic_index": 1
+  },
+  "grande": {
+    "slashed": "gran/de",
+    "tonic_index": 1
+  },
+  "grandes": {
+    "slashed": "gran/des",
+    "tonic_index": 1
+  },
+  "grandeza": {
+    "slashed": "gran/de/za",
+    "tonic_index": 2
+  },
+  "graça": {
+    "slashed": "gra/ça",
+    "tonic_index": 1
+  },
+  "graças": {
+    "slashed": "gra/ças",
+    "tonic_index": 1
+  },
+  "guardais": {
+    "slashed": "guar/dais",
+    "tonic_index": 2
+  },
+  "guardião": {
+    "slashed": "guar/di/ão",
+    "tonic_index": 3
+  },
+  "guardou": {
+    "slashed": "guar/dou",
+    "tonic_index": 2
+  },
+  "guiados": {
+    "slashed": "gui/a/dos",
+    "tonic_index": 2
+  },
+  "gênero": {
+    "slashed": "gê/ne/ro",
+    "tonic_index": 1
+  },
+  "habita": {
+    "slashed": "ha/bi/ta",
+    "tonic_index": 2
+  },
+  "habitação": {
+    "slashed": "ha/bi/ta/ção",
+    "tonic_index": 4
+  },
+  "havia": {
+    "slashed": "ha/vi/a",
+    "tonic_index": 2
+  },
+  "herança": {
+    "slashed": "he/ran/ça",
+    "tonic_index": 2
+  },
+  "hino": {
+    "slashed": "hi/no",
+    "tonic_index": 1
+  },
+  "hinos": {
+    "slashed": "hi/nos",
+    "tonic_index": 1
+  },
+  "história": {
+    "slashed": "his/tó/ria",
+    "tonic_index": 2
+  },
+  "hoje": {
+    "slashed": "ho/je",
+    "tonic_index": 1
+  },
+  "homem": {
+    "slashed": "ho/mem",
+    "tonic_index": 1
+  },
+  "hora": {
+    "slashed": "ho/ra",
+    "tonic_index": 1
+  },
+  "hosana": {
+    "slashed": "ho/sa/na",
+    "tonic_index": 2
+  },
+  "humana": {
+    "slashed": "hu/ma/na",
+    "tonic_index": 2
+  },
+  "humanidade": {
+    "slashed": "hu/ma/ni/da/de",
+    "tonic_index": 4
+  },
+  "humano": {
+    "slashed": "hu/ma/no",
+    "tonic_index": 2
+  },
+  "humanos": {
+    "slashed": "hu/ma/nos",
+    "tonic_index": 2
+  },
+  "humildade": {
+    "slashed": "hu/mil/da/de",
+    "tonic_index": 3
+  },
+  "humilde": {
+    "slashed": "hu/mil/de",
+    "tonic_index": 2
+  },
+  "humildemente": {
+    "slashed": "hu/mil/de/men/te",
+    "tonic_index": 4
+  },
+  "hóspede": {
+    "slashed": "hós/pe/de",
+    "tonic_index": 1
+  },
+  "igreja": {
+    "slashed": "i/gre/ja",
+    "tonic_index": 2
+  },
+  "igual": {
+    "slashed": "i/gual",
+    "tonic_index": 2
+  },
+  "ii": {
+    "slashed": "ii",
+    "tonic_index": 1
+  },
+  "iii": {
+    "slashed": "i/ii",
+    "tonic_index": 2
+  },
+  "iluminado": {
+    "slashed": "i/lu/mi/na/do",
+    "tonic_index": 4
+  },
+  "iluminados": {
+    "slashed": "i/lu/mi/na/dos",
+    "tonic_index": 4
+  },
+  "iluminar": {
+    "slashed": "i/lu/mi/nar",
+    "tonic_index": 4
+  },
+  "iluminastes": {
+    "slashed": "i/lu/mi/nas/tes",
+    "tonic_index": 4
+  },
+  "iluminou": {
+    "slashed": "i/lu/mi/nou",
+    "tonic_index": 4
+  },
+  "ilustres": {
+    "slashed": "i/lus/tres",
+    "tonic_index": 2
+  },
+  "imaculado": {
+    "slashed": "i/ma/cu/la/do",
+    "tonic_index": 4
+  },
+  "imagem": {
+    "slashed": "i/ma/gem",
+    "tonic_index": 2
+  },
+  "imagens": {
+    "slashed": "i/ma/gens",
+    "tonic_index": 2
+  },
+  "imensa": {
+    "slashed": "i/men/sa",
+    "tonic_index": 2
+  },
+  "imitadores": {
+    "slashed": "i/mi/ta/do/res",
+    "tonic_index": 4
+  },
+  "imitação": {
+    "slashed": "i/mi/ta/ção",
+    "tonic_index": 4
+  },
+  "imolado": {
+    "slashed": "i/mo/la/do",
+    "tonic_index": 3
+  },
+  "imortalidade": {
+    "slashed": "i/mor/ta/li/da/de",
+    "tonic_index": 5
+  },
+  "imperecível": {
+    "slashed": "im/pe/re/cí/vel",
+    "tonic_index": 4
+  },
+  "imposição": {
+    "slashed": "im/po/si/ção",
+    "tonic_index": 4
+  },
+  "inabalável": {
+    "slashed": "i/na/ba/lá/vel",
+    "tonic_index": 4
+  },
+  "incessantemente": {
+    "slashed": "in/ces/san/te/men/te",
+    "tonic_index": 5
+  },
+  "incomparável": {
+    "slashed": "in/com/pa/rá/vel",
+    "tonic_index": 4
+  },
+  "indissolúvel": {
+    "slashed": "in/dis/so/lú/vel",
+    "tonic_index": 4
+  },
+  "inefável": {
+    "slashed": "i/ne/fá/vel",
+    "tonic_index": 3
+  },
+  "infinita": {
+    "slashed": "in/fi/ni/ta",
+    "tonic_index": 3
+  },
+  "infundiu": {
+    "slashed": "in/fun/diu",
+    "tonic_index": 3
+  },
+  "inimigo": {
+    "slashed": "i/ni/mi/go",
+    "tonic_index": 3
+  },
+  "inocente": {
+    "slashed": "i/no/cen/te",
+    "tonic_index": 3
+  },
+  "inspirada": {
+    "slashed": "ins/pi/ra/da",
+    "tonic_index": 3
+  },
+  "inspirais": {
+    "slashed": "ins/pi/rais",
+    "tonic_index": 3
+  },
+  "inspirando": {
+    "slashed": "ins/pi/ran/do",
+    "tonic_index": 3
+  },
+  "instituir": {
+    "slashed": "ins/ti/tu/ir",
+    "tonic_index": 4
+  },
+  "integridade": {
+    "slashed": "in/te/gri/da/de",
+    "tonic_index": 4
+  },
+  "inteira": {
+    "slashed": "in/tei/ra",
+    "tonic_index": 2
+  },
+  "inteiro": {
+    "slashed": "in/tei/ro",
+    "tonic_index": 2
+  },
+  "intensamente": {
+    "slashed": "in/ten/sa/men/te",
+    "tonic_index": 4
+  },
+  "intercede": {
+    "slashed": "in/ter/ce/de",
+    "tonic_index": 3
+  },
+  "intercessão": {
+    "slashed": "in/ter/ces/são",
+    "tonic_index": 4
+  },
+  "intercâmbio": {
+    "slashed": "in/ter/câm/bio",
+    "tonic_index": 3
+  },
+  "invisível": {
+    "slashed": "in/vi/sí/vel",
+    "tonic_index": 3
+  },
+  "invocar": {
+    "slashed": "in/vo/car",
+    "tonic_index": 3
+  },
+  "início": {
+    "slashed": "i/ní/cio",
+    "tonic_index": 2
+  },
+  "iria": {
+    "slashed": "i/ri/a",
+    "tonic_index": 2
+  },
+  "irmãos": {
+    "slashed": "ir/mãos",
+    "tonic_index": 2
+  },
+  "irmãs": {
+    "slashed": "ir/mãs",
+    "tonic_index": 2
+  },
+  "israel": {
+    "slashed": "is/ra/el",
+    "tonic_index": 3
+  },
+  "isso": {
+    "slashed": "is/so",
+    "tonic_index": 1
+  },
+  "jamais": {
+    "slashed": "ja/mais",
+    "tonic_index": 2
+  },
+  "jejuando": {
+    "slashed": "je/ju/an/do",
+    "tonic_index": 3
+  },
+  "jejum": {
+    "slashed": "je/jum",
+    "tonic_index": 2
+  },
+  "jerusalém": {
+    "slashed": "je/ru/sa/lém",
+    "tonic_index": 4
+  },
+  "jesus": {
+    "slashed": "je/sus",
+    "tonic_index": 2
+  },
+  "jordão": {
+    "slashed": "jor/dão",
+    "tonic_index": 2
+  },
+  "jorraram": {
+    "slashed": "jor/ra/ram",
+    "tonic_index": 2
+  },
+  "josé": {
+    "slashed": "jo/sé",
+    "tonic_index": 2
+  },
+  "joão": {
+    "slashed": "jo/ão",
+    "tonic_index": 2
+  },
+  "jubilosa": {
+    "slashed": "ju/bi/lo/sa",
+    "tonic_index": 3
+  },
+  "jubilosos": {
+    "slashed": "ju/bi/lo/sos",
+    "tonic_index": 3
+  },
+  "jugo": {
+    "slashed": "ju/go",
+    "tonic_index": 1
+  },
+  "juiz": {
+    "slashed": "ju/iz",
+    "tonic_index": 2
+  },
+  "julgamento": {
+    "slashed": "jul/ga/men/to",
+    "tonic_index": 3
+  },
+  "junto": {
+    "slashed": "jun/to",
+    "tonic_index": 1
+  },
+  "justificação": {
+    "slashed": "jus/ti/fi/ca/ção",
+    "tonic_index": 5
+  },
+  "justiça": {
+    "slashed": "jus/ti/ça",
+    "tonic_index": 2
+  },
+  "justo": {
+    "slashed": "jus/to",
+    "tonic_index": 1
+  },
+  "já": {
+    "slashed": "já",
+    "tonic_index": 1
+  },
+  "júbilo": {
+    "slashed": "jú/bi/lo",
+    "tonic_index": 1
+  },
+  "la": {
+    "slashed": "la",
+    "tonic_index": 1
+  },
+  "lado": {
+    "slashed": "la/do",
+    "tonic_index": 1
+  },
+  "laço": {
+    "slashed": "la/ço",
+    "tonic_index": 1
+  },
+  "lei": {
+    "slashed": "lei",
+    "tonic_index": 1
+  },
+  "lenho": {
+    "slashed": "le/nho",
+    "tonic_index": 1
+  },
+  "leva": {
+    "slashed": "le/va",
+    "tonic_index": 1
+  },
+  "levar": {
+    "slashed": "le/var",
+    "tonic_index": 2
+  },
+  "levou": {
+    "slashed": "le/vou",
+    "tonic_index": 2
+  },
+  "lhe": {
+    "slashed": "lhe",
+    "tonic_index": 1
+  },
+  "lhes": {
+    "slashed": "lhes",
+    "tonic_index": 1
+  },
+  "liberdade": {
+    "slashed": "li/ber/da/de",
+    "tonic_index": 3
+  },
+  "libertar": {
+    "slashed": "li/ber/tar",
+    "tonic_index": 3
+  },
+  "livrar": {
+    "slashed": "li/vrar",
+    "tonic_index": 2
+  },
+  "livre": {
+    "slashed": "li/vre",
+    "tonic_index": 1
+  },
+  "livres": {
+    "slashed": "li/vres",
+    "tonic_index": 1
+  },
+  "livrou": {
+    "slashed": "li/vrou",
+    "tonic_index": 2
+  },
+  "lo": {
+    "slashed": "lo",
+    "tonic_index": 1
+  },
+  "louvam": {
+    "slashed": "lou/vam",
+    "tonic_index": 1
+  },
+  "louvamos": {
+    "slashed": "lou/va/mos",
+    "tonic_index": 2
+  },
+  "louvando": {
+    "slashed": "lou/van/do",
+    "tonic_index": 2
+  },
+  "louvar": {
+    "slashed": "lou/var",
+    "tonic_index": 2
+  },
+  "louvaremos": {
+    "slashed": "lou/va/re/mos",
+    "tonic_index": 3
+  },
+  "louvarmos": {
+    "slashed": "lou/var/mos",
+    "tonic_index": 2
+  },
+  "louvassem": {
+    "slashed": "lou/vas/sem",
+    "tonic_index": 2
+  },
+  "louvor": {
+    "slashed": "lou/vor",
+    "tonic_index": 2
+  },
+  "louvores": {
+    "slashed": "lou/vo/res",
+    "tonic_index": 2
+  },
+  "lugar": {
+    "slashed": "lu/gar",
+    "tonic_index": 2
+  },
+  "luz": {
+    "slashed": "luz",
+    "tonic_index": 1
+  },
+  "lázaro": {
+    "slashed": "lá/za/ro",
+    "tonic_index": 1
+  },
+  "lâmpada": {
+    "slashed": "lâm/pa/da",
+    "tonic_index": 1
+  },
+  "línguas": {
+    "slashed": "lín/guas",
+    "tonic_index": 1
+  },
+  "maior": {
+    "slashed": "mai/or",
+    "tonic_index": 2
+  },
+  "mais": {
+    "slashed": "mais",
+    "tonic_index": 1
+  },
+  "majestade": {
+    "slashed": "ma/jes/ta/de",
+    "tonic_index": 3
+  },
+  "mal": {
+    "slashed": "mal",
+    "tonic_index": 1
+  },
+  "maldade": {
+    "slashed": "mal/da/de",
+    "tonic_index": 2
+  },
+  "mancha": {
+    "slashed": "man/cha",
+    "tonic_index": 1
+  },
+  "mandamento": {
+    "slashed": "man/da/men/to",
+    "tonic_index": 3
+  },
+  "mandastes": {
+    "slashed": "man/das/tes",
+    "tonic_index": 2
+  },
+  "mandou": {
+    "slashed": "man/dou",
+    "tonic_index": 2
+  },
+  "manifesta": {
+    "slashed": "ma/ni/fes/ta",
+    "tonic_index": 3
+  },
+  "manifestar": {
+    "slashed": "ma/ni/fes/tar",
+    "tonic_index": 4
+  },
+  "manifestastes": {
+    "slashed": "ma/ni/fes/tas/tes",
+    "tonic_index": 4
+  },
+  "manifestou": {
+    "slashed": "ma/ni/fes/tou",
+    "tonic_index": 4
+  },
+  "maravilhados": {
+    "slashed": "ma/ra/vi/lha/dos",
+    "tonic_index": 4
+  },
+  "maravilhas": {
+    "slashed": "ma/ra/vi/lhas",
+    "tonic_index": 3
+  },
+  "maravilhosa": {
+    "slashed": "ma/ra/vi/lho/sa",
+    "tonic_index": 4
+  },
+  "maria": {
+    "slashed": "ma/ri/a",
+    "tonic_index": 2
+  },
+  "martírio": {
+    "slashed": "mar/tí/rio",
+    "tonic_index": 2
+  },
+  "mas": {
+    "slashed": "mas",
+    "tonic_index": 1
+  },
+  "maternidade": {
+    "slashed": "ma/ter/ni/da/de",
+    "tonic_index": 4
+  },
+  "materno": {
+    "slashed": "ma/ter/no",
+    "tonic_index": 2
+  },
+  "mediador": {
+    "slashed": "me/di/a/dor",
+    "tonic_index": 4
+  },
+  "meio": {
+    "slashed": "mei/o",
+    "tonic_index": 1
+  },
+  "meios": {
+    "slashed": "mei/os",
+    "tonic_index": 1
+  },
+  "membros": {
+    "slashed": "mem/bros",
+    "tonic_index": 1
+  },
+  "memória": {
+    "slashed": "me/mó/ria",
+    "tonic_index": 2
+  },
+  "menos": {
+    "slashed": "me/nos",
+    "tonic_index": 1
+  },
+  "merecem": {
+    "slashed": "me/re/cem",
+    "tonic_index": 2
+  },
+  "mereceu": {
+    "slashed": "me/re/ceu",
+    "tonic_index": 3
+  },
+  "mereçamos": {
+    "slashed": "me/re/ça/mos",
+    "tonic_index": 3
+  },
+  "mesa": {
+    "slashed": "me/sa",
+    "tonic_index": 1
+  },
+  "mesma": {
+    "slashed": "mes/ma",
+    "tonic_index": 1
+  },
+  "mesmo": {
+    "slashed": "mes/mo",
+    "tonic_index": 1
+  },
+  "mesmos": {
+    "slashed": "mes/mos",
+    "tonic_index": 1
+  },
+  "mestre": {
+    "slashed": "mes/tre",
+    "tonic_index": 1
+  },
+  "meta": {
+    "slashed": "me/ta",
+    "tonic_index": 1
+  },
+  "ministros": {
+    "slashed": "mi/nis/tros",
+    "tonic_index": 2
+  },
+  "ministérios": {
+    "slashed": "mi/nis/té/rios",
+    "tonic_index": 3
+  },
+  "misericordioso": {
+    "slashed": "mi/se/ri/cor/di/o/so",
+    "tonic_index": 6
+  },
+  "misericórdia": {
+    "slashed": "mi/se/ri/cór/dia",
+    "tonic_index": 4
+  },
+  "missão": {
+    "slashed": "mis/são",
+    "tonic_index": 2
+  },
+  "mistério": {
+    "slashed": "mis/té/rio",
+    "tonic_index": 2
+  },
+  "mistérios": {
+    "slashed": "mis/té/rios",
+    "tonic_index": 2
+  },
+  "modelo": {
+    "slashed": "mo/de/lo",
+    "tonic_index": 2
+  },
+  "moderemos": {
+    "slashed": "mo/de/re/mos",
+    "tonic_index": 3
+  },
+  "modo": {
+    "slashed": "mo/do",
+    "tonic_index": 1
+  },
+  "moisés": {
+    "slashed": "moi/sés",
+    "tonic_index": 2
+  },
+  "momento": {
+    "slashed": "mo/men/to",
+    "tonic_index": 2
+  },
+  "momentos": {
+    "slashed": "mo/men/tos",
+    "tonic_index": 2
+  },
+  "montanha": {
+    "slashed": "mon/ta/nha",
+    "tonic_index": 2
+  },
+  "monte": {
+    "slashed": "mon/te",
+    "tonic_index": 1
+  },
+  "morada": {
+    "slashed": "mo/ra/da",
+    "tonic_index": 2
+  },
+  "morre": {
+    "slashed": "mor/re",
+    "tonic_index": 1
+  },
+  "morrendo": {
+    "slashed": "mor/ren/do",
+    "tonic_index": 2
+  },
+  "morrer": {
+    "slashed": "mor/rer",
+    "tonic_index": 2
+  },
+  "mortais": {
+    "slashed": "mor/tais",
+    "tonic_index": 2
+  },
+  "mortal": {
+    "slashed": "mor/tal",
+    "tonic_index": 2
+  },
+  "morte": {
+    "slashed": "mor/te",
+    "tonic_index": 1
+  },
+  "morto": {
+    "slashed": "mor/to",
+    "tonic_index": 1
+  },
+  "mortos": {
+    "slashed": "mor/tos",
+    "tonic_index": 1
+  },
+  "mostra": {
+    "slashed": "mos/tra",
+    "tonic_index": 1
+  },
+  "mostrou": {
+    "slashed": "mos/trou",
+    "tonic_index": 2
+  },
+  "movemos": {
+    "slashed": "mo/ve/mos",
+    "tonic_index": 2
+  },
+  "muito": {
+    "slashed": "mui/to",
+    "tonic_index": 1
+  },
+  "mulher": {
+    "slashed": "mu/lher",
+    "tonic_index": 2
+  },
+  "multidão": {
+    "slashed": "mul/ti/dão",
+    "tonic_index": 3
+  },
+  "mundo": {
+    "slashed": "mun/do",
+    "tonic_index": 1
+  },
+  "mártir": {
+    "slashed": "már/tir",
+    "tonic_index": 1
+  },
+  "mãe": {
+    "slashed": "mãe",
+    "tonic_index": 1
+  },
+  "mãos": {
+    "slashed": "mãos",
+    "tonic_index": 1
+  },
+  "médico": {
+    "slashed": "mé/di/co",
+    "tonic_index": 1
+  },
+  "méritos": {
+    "slashed": "mé/ri/tos",
+    "tonic_index": 1
+  },
+  
+  "na": {
+    "slashed": "na",
+    "tonic_index": 1
+  },
+  "nada": {
+    "slashed": "na/da",
+    "tonic_index": 1
+  },
+  "naquele": {
+    "slashed": "na/que/le",
+    "tonic_index": 2
+  },
+  "nas": {
+    "slashed": "nas",
+    "tonic_index": 1
+  },
+  "nascem": {
+    "slashed": "nas/cem",
+    "tonic_index": 1
+  },
+  "nascendo": {
+    "slashed": "nas/cen/do",
+    "tonic_index": 2
+  },
+  "nascente": {
+    "slashed": "nas/cen/te",
+    "tonic_index": 2
+  },
+  "nascer": {
+    "slashed": "nas/cer",
+    "tonic_index": 2
+  },
+  "nasceram": {
+    "slashed": "nas/ce/ram",
+    "tonic_index": 2
+  },
+  "nascia": {
+    "slashed": "nas/ci/a",
+    "tonic_index": 2
+  },
+  "nascido": {
+    "slashed": "nas/ci/do",
+    "tonic_index": 2
+  },
+  "nascidos": {
+    "slashed": "nas/ci/dos",
+    "tonic_index": 2
+  },
+  "nascimento": {
+    "slashed": "nas/ci/men/to",
+    "tonic_index": 3
+  },
+  "nascimentos": {
+    "slashed": "nas/ci/men/tos",
+    "tonic_index": 3
+  },
+  "natal": {
+    "slashed": "na/tal",
+    "tonic_index": 2
+  },
+  "natural": {
+    "slashed": "na/tu/ral",
+    "tonic_index": 3
+  },
+  "natureza": {
+    "slashed": "na/tu/re/za",
+    "tonic_index": 3
+  },
+  "naufragamos": {
+    "slashed": "nau/fra/ga/mos",
+    "tonic_index": 3
+  },
+  "nação": {
+    "slashed": "na/ção",
+    "tonic_index": 2
+  },
+  "nações": {
+    "slashed": "na/ções",
+    "tonic_index": 2
+  },
+  "necessitada": {
+    "slashed": "ne/ces/si/ta/da",
+    "tonic_index": 4
+  },
+  "necessitados": {
+    "slashed": "ne/ces/si/ta/dos",
+    "tonic_index": 4
+  },
+  "necessário": {
+    "slashed": "ne/ces/sá/rio",
+    "tonic_index": 3
+  },
+  "necessários": {
+    "slashed": "ne/ces/sá/rios",
+    "tonic_index": 3
+  },
+  "nela": {
+    "slashed": "ne/la",
+    "tonic_index": 1
+  },
+  "nele": {
+    "slashed": "ne/le",
+    "tonic_index": 1
+  },
+  "nem": {
+    "slashed": "nem",
+    "tonic_index": 1
+  },
+  "nesta": {
+    "slashed": "nes/ta",
+    "tonic_index": 1
+  },
+  "neste": {
+    "slashed": "nes/te",
+    "tonic_index": 1
+  },
+  "no": {
+    "slashed": "no",
+    "tonic_index": 1
+  },
+  "noite": {
+    "slashed": "noi/te",
+    "tonic_index": 1
+  },
+  "nome": {
+    "slashed": "no/me",
+    "tonic_index": 1
+  },
+  "nos": {
+    "slashed": "nos",
+    "tonic_index": 1
+  },
+  "nossa": {
+    "slashed": "nos/sa",
+    "tonic_index": 1
+  },
+  "nossas": {
+    "slashed": "nos/sas",
+    "tonic_index": 1
+  },
+  "nosso": {
+    "slashed": "nos/so",
+    "tonic_index": 1
+  },
+  "nossos": {
+    "slashed": "nos/sos",
+    "tonic_index": 1
+  },
+  "nova": {
+    "slashed": "no/va",
+    "tonic_index": 1
+  },
+  "novo": {
+    "slashed": "no/vo",
+    "tonic_index": 1
+  },
+  "num": {
+    "slashed": "num",
+    "tonic_index": 1
+  },
+  "nunca": {
+    "slashed": "nun/ca",
+    "tonic_index": 1
+  },
+  "nuvens": {
+    "slashed": "nu/vens",
+    "tonic_index": 1
+  },
+  "não": {
+    "slashed": "não",
+    "tonic_index": 1
+  },
+  "nós": {
+    "slashed": "nós",
+    "tonic_index": 1
+  },
+  "número": {
+    "slashed": "nú/me/ro",
+    "tonic_index": 1
+  },
+  "núpcias": {
+    "slashed": "núp/cias",
+    "tonic_index": 1
+  },
+  "obedecem": {
+    "slashed": "o/be/de/cem",
+    "tonic_index": 3
+  },
+  "obediente": {
+    "slashed": "o/be/di/en/te",
+    "tonic_index": 4
+  },
+  "obediência": {
+    "slashed": "o/be/di/ên/cia",
+    "tonic_index": 4
+  },
+  "oblação": {
+    "slashed": "o/bla/ção",
+    "tonic_index": 3
+  },
+  "obra": {
+    "slashed": "o/bra",
+    "tonic_index": 1
+  },
+  "obras": {
+    "slashed": "o/bras",
+    "tonic_index": 1
+  },
+  "observância": {
+    "slashed": "ob/ser/vân/cia",
+    "tonic_index": 3
+  },
+  "ocaso": {
+    "slashed": "o/ca/so",
+    "tonic_index": 2
+  },
+  "ocultar": {
+    "slashed": "o/cul/tar",
+    "tonic_index": 3
+  },
+  "oferecendo": {
+    "slashed": "o/fe/re/cen/do",
+    "tonic_index": 4
+  },
+  "oferecer": {
+    "slashed": "o/fe/re/cer",
+    "tonic_index": 4
+  },
+  "ofereceu": {
+    "slashed": "o/fe/re/ceu",
+    "tonic_index": 4
+  },
+  "ofereça": {
+    "slashed": "o/fe/re/ça",
+    "tonic_index": 3
+  },
+  "oferta": {
+    "slashed": "o/fer/ta",
+    "tonic_index": 2
+  },
+  "olhastes": {
+    "slashed": "o/lhas/tes",
+    "tonic_index": 2
+  },
+  "olhos": {
+    "slashed": "o/lhos",
+    "tonic_index": 1
+  },
+  "onde": {
+    "slashed": "on/de",
+    "tonic_index": 1
+  },
+  "operastes": {
+    "slashed": "o/pe/ras/tes",
+    "tonic_index": 3
+  },
+  "orante": {
+    "slashed": "o/ran/te",
+    "tonic_index": 2
+  },
+  "oração": {
+    "slashed": "o/ra/ção",
+    "tonic_index": 3
+  },
+  "ordem": {
+    "slashed": "or/dem",
+    "tonic_index": 1
+  },
+  "ordenais": {
+    "slashed": "or/de/nais",
+    "tonic_index": 3
+  },
+  "origem": {
+    "slashed": "o/ri/gem",
+    "tonic_index": 2
+  },
+  "original": {
+    "slashed": "o/ri/gi/nal",
+    "tonic_index": 4
+  },
+  "os": {
+    "slashed": "os",
+    "tonic_index": 1
+  },
+  "ou": {
+    "slashed": "ou",
+    "tonic_index": 1
+  },
+  "ovelhas": {
+    "slashed": "o/ve/lhas",
+    "tonic_index": 2
+  },
+  "pacífica": {
+    "slashed": "pa/cí/fi/ca",
+    "tonic_index": 2
+  },
+  "pai": {
+    "slashed": "pai",
+    "tonic_index": 1
+  },
+  "paixão": {
+    "slashed": "pai/xão",
+    "tonic_index": 2
+  },
+  "palavra": {
+    "slashed": "pa/la/vra",
+    "tonic_index": 2
+  },
+  "para": {
+    "slashed": "pa/ra",
+    "tonic_index": 1
+  },
+  "paraíso": {
+    "slashed": "pa/ra/í/so",
+    "tonic_index": 3
+  },
+  "parte": {
+    "slashed": "par/te",
+    "tonic_index": 1
+  },
+  "participamos": {
+    "slashed": "par/ti/ci/pa/mos",
+    "tonic_index": 4
+  },
+  "participantes": {
+    "slashed": "par/ti/ci/pan/tes",
+    "tonic_index": 4
+  },
+  "participar": {
+    "slashed": "par/ti/ci/par",
+    "tonic_index": 4
+  },
+  "partilhando": {
+    "slashed": "par/ti/lhan/do",
+    "tonic_index": 3
+  },
+  "pascais": {
+    "slashed": "pas/cais",
+    "tonic_index": 2
+  },
+  "pascal": {
+    "slashed": "pas/cal",
+    "tonic_index": 2
+  },
+  "passam": {
+    "slashed": "pas/sam",
+    "tonic_index": 1
+  },
+  "passará": {
+    "slashed": "pas/sa/rá",
+    "tonic_index": 3
+  },
+  "passemos": {
+    "slashed": "pas/se/mos",
+    "tonic_index": 2
+  },
+  "passos": {
+    "slashed": "pas/sos",
+    "tonic_index": 1
+  },
+  "passou": {
+    "slashed": "pas/sou",
+    "tonic_index": 2
+  },
+  "pastor": {
+    "slashed": "pas/tor",
+    "tonic_index": 2
+  },
+  "pastores": {
+    "slashed": "pas/to/res",
+    "tonic_index": 2
+  },
+  "paulo": {
+    "slashed": "pau/lo",
+    "tonic_index": 1
+  },
+  "paz": {
+    "slashed": "paz",
+    "tonic_index": 1
+  },
+  "pecado": {
+    "slashed": "pe/ca/do",
+    "tonic_index": 2
+  },
+  "pecadores": {
+    "slashed": "pe/ca/do/res",
+    "tonic_index": 3
+  },
+  "pecados": {
+    "slashed": "pe/ca/dos",
+    "tonic_index": 2
+  },
+  "pecando": {
+    "slashed": "pe/can/do",
+    "tonic_index": 2
+  },
+  "pedir": {
+    "slashed": "pe/dir",
+    "tonic_index": 2
+  },
+  "pedro": {
+    "slashed": "pe/dro",
+    "tonic_index": 1
+  },
+  "pela": {
+    "slashed": "pe/la",
+    "tonic_index": 1
+  },
+  "pelo": {
+    "slashed": "pe/lo",
+    "tonic_index": 1
+  },
+  "pelos": {
+    "slashed": "pe/los",
+    "tonic_index": 1
+  },
+  "penhor": {
+    "slashed": "pe/nhor",
+    "tonic_index": 2
+  },
+  "penitência": {
+    "slashed": "pe/ni/tên/cia",
+    "tonic_index": 3
+  },
+  "pentecostes": {
+    "slashed": "pen/te/cos/tes",
+    "tonic_index": 3
+  },
+  "perante": {
+    "slashed": "pe/ran/te",
+    "tonic_index": 2
+  },
+  "perder": {
+    "slashed": "per/der",
+    "tonic_index": 2
+  },
+  "perdida": {
+    "slashed": "per/di/da",
+    "tonic_index": 2
+  },
+  "perdido": {
+    "slashed": "per/di/do",
+    "tonic_index": 2
+  },
+  "perdão": {
+    "slashed": "per/dão",
+    "tonic_index": 2
+  },
+  "peregrina": {
+    "slashed": "pe/re/gri/na",
+    "tonic_index": 3
+  },
+  "peregrinante": {
+    "slashed": "pe/re/gri/nan/te",
+    "tonic_index": 4
+  },
+  "peregrino": {
+    "slashed": "pe/re/gri/no",
+    "tonic_index": 3
+  },
+  "peregrinos": {
+    "slashed": "pe/re/gri/nos",
+    "tonic_index": 3
+  },
+  "perene": {
+    "slashed": "pe/re/ne",
+    "tonic_index": 2
+  },
+  "perfeito": {
+    "slashed": "per/fei/to",
+    "tonic_index": 2
+  },
+  "perfeição": {
+    "slashed": "per/fei/ção",
+    "tonic_index": 3
+  },
+  "permanente": {
+    "slashed": "per/ma/nen/te",
+    "tonic_index": 3
+  },
+  "perpetuar": {
+    "slashed": "per/pe/tu/ar",
+    "tonic_index": 4
+  },
+  "perseverança": {
+    "slashed": "per/se/ve/ran/ça",
+    "tonic_index": 4
+  },
+  "perseverou": {
+    "slashed": "per/se/ve/rou",
+    "tonic_index": 4
+  },
+  "pertence": {
+    "slashed": "per/ten/ce",
+    "tonic_index": 2
+  },
+  "pessoa": {
+    "slashed": "pes/so/a",
+    "tonic_index": 2
+  },
+  "pessoas": {
+    "slashed": "pes/so/as",
+    "tonic_index": 2
+  },
+  "plano": {
+    "slashed": "pla/no",
+    "tonic_index": 1
+  },
+  "plena": {
+    "slashed": "ple/na",
+    "tonic_index": 1
+  },
+  "plenitude": {
+    "slashed": "ple/ni/tu/de",
+    "tonic_index": 3
+  },
+  "pobres": {
+    "slashed": "po/bres",
+    "tonic_index": 1
+  },
+  "poder": {
+    "slashed": "po/der",
+    "tonic_index": 2
+  },
+  "poderes": {
+    "slashed": "po/de/res",
+    "tonic_index": 2
+  },
+  "poderoso": {
+    "slashed": "po/de/ro/so",
+    "tonic_index": 3
+  },
+  "pois": {
+    "slashed": "pois",
+    "tonic_index": 1
+  },
+  "pomba": {
+    "slashed": "pom/ba",
+    "tonic_index": 1
+  },
+  "por": {
+    "slashed": "por",
+    "tonic_index": 1
+  },
+  "porque": {
+    "slashed": "por/que",
+    "tonic_index": 2
+  },
+  "porta": {
+    "slashed": "por/ta",
+    "tonic_index": 1
+  },
+  "portanto": {
+    "slashed": "por/tan/to",
+    "tonic_index": 2
+  },
+  "portas": {
+    "slashed": "por/tas",
+    "tonic_index": 1
+  },
+  "porto": {
+    "slashed": "por/to",
+    "tonic_index": 1
+  },
+  "possuímos": {
+    "slashed": "pos/su/í/mos",
+    "tonic_index": 3
+  },
+  "posto": {
+    "slashed": "pos/to",
+    "tonic_index": 1
+  },
+  "potestades": {
+    "slashed": "po/tes/ta/des",
+    "tonic_index": 3
+  },
+  "povo": {
+    "slashed": "po/vo",
+    "tonic_index": 1
+  },
+  "povos": {
+    "slashed": "po/vos",
+    "tonic_index": 1
+  },
+  "precedesse": {
+    "slashed": "pre/ce/des/se",
+    "tonic_index": 3
+  },
+  "precedeu": {
+    "slashed": "pre/ce/deu",
+    "tonic_index": 3
+  },
+  "preces": {
+    "slashed": "pre/ces",
+    "tonic_index": 1
+  },
+  "precursor": {
+    "slashed": "pre/cur/sor",
+    "tonic_index": 3
+  },
+  "predisseram": {
+    "slashed": "pre/dis/se/ram",
+    "tonic_index": 3
+  },
+  "predito": {
+    "slashed": "pre/di/to",
+    "tonic_index": 2
+  },
+  "preferistes": {
+    "slashed": "pre/fe/ris/tes",
+    "tonic_index": 3
+  },
+  "pregação": {
+    "slashed": "pre/ga/ção",
+    "tonic_index": 3
+  },
+  "preparar": {
+    "slashed": "pre/pa/rar",
+    "tonic_index": 3
+  },
+  "prepararem": {
+    "slashed": "pre/pa/ra/rem",
+    "tonic_index": 3
+  },
+  "prepararmos": {
+    "slashed": "pre/pa/rar/mos",
+    "tonic_index": 3
+  },
+  "presente": {
+    "slashed": "pre/sen/te",
+    "tonic_index": 2
+  },
+  "presença": {
+    "slashed": "pre/sen/ça",
+    "tonic_index": 2
+  },
+  "preservastes": {
+    "slashed": "pre/ser/vas/tes",
+    "tonic_index": 3
+  },
+  "prestam": {
+    "slashed": "pres/tam",
+    "tonic_index": 1
+  },
+  "primeira": {
+    "slashed": "pri/mei/ra",
+    "tonic_index": 2
+  },
+  "primeiro": {
+    "slashed": "pri/mei/ro",
+    "tonic_index": 2
+  },
+  "primitiva": {
+    "slashed": "pri/mi/ti/va",
+    "tonic_index": 3
+  },
+  "primícia": {
+    "slashed": "pri/mí/cia",
+    "tonic_index": 2
+  },
+  "primícias": {
+    "slashed": "pri/mí/cias",
+    "tonic_index": 2
+  },
+  "princípio": {
+    "slashed": "prin/cí/pio",
+    "tonic_index": 2
+  },
+  "prisioneiros": {
+    "slashed": "pri/si/o/nei/ros",
+    "tonic_index": 4
+  },
+  "privilegiado": {
+    "slashed": "pri/vi/le/gi/a/do",
+    "tonic_index": 5
+  },
+  "proclamam": {
+    "slashed": "pro/cla/mam",
+    "tonic_index": 2
+  },
+  "proclamamos": {
+    "slashed": "pro/cla/ma/mos",
+    "tonic_index": 3
+  },
+  "proclamando": {
+    "slashed": "pro/cla/man/do",
+    "tonic_index": 3
+  },
+  "proclamar": {
+    "slashed": "pro/cla/mar",
+    "tonic_index": 3
+  },
+  "prodígios": {
+    "slashed": "pro/dí/gios",
+    "tonic_index": 2
+  },
+  "profetas": {
+    "slashed": "pro/fe/tas",
+    "tonic_index": 2
+  },
+  "profissão": {
+    "slashed": "pro/fis/são",
+    "tonic_index": 3
+  },
+  "profundezas": {
+    "slashed": "pro/fun/de/zas",
+    "tonic_index": 3
+  },
+  "profundo": {
+    "slashed": "pro/fun/do",
+    "tonic_index": 2
+  },
+  "promessa": {
+    "slashed": "pro/mes/sa",
+    "tonic_index": 2
+  },
+  "promessas": {
+    "slashed": "pro/mes/sas",
+    "tonic_index": 2
+  },
+  "prometida": {
+    "slashed": "pro/me/ti/da",
+    "tonic_index": 3
+  },
+  "prometido": {
+    "slashed": "pro/me/ti/do",
+    "tonic_index": 3
+  },
+  "prometidos": {
+    "slashed": "pro/me/ti/dos",
+    "tonic_index": 3
+  },
+  "proposto": {
+    "slashed": "pro/pos/to",
+    "tonic_index": 2
+  },
+  "protege": {
+    "slashed": "pro/te/ge",
+    "tonic_index": 2
+  },
+  "proteção": {
+    "slashed": "pro/te/ção",
+    "tonic_index": 3
+  },
+  "provas": {
+    "slashed": "pro/vas",
+    "tonic_index": 1
+  },
+  "provações": {
+    "slashed": "pro/va/ções",
+    "tonic_index": 3
+  },
+  "providência": {
+    "slashed": "pro/vi/dên/cia",
+    "tonic_index": 3
+  },
+  "prudente": {
+    "slashed": "pru/den/te",
+    "tonic_index": 2
+  },
+  "própria": {
+    "slashed": "pró/pria",
+    "tonic_index": 1
+  },
+  "próprio": {
+    "slashed": "pró/prio",
+    "tonic_index": 1
+  },
+  "próprios": {
+    "slashed": "pró/prios",
+    "tonic_index": 1
+  },
+  "próximo": {
+    "slashed": "pró/xi/mo",
+    "tonic_index": 1
+  },
+  "pudessem": {
+    "slashed": "pu/des/sem",
+    "tonic_index": 2
+  },
+  "pudéssemos": {
+    "slashed": "pu/dés/se/mos",
+    "tonic_index": 2
+  },
+  "pura": {
+    "slashed": "pu/ra",
+    "tonic_index": 1
+  },
+  "pureza": {
+    "slashed": "pu/re/za",
+    "tonic_index": 2
+  },
+  "purifica": {
+    "slashed": "pu/ri/fi/ca",
+    "tonic_index": 3
+  },
+  "purificado": {
+    "slashed": "pu/ri/fi/ca/do",
+    "tonic_index": 4
+  },
+  "purificais": {
+    "slashed": "pu/ri/fi/cais",
+    "tonic_index": 4
+  },
+  "puríssima": {
+    "slashed": "pu/rís/si/ma",
+    "tonic_index": 2
+  },
+  "puríssimo": {
+    "slashed": "pu/rís/si/mo",
+    "tonic_index": 2
+  },
+  "pusestes": {
+    "slashed": "pu/ses/tes",
+    "tonic_index": 2
+  },
+  "páscoa": {
+    "slashed": "pás/coa",
+    "tonic_index": 1
+  },
+  "pátria": {
+    "slashed": "pá/tria",
+    "tonic_index": 1
+  },
+  "pão": {
+    "slashed": "pão",
+    "tonic_index": 1
+  },
+  "pés": {
+    "slashed": "pés",
+    "tonic_index": 1
+  },
+  "quais": {
+    "slashed": "quais",
+    "tonic_index": 1
+  },
+  "qual": {
+    "slashed": "qual",
+    "tonic_index": 1
+  },
+  "quando": {
+    "slashed": "quan/do",
+    "tonic_index": 1
+  },
+  "quarenta": {
+    "slashed": "qua/ren/ta",
+    "tonic_index": 2
+  },
+  "quaresma": {
+    "slashed": "qua/res/ma",
+    "tonic_index": 2
+  },
+  "quaresmal": {
+    "slashed": "qua/res/mal",
+    "tonic_index": 3
+  },
+  "que": {
+    "slashed": "que",
+    "tonic_index": 1
+  },
+  "querubins": {
+    "slashed": "que/ru/bins",
+    "tonic_index": 3
+  },
+  "quis": {
+    "slashed": "quis",
+    "tonic_index": 1
+  },
+  "quisestes": {
+    "slashed": "qui/ses/tes",
+    "tonic_index": 2
+  },
+  "radiante": {
+    "slashed": "ra/di/an/te",
+    "tonic_index": 3
+  },
+  "razão": {
+    "slashed": "ra/zão",
+    "tonic_index": 2
+  },
+  "raça": {
+    "slashed": "ra/ça",
+    "tonic_index": 1
+  },
+  "reabris": {
+    "slashed": "re/a/bris",
+    "tonic_index": 3
+  },
+  "realizar": {
+    "slashed": "re/a/li/zar",
+    "tonic_index": 4
+  },
+  "realização": {
+    "slashed": "re/a/li/za/ção",
+    "tonic_index": 5
+  },
+  "realizou": {
+    "slashed": "re/a/li/zou",
+    "tonic_index": 4
+  },
+  "reanimais": {
+    "slashed": "re/a/ni/mais",
+    "tonic_index": 4
+  },
+  "rebanho": {
+    "slashed": "re/ba/nho",
+    "tonic_index": 2
+  },
+  "recebe": {
+    "slashed": "re/ce/be",
+    "tonic_index": 2
+  },
+  "recebem": {
+    "slashed": "re/ce/bem",
+    "tonic_index": 2
+  },
+  "recebendo": {
+    "slashed": "re/ce/ben/do",
+    "tonic_index": 3
+  },
+  "recebeu": {
+    "slashed": "re/ce/beu",
+    "tonic_index": 3
+  },
+  "recebido": {
+    "slashed": "re/ce/bi/do",
+    "tonic_index": 3
+  },
+  "recompensa": {
+    "slashed": "re/com/pen/sa",
+    "tonic_index": 3
+  },
+  "reconciliada": {
+    "slashed": "re/con/ci/li/a/da",
+    "tonic_index": 5
+  },
+  "reconciliados": {
+    "slashed": "re/con/ci/li/a/dos",
+    "tonic_index": 5
+  },
+  "reconciliação": {
+    "slashed": "re/con/ci/li/a/ção",
+    "tonic_index": 6
+  },
+  "reconduzis": {
+    "slashed": "re/con/du/zis",
+    "tonic_index": 4
+  },
+  "reconhecemos": {
+    "slashed": "re/co/nhe/ce/mos",
+    "tonic_index": 4
+  },
+  "reconhecendo": {
+    "slashed": "re/co/nhe/cen/do",
+    "tonic_index": 4
+  },
+  "reconhecida": {
+    "slashed": "re/co/nhe/ci/da",
+    "tonic_index": 4
+  },
+  "recordando": {
+    "slashed": "re/cor/dan/do",
+    "tonic_index": 3
+  },
+  "recriastes": {
+    "slashed": "re/cri/as/tes",
+    "tonic_index": 3
+  },
+  "recuperada": {
+    "slashed": "re/cu/pe/ra/da",
+    "tonic_index": 4
+  },
+  "recuperasse": {
+    "slashed": "re/cu/pe/ras/se",
+    "tonic_index": 4
+  },
+  "recuperem": {
+    "slashed": "re/cu/pe/rem",
+    "tonic_index": 3
+  },
+  "redentor": {
+    "slashed": "re/den/tor",
+    "tonic_index": 3
+  },
+  "redentora": {
+    "slashed": "re/den/to/ra",
+    "tonic_index": 3
+  },
+  "redenção": {
+    "slashed": "re/den/ção",
+    "tonic_index": 3
+  },
+  "redimida": {
+    "slashed": "re/di/mi/da",
+    "tonic_index": 3
+  },
+  "redimidos": {
+    "slashed": "re/di/mi/dos",
+    "tonic_index": 3
+  },
+  "redimir": {
+    "slashed": "re/di/mir",
+    "tonic_index": 3
+  },
+  "refulgir": {
+    "slashed": "re/ful/gir",
+    "tonic_index": 3
+  },
+  "rei": {
+    "slashed": "rei",
+    "tonic_index": 1
+  },
+  "reino": {
+    "slashed": "rei/no",
+    "tonic_index": 1
+  },
+  "remédio": {
+    "slashed": "re/mé/dio",
+    "tonic_index": 2
+  },
+  "renascer": {
+    "slashed": "re/nas/cer",
+    "tonic_index": 3
+  },
+  "renasceram": {
+    "slashed": "re/nas/ce/ram",
+    "tonic_index": 3
+  },
+  "rendêssemos": {
+    "slashed": "ren/dês/se/mos",
+    "tonic_index": 2
+  },
+  "renovada": {
+    "slashed": "re/no/va/da",
+    "tonic_index": 3
+  },
+  "renovais": {
+    "slashed": "re/no/vais",
+    "tonic_index": 3
+  },
+  "renovar": {
+    "slashed": "re/no/var",
+    "tonic_index": 3
+  },
+  "renovou": {
+    "slashed": "re/no/vou",
+    "tonic_index": 3
+  },
+  "repartir": {
+    "slashed": "re/par/tir",
+    "tonic_index": 3
+  },
+  "repletos": {
+    "slashed": "re/ple/tos",
+    "tonic_index": 2
+  },
+  "repouso": {
+    "slashed": "re/pou/so",
+    "tonic_index": 2
+  },
+  "representantes": {
+    "slashed": "re/pre/sen/tan/tes",
+    "tonic_index": 4
+  },
+  "reservados": {
+    "slashed": "re/ser/va/dos",
+    "tonic_index": 3
+  },
+  "respeito": {
+    "slashed": "res/pei/to",
+    "tonic_index": 2
+  },
+  "resplandece": {
+    "slashed": "res/plan/de/ce",
+    "tonic_index": 3
+  },
+  "resplandecente": {
+    "slashed": "res/plan/de/cen/te",
+    "tonic_index": 4
+  },
+  "resplandecer": {
+    "slashed": "res/plan/de/cer",
+    "tonic_index": 4
+  },
+  "ressurgindo": {
+    "slashed": "res/sur/gin/do",
+    "tonic_index": 3
+  },
+  "ressurgisse": {
+    "slashed": "res/sur/gis/se",
+    "tonic_index": 3
+  },
+  "ressurgiu": {
+    "slashed": "res/sur/giu",
+    "tonic_index": 3
+  },
+  "ressurreição": {
+    "slashed": "res/sur/rei/ção",
+    "tonic_index": 4
+  },
+  "ressuscitado": {
+    "slashed": "res/sus/ci/ta/do",
+    "tonic_index": 4
+  },
+  "ressuscitastes": {
+    "slashed": "res/sus/ci/tas/tes",
+    "tonic_index": 4
+  },
+  "restauração": {
+    "slashed": "res/tau/ra/ção",
+    "tonic_index": 4
+  },
+  "restaurou": {
+    "slashed": "res/tau/rou",
+    "tonic_index": 3
+  },
+  "restituir": {
+    "slashed": "res/ti/tu/ir",
+    "tonic_index": 4
+  },
+  "retorna": {
+    "slashed": "re/tor/na",
+    "tonic_index": 2
+  },
+  "reunida": {
+    "slashed": "re/u/ni/da",
+    "tonic_index": 3
+  },
+  "reunido": {
+    "slashed": "re/u/ni/do",
+    "tonic_index": 3
+  },
+  "reunidos": {
+    "slashed": "re/u/ni/dos",
+    "tonic_index": 3
+  },
+  "reuniu": {
+    "slashed": "re/u/niu",
+    "tonic_index": 3
+  },
+  "revelais": {
+    "slashed": "re/ve/lais",
+    "tonic_index": 3
+  },
+  "revelastes": {
+    "slashed": "re/ve/las/tes",
+    "tonic_index": 3
+  },
+  "revelou": {
+    "slashed": "re/ve/lou",
+    "tonic_index": 3
+  },
+  "reverenciam": {
+    "slashed": "re/ve/ren/ci/am",
+    "tonic_index": 4
+  },
+  "revestido": {
+    "slashed": "re/ves/ti/do",
+    "tonic_index": 3
+  },
+  "rico": {
+    "slashed": "ri/co",
+    "tonic_index": 1
+  },
+  "rio": {
+    "slashed": "ri/o",
+    "tonic_index": 1
+  },
+  "rito": {
+    "slashed": "ri/to",
+    "tonic_index": 1
+  },
+  "ruga": {
+    "slashed": "ru/ga",
+    "tonic_index": 1
+  },
+  "ruína": {
+    "slashed": "ru/í/na",
+    "tonic_index": 2
+  },
+  "régia": {
+    "slashed": "ré/gia",
+    "tonic_index": 1
+  },
+  "régio": {
+    "slashed": "ré/gio",
+    "tonic_index": 1
+  },
+  "sabedoria": {
+    "slashed": "sa/be/do/ri/a",
+    "tonic_index": 4
+  },
+  "sabemos": {
+    "slashed": "sa/be/mos",
+    "tonic_index": 2
+  },
+  "saber": {
+    "slashed": "sa/ber",
+    "tonic_index": 2
+  },
+  "saborear": {
+    "slashed": "sa/bo/re/ar",
+    "tonic_index": 4
+  },
+  "sacerdotal": {
+    "slashed": "sa/cer/do/tal",
+    "tonic_index": 4
+  },
+  
+  "sacerdote": {
+    "slashed": "sa/cer/do/te",
+    "tonic_index": 3
+  },
+  "sacerdócio": {
+    "slashed": "sa/cer/dó/cio",
+    "tonic_index": 3
+  },
+  "sacramental": {
+    "slashed": "sa/cra/men/tal",
+    "tonic_index": 4
+  },
+  "sacramento": {
+    "slashed": "sa/cra/men/to",
+    "tonic_index": 3
+  },
+  "sacramentos": {
+    "slashed": "sa/cra/men/tos",
+    "tonic_index": 3
+  },
+  "sacrifício": {
+    "slashed": "sa/cri/fí/cio",
+    "tonic_index": 3
+  },
+  "sacrifícios": {
+    "slashed": "sa/cri/fí/cios",
+    "tonic_index": 3
+  },
+  "sagrada": {
+    "slashed": "sa/gra/da",
+    "tonic_index": 2
+  },
+  "sair": {
+    "slashed": "sa/ir",
+    "tonic_index": 2
+  },
+  "sal": {
+    "slashed": "sal",
+    "tonic_index": 1
+  },
+  "salvador": {
+    "slashed": "sal/va/dor",
+    "tonic_index": 3
+  },
+  "salvadora": {
+    "slashed": "sal/va/do/ra",
+    "tonic_index": 3
+  },
+  "salvar": {
+    "slashed": "sal/var",
+    "tonic_index": 2
+  },
+  "salvastes": {
+    "slashed": "sal/vas/tes",
+    "tonic_index": 2
+  },
+  "salvação": {
+    "slashed": "sal/va/ção",
+    "tonic_index": 3
+  },
+  "salvos": {
+    "slashed": "sal/vos",
+    "tonic_index": 1
+  },
+  "samaritana": {
+    "slashed": "sa/ma/ri/ta/na",
+    "tonic_index": 4
+  },
+  "samaritano": {
+    "slashed": "sa/ma/ri/ta/no",
+    "tonic_index": 4
+  },
+  "sangue": {
+    "slashed": "san/gue",
+    "tonic_index": 1
+  },
+  "santa": {
+    "slashed": "san/ta",
+    "tonic_index": 1
+  },
+  "santas": {
+    "slashed": "san/tas",
+    "tonic_index": 1
+  },
+  "santidade": {
+    "slashed": "san/ti/da/de",
+    "tonic_index": 3
+  },
+  "santificadas": {
+    "slashed": "san/ti/fi/ca/das",
+    "tonic_index": 4
+  },
+  "santificais": {
+    "slashed": "san/ti/fi/cais",
+    "tonic_index": 4
+  },
+  "santificar": {
+    "slashed": "san/ti/fi/car",
+    "tonic_index": 4
+  },
+  "santificação": {
+    "slashed": "san/ti/fi/ca/ção",
+    "tonic_index": 5
+  },
+  "santo": {
+    "slashed": "san/to",
+    "tonic_index": 1
+  },
+  "santos": {
+    "slashed": "san/tos",
+    "tonic_index": 1
+  },
+  "santuário": {
+    "slashed": "san/tu/á/rio",
+    "tonic_index": 3
+  },
+  "santíssimo": {
+    "slashed": "san/tís/si/mo",
+    "tonic_index": 2
+  },
+  "saídas": {
+    "slashed": "sa/í/das",
+    "tonic_index": 2
+  },
+  "saúde": {
+    "slashed": "sa/ú/de",
+    "tonic_index": 2
+  },
+  "se": {
+    "slashed": "se",
+    "tonic_index": 1
+  },
+  "sede": {
+    "slashed": "se/de",
+    "tonic_index": 1
+  },
+  "seguindo": {
+    "slashed": "se/guin/do",
+    "tonic_index": 2
+  },
+  "seguirmos": {
+    "slashed": "se/gu/ir/mos",
+    "tonic_index": 3
+  },
+  "segunda": {
+    "slashed": "se/gun/da",
+    "tonic_index": 2
+  },
+  "segundo": {
+    "slashed": "se/gun/do",
+    "tonic_index": 2
+  },
+  "seio": {
+    "slashed": "sei/o",
+    "tonic_index": 1
+  },
+  "seja": {
+    "slashed": "se/ja",
+    "tonic_index": 1
+  },
+  "sejam": {
+    "slashed": "se/jam",
+    "tonic_index": 1
+  },
+  "sejamos": {
+    "slashed": "se/ja/mos",
+    "tonic_index": 2
+  },
+  "selo": {
+    "slashed": "se/lo",
+    "tonic_index": 1
+  },
+  "sem": {
+    "slashed": "sem",
+    "tonic_index": 1
+  },
+  "sempre": {
+    "slashed": "sem/pre",
+    "tonic_index": 1
+  },
+  "sendo": {
+    "slashed": "sen/do",
+    "tonic_index": 1
+  },
+  "senhor": {
+    "slashed": "se/nhor",
+    "tonic_index": 2
+  },
+  "sentando": {
+    "slashed": "sen/tan/do",
+    "tonic_index": 2
+  },
+  "sentimos": {
+    "slashed": "sen/ti/mos",
+    "tonic_index": 2
+  },
+  "sepulcro": {
+    "slashed": "se/pul/cro",
+    "tonic_index": 2
+  },
+  "ser": {
+    "slashed": "ser",
+    "tonic_index": 1
+  },
+  "serafins": {
+    "slashed": "se/ra/fins",
+    "tonic_index": 3
+  },
+  "seres": {
+    "slashed": "se/res",
+    "tonic_index": 1
+  },
+  "sermos": {
+    "slashed": "ser/mos",
+    "tonic_index": 1
+  },
+  "serpente": {
+    "slashed": "ser/pen/te",
+    "tonic_index": 2
+  },
+  "serva": {
+    "slashed": "ser/va",
+    "tonic_index": 1
+  },
+  "servem": {
+    "slashed": "ser/vem",
+    "tonic_index": 1
+  },
+  "servir": {
+    "slashed": "ser/vir",
+    "tonic_index": 2
+  },
+  "servo": {
+    "slashed": "ser/vo",
+    "tonic_index": 1
+  },
+  "seu": {
+    "slashed": "seu",
+    "tonic_index": 1
+  },
+  "seus": {
+    "slashed": "seus",
+    "tonic_index": 1
+  },
+  "si": {
+    "slashed": "si",
+    "tonic_index": 1
+  },
+  "sinais": {
+    "slashed": "si/nais",
+    "tonic_index": 2
+  },
+  "sinal": {
+    "slashed": "si/nal",
+    "tonic_index": 2
+  },
+  "sião": {
+    "slashed": "si/ão",
+    "tonic_index": 2
+  },
+  "sobre": {
+    "slashed": "so/bre",
+    "tonic_index": 1
+  },
+  "sobretudo": {
+    "slashed": "so/bre/tu/do",
+    "tonic_index": 3
+  },
+  "socorrendo": {
+    "slashed": "so/cor/ren/do",
+    "tonic_index": 3
+  },
+  "socorrer": {
+    "slashed": "so/cor/rer",
+    "tonic_index": 3
+  },
+  "sofrem": {
+    "slashed": "so/frem",
+    "tonic_index": 1
+  },
+  "sofrendo": {
+    "slashed": "so/fren/do",
+    "tonic_index": 2
+  },
+  "sofrer": {
+    "slashed": "so/frer",
+    "tonic_index": 2
+  },
+  "sofresse": {
+    "slashed": "so/fres/se",
+    "tonic_index": 2
+  },
+  "sofrimento": {
+    "slashed": "so/fri/men/to",
+    "tonic_index": 3
+  },
+  "sois": {
+    "slashed": "sois",
+    "tonic_index": 1
+  },
+  "solenidade": {
+    "slashed": "so/le/ni/da/de",
+    "tonic_index": 4
+  },
+  "sombra": {
+    "slashed": "som/bra",
+    "tonic_index": 1
+  },
+  "somente": {
+    "slashed": "so/men/te",
+    "tonic_index": 2
+  },
+  "somos": {
+    "slashed": "so/mos",
+    "tonic_index": 1
+  },
+  "sua": {
+    "slashed": "su/a",
+    "tonic_index": 1
+  },
+  "suas": {
+    "slashed": "su/as",
+    "tonic_index": 1
+  },
+  "suave": {
+    "slashed": "su/a/ve",
+    "tonic_index": 2
+  },
+  "subido": {
+    "slashed": "su/bi/do",
+    "tonic_index": 2
+  },
+  "subindo": {
+    "slashed": "su/bin/do",
+    "tonic_index": 2
+  },
+  "subiu": {
+    "slashed": "su/biu",
+    "tonic_index": 2
+  },
+  "sublime": {
+    "slashed": "su/bli/me",
+    "tonic_index": 2
+  },
+  "submergidos": {
+    "slashed": "sub/mer/gi/dos",
+    "tonic_index": 3
+  },
+  "submetido": {
+    "slashed": "sub/me/ti/do",
+    "tonic_index": 3
+  },
+  "submissa": {
+    "slashed": "sub/mis/sa",
+    "tonic_index": 2
+  },
+  "suportaram": {
+    "slashed": "su/por/ta/ram",
+    "tonic_index": 3
+  },
+  "surgirá": {
+    "slashed": "sur/gi/rá",
+    "tonic_index": 3
+  },
+  "suscitastes": {
+    "slashed": "sus/ci/tas/tes",
+    "tonic_index": 3
+  },
+  "suscitava": {
+    "slashed": "sus/ci/ta/va",
+    "tonic_index": 3
+  },
+  "sustentam": {
+    "slashed": "sus/ten/tam",
+    "tonic_index": 2
+  },
+  "são": {
+    "slashed": "são",
+    "tonic_index": 1
+  },
+  "séculos": {
+    "slashed": "sé/cu/los",
+    "tonic_index": 1
+  },
+  "só": {
+    "slashed": "só",
+    "tonic_index": 1
+  },
+  "súplicas": {
+    "slashed": "sú/pli/cas",
+    "tonic_index": 1
+  },
+  "também": {
+    "slashed": "tam/bém",
+    "tonic_index": 2
+  },
+  "tanto": {
+    "slashed": "tan/to",
+    "tonic_index": 1
+  },
+  "templo": {
+    "slashed": "tem/plo",
+    "tonic_index": 1
+  },
+  "tempo": {
+    "slashed": "tem/po",
+    "tonic_index": 1
+  },
+  "tempos": {
+    "slashed": "tem/pos",
+    "tonic_index": 1
+  },
+  "tendo": {
+    "slashed": "ten/do",
+    "tonic_index": 1
+  },
+  "ter": {
+    "slashed": "ter",
+    "tonic_index": 1
+  },
+  "termos": {
+    "slashed": "ter/mos",
+    "tonic_index": 1
+  },
+  "terra": {
+    "slashed": "ter/ra",
+    "tonic_index": 1
+  },
+  "terrena": {
+    "slashed": "ter/re/na",
+    "tonic_index": 2
+  },
+  "terrestre": {
+    "slashed": "ter/res/tre",
+    "tonic_index": 2
+  },
+  "terrestres": {
+    "slashed": "ter/res/tres",
+    "tonic_index": 2
+  },
+  "testamento": {
+    "slashed": "tes/ta/men/to",
+    "tonic_index": 3
+  },
+  "testemunhas": {
+    "slashed": "tes/te/mu/nhas",
+    "tonic_index": 3
+  },
+  "testemunhemos": {
+    "slashed": "tes/te/mu/nhe/mos",
+    "tonic_index": 4
+  },
+  "testemunho": {
+    "slashed": "tes/te/mu/nho",
+    "tonic_index": 3
+  },
+  "teve": {
+    "slashed": "te/ve",
+    "tonic_index": 1
+  },
+  "tira": {
+    "slashed": "ti/ra",
+    "tonic_index": 1
+  },
+  "tirada": {
+    "slashed": "ti/ra/da",
+    "tonic_index": 2
+  },
+  "tirados": {
+    "slashed": "ti/ra/dos",
+    "tonic_index": 2
+  },
+  "tirar": {
+    "slashed": "ti/rar",
+    "tonic_index": 2
+  },
+  "tirou": {
+    "slashed": "ti/rou",
+    "tonic_index": 2
+  },
+  "toda": {
+    "slashed": "to/da",
+    "tonic_index": 1
+  },
+  "todas": {
+    "slashed": "to/das",
+    "tonic_index": 1
+  },
+  "todo": {
+    "slashed": "to/do",
+    "tonic_index": 1
+  },
+  "todos": {
+    "slashed": "to/dos",
+    "tonic_index": 1
+  },
+  "tomasse": {
+    "slashed": "to/mas/se",
+    "tonic_index": 2
+  },
+  "tome": {
+    "slashed": "to/me",
+    "tonic_index": 1
+  },
+  "torna": {
+    "slashed": "tor/na",
+    "tonic_index": 1
+  },
+  "tornais": {
+    "slashed": "tor/nais",
+    "tonic_index": 2
+  },
+  "tornamos": {
+    "slashed": "tor/na/mos",
+    "tonic_index": 2
+  },
+  "tornar": {
+    "slashed": "tor/nar",
+    "tonic_index": 2
+  },
+  "tornaram": {
+    "slashed": "tor/na/ram",
+    "tonic_index": 2
+  },
+  "tornou": {
+    "slashed": "tor/nou",
+    "tonic_index": 2
+  },
+  "trabalho": {
+    "slashed": "tra/ba/lho",
+    "tonic_index": 2
+  },
+  "tradição": {
+    "slashed": "tra/di/ção",
+    "tonic_index": 3
+  },
+  "transbordando": {
+    "slashed": "trans/bor/dan/do",
+    "tonic_index": 3
+  },
+  "transformada": {
+    "slashed": "trans/for/ma/da",
+    "tonic_index": 3
+  },
+  "transformais": {
+    "slashed": "trans/for/mais",
+    "tonic_index": 3
+  },
+  "transformemos": {
+    "slashed": "trans/for/me/mos",
+    "tonic_index": 3
+  },
+  "transpassado": {
+    "slashed": "trans/pas/sa/do",
+    "tonic_index": 3
+  },
+  "tremem": {
+    "slashed": "tre/mem",
+    "tonic_index": 1
+  },
+  "tremendo": {
+    "slashed": "tre/men/do",
+    "tonic_index": 2
+  },
+  "trevas": {
+    "slashed": "tre/vas",
+    "tonic_index": 1
+  },
+  "tribulação": {
+    "slashed": "tri/bu/la/ção",
+    "tonic_index": 4
+  },
+  "trindade": {
+    "slashed": "trin/da/de",
+    "tonic_index": 2
+  },
+  "tronos": {
+    "slashed": "tro/nos",
+    "tonic_index": 1
+  },
+  "trouxe": {
+    "slashed": "trou/xe",
+    "tonic_index": 1
+  },
+  "três": {
+    "slashed": "três",
+    "tonic_index": 1
+  },
+  "tudo": {
+    "slashed": "tu/do",
+    "tonic_index": 1
+  },
+  "tábua": {
+    "slashed": "tá/bua",
+    "tonic_index": 1
+  },
+  "tão": {
+    "slashed": "tão",
+    "tonic_index": 1
+  },
+  "tínhamos": {
+    "slashed": "tí/nha/mos",
+    "tonic_index": 1
+  },
+  "túmulo": {
+    "slashed": "tú/mu/lo",
+    "tonic_index": 1
+  },
+  "um": {
+    "slashed": "um",
+    "tonic_index": 1
+  },
+  "uma": {
+    "slashed": "u/ma",
+    "tonic_index": 1
+  },
+  "ungido": {
+    "slashed": "un/gi/do",
+    "tonic_index": 2
+  },
+  "ungidos": {
+    "slashed": "un/gi/dos",
+    "tonic_index": 2
+  },
+  "ungistes": {
+    "slashed": "un/gis/tes",
+    "tonic_index": 2
+  },
+  "unida": {
+    "slashed": "u/ni/da",
+    "tonic_index": 2
+  },
+  "unidade": {
+    "slashed": "u/ni/da/de",
+    "tonic_index": 3
+  },
+  "unido": {
+    "slashed": "u/ni/do",
+    "tonic_index": 2
+  },
+  "unidos": {
+    "slashed": "u/ni/dos",
+    "tonic_index": 2
+  },
+  "unigênito": {
+    "slashed": "u/ni/gê/ni/to",
+    "tonic_index": 3
+  },
+  "unimos": {
+    "slashed": "u/ni/mos",
+    "tonic_index": 2
+  },
+  "unindo": {
+    "slashed": "u/nin/do",
+    "tonic_index": 2
+  },
+  "universal": {
+    "slashed": "u/ni/ver/sal",
+    "tonic_index": 4
+  },
+  "universo": {
+    "slashed": "u/ni/ver/so",
+    "tonic_index": 3
+  },
+  "união": {
+    "slashed": "u/ni/ão",
+    "tonic_index": 3
+  },
+  "unânime": {
+    "slashed": "u/nâ/ni/me",
+    "tonic_index": 2
+  },
+  "unânimes": {
+    "slashed": "u/nâ/ni/mes",
+    "tonic_index": 2
+  },
+  "unção": {
+    "slashed": "un/ção",
+    "tonic_index": 2
+  },
+  "usa": {
+    "slashed": "u/sa",
+    "tonic_index": 1
+  },
+  "usando": {
+    "slashed": "u/san/do",
+    "tonic_index": 2
+  },
+  "variedade": {
+    "slashed": "va/ri/e/da/de",
+    "tonic_index": 4
+  },
+  "veio": {
+    "slashed": "vei/o",
+    "tonic_index": 1
+  },
+  "velho": {
+    "slashed": "ve/lho",
+    "tonic_index": 1
+  },
+  "vem": {
+    "slashed": "vem",
+    "tonic_index": 1
+  },
+  "vemos": {
+    "slashed": "ve/mos",
+    "tonic_index": 1
+  },
+  "vencedor": {
+    "slashed": "ven/ce/dor",
+    "tonic_index": 3
+  },
+  "vencer": {
+    "slashed": "ven/cer",
+    "tonic_index": 2
+  },
+  "vencera": {
+    "slashed": "ven/ce/ra",
+    "tonic_index": 2
+  },
+  "vencido": {
+    "slashed": "ven/ci/do",
+    "tonic_index": 2
+  },
+  "vendo": {
+    "slashed": "ven/do",
+    "tonic_index": 1
+  },
+  "veneração": {
+    "slashed": "ve/ne/ra/ção",
+    "tonic_index": 4
+  },
+  "ventre": {
+    "slashed": "ven/tre",
+    "tonic_index": 1
+  },
+  "verbo": {
+    "slashed": "ver/bo",
+    "tonic_index": 1
+  },
+  "verdade": {
+    "slashed": "ver/da/de",
+    "tonic_index": 2
+  },
+  "verdadeira": {
+    "slashed": "ver/da/dei/ra",
+    "tonic_index": 3
+  },
+  "verdadeiramente": {
+    "slashed": "ver/da/dei/ra/men/te",
+    "tonic_index": 5
+  },
+  "verdadeiro": {
+    "slashed": "ver/da/dei/ro",
+    "tonic_index": 3
+  },
+  "vez": {
+    "slashed": "vez",
+    "tonic_index": 1
+  },
+  "vida": {
+    "slashed": "vi/da",
+    "tonic_index": 1
+  },
+  "vidas": {
+    "slashed": "vi/das",
+    "tonic_index": 1
+  },
+  "vigilantes": {
+    "slashed": "vi/gi/lan/tes",
+    "tonic_index": 3
+  },
+  "vigor": {
+    "slashed": "vi/gor",
+    "tonic_index": 2
+  },
+  "vinda": {
+    "slashed": "vin/da",
+    "tonic_index": 1
+  },
+  
+  "vinho": {
+    "slashed": "vi/nho",
+    "tonic_index": 1
+  },
+  "virgem": {
+    "slashed": "vir/gem",
+    "tonic_index": 1
+  },
+  "virginal": {
+    "slashed": "vir/gi/nal",
+    "tonic_index": 3
+  },
+  "virgindade": {
+    "slashed": "vir/gin/da/de",
+    "tonic_index": 3
+  },
+  "virtudes": {
+    "slashed": "vir/tu/des",
+    "tonic_index": 2
+  },
+  "virá": {
+    "slashed": "vi/rá",
+    "tonic_index": 2
+  },
+  "vislumbramos": {
+    "slashed": "vis/lum/bra/mos",
+    "tonic_index": 3
+  },
+  "vista": {
+    "slashed": "vis/ta",
+    "tonic_index": 1
+  },
+  "visível": {
+    "slashed": "vi/sí/vel",
+    "tonic_index": 2
+  },
+  "vitoriosos": {
+    "slashed": "vi/to/ri/o/sos",
+    "tonic_index": 4
+  },
+  "vitória": {
+    "slashed": "vi/tó/ria",
+    "tonic_index": 2
+  },
+  "viva": {
+    "slashed": "vi/va",
+    "tonic_index": 1
+  },
+  "vive": {
+    "slashed": "vi/ve",
+    "tonic_index": 1
+  },
+  "vivemos": {
+    "slashed": "vi/ve/mos",
+    "tonic_index": 2
+  },
+  "vivendo": {
+    "slashed": "vi/ven/do",
+    "tonic_index": 2
+  },
+  "viver": {
+    "slashed": "vi/ver",
+    "tonic_index": 2
+  },
+  "vivificada": {
+    "slashed": "vi/vi/fi/ca/da",
+    "tonic_index": 4
+  },
+  "vivo": {
+    "slashed": "vi/vo",
+    "tonic_index": 1
+  },
+  "vocação": {
+    "slashed": "vo/ca/ção",
+    "tonic_index": 3
+  },
+  "volta": {
+    "slashed": "vol/ta",
+    "tonic_index": 1
+  },
+  "vontade": {
+    "slashed": "von/ta/de",
+    "tonic_index": 2
+  },
+  "vos": {
+    "slashed": "vos",
+    "tonic_index": 1
+  },
+  "vossa": {
+    "slashed": "vos/sa",
+    "tonic_index": 1
+  },
+  "vossas": {
+    "slashed": "vos/sas",
+    "tonic_index": 1
+  },
+  "vosso": {
+    "slashed": "vos/so",
+    "tonic_index": 1
+  },
+  "vossos": {
+    "slashed": "vos/sos",
+    "tonic_index": 1
+  },
+  "voz": {
+    "slashed": "voz",
+    "tonic_index": 1
+  },
+  "vícios": {
+    "slashed": "ví/cios",
+    "tonic_index": 1
+  },
+  "vítima": {
+    "slashed": "ví/ti/ma",
+    "tonic_index": 1
+  },
+  "vós": {
+    "slashed": "vós",
+    "tonic_index": 1
+  },
+  "às": {
+    "slashed": "às",
+    "tonic_index": 1
+  },
+  "água": {
+    "slashed": "á/gua",
+    "tonic_index": 1
+  },
+  "águas": {
+    "slashed": "á/guas",
+    "tonic_index": 1
+  },
+  "árvore": {
+    "slashed": "ár/vo/re",
+    "tonic_index": 1
+  },
+  "êxodo": {
+    "slashed": "ê/xo/do",
+    "tonic_index": 1
+  },
+  "óleo": {
+    "slashed": "ó/leo",
+    "tonic_index": 1
+  },
+  "última": {
+    "slashed": "úl/ti/ma",
+    "tonic_index": 1
+  },
+  "única": {
+    "slashed": "ú/ni/ca",
+    "tonic_index": 1
+  },
+  "único": {
+    "slashed": "ú/ni/co",
+    "tonic_index": 1
+  }
+}
