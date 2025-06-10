@@ -3,7 +3,6 @@ package preface_test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/matryer/is"
@@ -15,7 +14,7 @@ var ctx context.Context = context.Background()
 
 func TestGeneratePreface(t *testing.T) {
 
-	t.Run("apply gabc melodies to a group of phrases", func(t *testing.T) {
+	t.Run("apply gabc melodies to a group of phrases using mockSyllabifier", func(t *testing.T) {
 		is := is.New(t)
 
 		a := "\n"                                 //spare new line
@@ -38,7 +37,7 @@ func TestGeneratePreface(t *testing.T) {
 		//a again
 
 		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
-		log.Println("inputText: ", inputText)
+		//log.Println("inputText: ", inputText)
 
 		syllabifier := mockSyllabifier.NewSyllabifier()
 

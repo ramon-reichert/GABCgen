@@ -30,6 +30,7 @@ type scoreFile struct {
 }
 
 // GeneratePreface attaches GABC code to each syllable of the incomming lined text following the preface melody rules.
+// Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
 func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (string, error) {
 	var composedGABC string
 

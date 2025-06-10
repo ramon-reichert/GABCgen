@@ -5151,5 +5151,37 @@
   "único": {
     "slashed": "ú/ni/co",
     "tonic_index": 1
+  },
+    "a": {
+    "slashed": "a",
+    "tonic_index": 1
+  },
+  "e": {
+    "slashed": "e",
+    "tonic_index": 1
+  },
+  "louvarvos": {
+    "slashed": "lou/var/vos",
+    "tonic_index": 2
+  },
+  "o": {
+    "slashed": "o",
+    "tonic_index": 1
+  },
+  "so": {
+    "slashed": "so",
+    "tonic_index": 1
+  },
+  "à": {
+    "slashed": "à",
+    "tonic_index": 1
+  },
+  "é": {
+    "slashed": "é",
+    "tonic_index": 1
+  },
+  "ó": {
+    "slashed": "ó",
+    "tonic_index": 1
   }
 }
