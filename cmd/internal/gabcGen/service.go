@@ -4,6 +4,7 @@ package gabcGen
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
@@ -65,6 +66,9 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (strin
 	if err != nil {
 		return composedGABC, fmt.Errorf("generating Preface: %w", err)
 	}
+
+	//Adjust the ending of the composed GABC string:
+	composedGABC = strings.TrimSuffix(composedGABC, "(:)(Z)\n\n") + "(::)"
 
 	return composedGABC, nil
 }

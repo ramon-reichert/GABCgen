@@ -26,14 +26,19 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
 		is.NoErr(err)
 
-		expectedGABC := `Na(f) verdade, é(hr0)  dig(h)no(g) e(gf) jus(fg)to,(g) (;)
-é(f) nosso dever e salvação proclamar vossa glória, ó Pai, em(hr0) to(h)do(gf) tem(fg)po,(g) (;)
-mas, com maior júbilo, louvar(gr0)-vos(g) nes(f)ta(g) noi(h)te,(g) ||<i><c>neste dia ou neste tempo</c></i>|| (,) por(g)que(g) Cristo nossa(gr0) Pás(g)coa(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:) (Z)
+		expectedGABC := `Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)
+		é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) (;)
+		mas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te(g) (,) ||<i><c>neste dia ou neste tempo</c></i>|| (,) por(g)que(g) Cris(g)to,(g) nos(g)sa(g) Pás(g)coa,(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:) (Z)
 
-É(f) e(h)le(h) o(h) ver(h)da(h)dei(h)ro(h) Cor(h)dei(h)ro(h) que(h) ti(h)rou(h) o(h) pe(h)ca(h)do(g) do(gf) mun(fg)do;(g)(;) 
-mor(g)ren(g)do,(g) des(g)tru(g)iu(g) a(g) nos(f)sa(g) mor(h)te,(g) (,) e(g) res(g)sur(g)gin(g)do(g) res(g)tau(fe)rou(ef) a(g) vi(fg)da.(f) (:) (Z)
+É(f) e(h)le(h) o(h) ver(h)da(h)dei(h)ro(h) Cor(h)dei(h)ro(h) que(h) ti(h)rou(h) o(h) pe(h)ca(h)do(g) do(gf) mun(fg)do;(g) (;)
+mor(g)ren(g)do,(g) des(g)tru(g)iu(g) a(g) nos(f)sa(g) mor(h)te,(g) (,)
+e(g) res(g)sur(g)gin(g)do(g) res(g)tau(fe)rou(ef) a(g) vi(fg)da.(f) (:) (Z)
 
-Por(f) is(ef)so(f) (,) trans(f)bordando de alegria pascal, exulta a criação por(hr0) to(h)da(h) a(gf) ter(fg)ra;(g) (:) (z) tam(f)bém as Virtudes celestes e as Potestades angélicas proclamam um hino(hr0) à(h) vo(h)ssa(gf) gló(fg)ria(g) (;) (z) can(g)tan(f!gwh)do(g) a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
+Por(f) is(ef)so(f) (,)
+trans(f)bor(h)dan(h)do(h) de(h) a(h)le(h)gri(h)a(h) pas(h)cal,(h) e(h)xul(h)ta(h) a(h) cri(h)a(h)ção(h) por(h) to(h)da(g) a(gf) ter(fg)ra;(g) (;)
+tam(f)bém(h) as(h) Vir(h)tu(h)des(h) ce(h)les(h)tes(h) e(h) as(h) Po(h)tes(h)ta(h)des(h) an(h)gé(h)li(h)cas(h) pro(h)cla(h)mam(h) um(h) hi(h)no(h) à(h) vos(h)sa(gf) gló(fg)ria,(g) (;)
+can(g)tan(fgh)do(g) (,)
+a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 
 		is.Equal(composedGABC, expectedGABC)
 	})

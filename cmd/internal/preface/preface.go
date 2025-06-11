@@ -213,7 +213,7 @@ func (ph last) ApplyMelody() (string, error) {
 	//first syllable of the phrase:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 
-	end := "(:)\n\n" //gabc code for the "whole bar", to be added at the end of the phrase
+	end := "(:)(Z)\n\n" //gabc code for the "whole bar" plus new line of score (Z), to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end), nil
 }
 
