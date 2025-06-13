@@ -4,6 +4,7 @@ package gabcGen
 import (
 	"context"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
@@ -41,14 +42,17 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, linedText string) (strin
 	}
 
 	for _, p := range newParagraphs {
-		for _, v := range p.Phrases {
+		for _, ph := range p.Phrases {
 
 			//TODO: Parse each line looking for singing directives (between parenthesss), which must not be syllabified nor "noteted"
 			//Hold its value and position and put it back at final composedGABC as ||<i><c>directive not to be sung</c></i>||
+			if ph.ExtractDirectives() != nil {
+				log.Println(err)
+			}
 
-			v.Syllabifier = gen.Syllabifier
+			ph.Syllabifier = gen.Syllabifier
 
-			if err := v.BuildPhraseSyllables(ctx); err != nil {
+			if err := ph.BuildPhraseSyllables(ctx); err != nil {
 				return composedGABC, fmt.Errorf("generating Preface: %w", err)
 			}
 		}

@@ -15,6 +15,7 @@ type Phrase struct {
 	Text        string            // the text of the phrase
 	Syllables   []*words.Syllable // the syllables of the phrase
 	Syllabifier words.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
+	Directives  []string          // possible singing directives may come between parentheses and are not to be sung. They are removed from the text before the syllabification and should be put back again after the melody is applied.
 }
 
 type PhraseMelodyer interface {
@@ -77,4 +78,19 @@ func JoinSyllables(syl []*words.Syllable, end string) string {
 	}
 
 	return result + end
+}
+
+func (ph *Phrase) ExtractDirectives() error {
+
+	for leftOriginal, after, open := strings.Cut(ph.Text, "("); open; {
+		before, rightOriginal, close := strings.Cut(after, ")")
+		if !close {
+			return fmt.Errorf("missing closer parentheses in: %v", ph.Text)
+		}
+		ph.Directives = append(ph.Directives, before)
+		ph.Text = strings.TrimSpace(leftOriginal) + " " + strings.TrimSpace(rightOriginal)
+		leftOriginal, after, open = strings.Cut(ph.Text, "(")
+	}
+
+	return nil
 }
