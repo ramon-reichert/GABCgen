@@ -31,7 +31,7 @@ func DistributeText(linedText string) ([]Paragraph, error) {
 		if text != "" {
 
 			//debug code
-			fmt.Println("line: ", text)
+			//fmt.Println("line: ", text)
 
 			newPhrases = append(newPhrases, phrases.New(text))
 		} else if newPhrases != nil {
