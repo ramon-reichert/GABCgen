@@ -5,6 +5,7 @@ package phrases
 import (
 	"context"
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -15,11 +16,16 @@ type Phrase struct {
 	Text        string            // the text of the phrase
 	Syllables   []*words.Syllable // the syllables of the phrase
 	Syllabifier words.Syllabifier // the Syllabifier to be used to syllabify the words of the phrase
-	Directives  []string          // possible singing directives may come between parentheses and are not to be sung. They are removed from the text before the syllabification and should be put back again after the melody is applied.
+	Directives  []Directive       // possible singing directives may come between parentheses and are not to be sung. They are removed from the text before the syllabification and should be put back again after the melody is applied.
 }
 
 type PhraseMelodyer interface {
 	ApplyMelody() (string, error) //Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
+}
+
+type Directive struct {
+	Text   string
+	Before string
 }
 
 func New(text string) *Phrase {
@@ -67,30 +73,64 @@ func (ph *Phrase) classifyWordSyllables(ctx context.Context, word string) ([]*wo
 	return wordSyllables, nil
 }
 
-// joinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
-func JoinSyllables(syl []*words.Syllable, end string) string {
+// JoinSyllables is a helper function that joins the GABC of all Syllables in a Phrase and adds the end string to it.
+// It also attempts to put the directives back into the right place.
+func JoinSyllables(syl []*words.Syllable, end string, d []Directive) string {
+	//debug code:
+	for i, v := range d {
+		log.Printf("directive just received in JoinSyllables:\n d.[%v]: %+v", i, v)
+	}
+
 	var result string
+	var pool string
+	dirIndex := 0
 	for _, v := range syl {
-		result = result + v.GABC
+		result += v.GABC
+		pool += string(v.Char)
 		if v.IsLast {
-			result = result + " "
+			result += " "
+
 		}
+		if dirIndex < len(d) && strings.HasSuffix(pool, d[dirIndex].Before) { //compares with the letters that were before the directive at the moment it was removed from the original phrase.
+			result += "||<i><c>" + d[dirIndex].Text + "</c></i>||" + "(,)"
+			dirIndex++
+		}
+	}
+
+	for dirIndex < len(d) { // if there is no match, the directive is put at the end of the phrase
+		result += "||<i><c>" + d[dirIndex].Text + "</c></i>||"
+		dirIndex++
+	}
+
+	if strings.HasSuffix(result, strings.TrimSuffix(end, "\n")) { // check to not put doubled end
+		return result + "\n"
 	}
 
 	return result + end
 }
 
 func (ph *Phrase) ExtractDirectives() error {
+	var pool string
 
 	for leftOriginal, after, open := strings.Cut(ph.Text, "("); open; {
-		before, rightOriginal, close := strings.Cut(after, ")")
+		extracted, rightOriginal, close := strings.Cut(after, ")")
 		if !close {
 			return fmt.Errorf("missing closer parentheses in: %v", ph.Text)
 		}
-		ph.Directives = append(ph.Directives, before)
+		for v := range strings.FieldsSeq(leftOriginal) {
+			pool += v
+		}
+		//debug code:
+		log.Printf("leftOriginal: %v\n pool: %v\n", leftOriginal, pool)
+
+		ph.Directives = append(ph.Directives, Directive{Text: extracted, Before: pool})
+
 		ph.Text = strings.TrimSpace(leftOriginal) + " " + strings.TrimSpace(rightOriginal)
 		leftOriginal, after, open = strings.Cut(ph.Text, "(")
 	}
+
+	//debug:
+	log.Printf("directives extracted: %+v", ph.Directives)
 
 	return nil
 }

@@ -3,6 +3,7 @@ package preface
 
 import (
 	"fmt"
+	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -38,8 +39,9 @@ func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 
 		if n == len(newParagraphs)-1 && strings.HasPrefix(p.Phrases[0].Text, "Por isso") { //"Por isso" is a special conclusion expression that can start the last paragraph, and has its own melody
 			preface.Phrases = append(preface.Phrases, conclusion{
-				Text:      p.Phrases[0].Text,
-				Syllables: p.Phrases[0].Syllables,
+				Text:       p.Phrases[0].Text,
+				Syllables:  p.Phrases[0].Syllables,
+				Directives: p.Phrases[0].Directives,
 			})
 
 			p.Phrases = p.Phrases[1:] //removing the conclusion phrase from the paragraph, so it won't be processed again
@@ -53,23 +55,31 @@ func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 
 			if i < len(p.Phrases)-2 {
 				preface.Phrases = append(preface.Phrases, firsts{
-					Text:      p.Phrases[i].Text,
-					Syllables: p.Phrases[i].Syllables,
+					Text:       p.Phrases[i].Text,
+					Syllables:  p.Phrases[i].Syllables,
+					Directives: p.Phrases[i].Directives,
 				})
 				continue
 			}
 			if i == len(p.Phrases)-2 {
+
+				//debug code:
+				log.Printf("fields of a mediant to be appended to preface.Phrases:\n text:%v\n directives:%+v\n", p.Phrases[i].Text, p.Phrases[i].Directives)
+
 				preface.Phrases = append(preface.Phrases, mediant{
-					Text:      p.Phrases[i].Text,
-					Syllables: p.Phrases[i].Syllables,
+					Text:       p.Phrases[i].Text,
+					Syllables:  p.Phrases[i].Syllables,
+					Directives: p.Phrases[i].Directives,
 				})
 				continue
 			}
 			preface.Phrases = append(preface.Phrases, last{
-				Text:      p.Phrases[i].Text,
-				Syllables: p.Phrases[i].Syllables,
+				Text:       p.Phrases[i].Text,
+				Syllables:  p.Phrases[i].Syllables,
+				Directives: p.Phrases[i].Directives,
 			})
 		}
+
 	}
 	return nil
 }
@@ -148,7 +158,7 @@ func (ph firsts) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 
 	end := "(;)\n" //gabc code for the "half bar", to be added at the end of the phrase
-	return phrases.JoinSyllables(ph.Syllables, end), nil
+	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
 }
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
@@ -214,7 +224,7 @@ func (ph last) ApplyMelody() (string, error) {
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
 
 	end := "(:)(Z)\n\n" //gabc code for the "whole bar" plus new line of score (Z), to be added at the end of the phrase
-	return phrases.JoinSyllables(ph.Syllables, end), nil
+	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
 }
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
@@ -260,7 +270,7 @@ func (ph mediant) ApplyMelody() (string, error) {
 	}
 
 	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
-	return phrases.JoinSyllables(ph.Syllables, end), nil
+	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
 }
 
 // applyMelody analyzes the syllables of a phrase and attaches the GABC code(note) to each one of them, following the melody rules of that specific phrase type.
@@ -298,5 +308,5 @@ func (ph conclusion) ApplyMelody() (string, error) {
 	}
 
 	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
-	return phrases.JoinSyllables(ph.Syllables, end), nil
+	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
 }

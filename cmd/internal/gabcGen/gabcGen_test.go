@@ -21,7 +21,10 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 	t.Run("generate preface Páscoa I", func(t *testing.T) {
 		is := is.New(t)
 
-		inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite,\n ( neste dia ou neste tempo ) porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
+		//TODO: add exception attempt to apply "last" melody to short phrase like "Senhor nosso". Here is a preface where it occurs:
+		//inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação dar-vos graças, sempre e em todo lugar,\n Senhor, Pai santo, Deus eterno e todo-poderoso,\n por Cristo,\n Senhor nosso.\n\n O vosso Filho é o único Mestre:\n a sua palavra é lâmpada para nossos passos, a sua cruz, somente ela, é nossa sabedoria.\n Em vosso desígnio de amor,\n iluminastes (Nome do Santo) e alegrais a vossa Igreja com sua doutrina\n na sublime beleza do vosso conhecimento.\n\n Por este sinal da vossa bondade,\n unidos aos Anjos e aos Santos, entoamos o hino da vossa glória,\n cantando\n a uma só voz: "
+
+		inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
 		//log.Println("inputText: ", inputText)
 
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
@@ -29,7 +32,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 		// ||<i><c>neste dia ou neste tempo</c></i>||(,)
 		expectedGABC := `Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)
 é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) (;)
-mas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te,(g) (,)
+mas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te,(g) ||<i><c> neste dia ou neste tempo </c></i>||(,) 
 por(g)que(g) Cris(g)to,(g) nos(g)sa(g) Pás(g)coa,(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:)(Z)
 
 É(f) e(h)le(h) o(h) ver(h)da(h)dei(h)ro(h) Cor(h)dei(h)ro,(h) que(h) ti(h)rou(h) o(h) pe(h)ca(h)do(g) do(gf) mun(fg)do;(g) (;)

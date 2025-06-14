@@ -5183,5 +5183,13 @@
   "ó": {
     "slashed": "ó",
     "tonic_index": 1
+  },
+    "darvos": {
+    "slashed": "dar/vos",
+    "tonic_index": 1
+  },
+  "todopoderoso": {
+    "slashed": "to/do/po/de/ro/so",
+    "tonic_index": 5
   }
 }
