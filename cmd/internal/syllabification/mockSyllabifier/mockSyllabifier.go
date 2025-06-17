@@ -41,6 +41,15 @@ func (syllab MockSyllabifier) Syllabify(ctx context.Context, word string) (strin
 	case "isso":
 		slashed = "is/so"
 		tonic = 1
+	case "cristo":
+		slashed = "cris/to"
+		tonic = 1
+	case "senhor":
+		slashed = "se/nhor"
+		tonic = 2
+	case "nosso":
+		slashed = "nos/so"
+		tonic = 1
 	}
 
 	return slashed, tonic, nil

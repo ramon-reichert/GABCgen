@@ -3,16 +3,20 @@ package preface_test
 import (
 	"context"
 	"fmt"
+	"log"
 	"testing"
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/mockSyllabifier"
+	"github.com/sergi/go-diff/diffmatchpatch"
+	"golang.org/x/text/unicode/norm"
 )
 
 var ctx context.Context = context.Background()
 
 func TestGeneratePreface(t *testing.T) {
+	syllabifier := mockSyllabifier.NewSyllabifier()
 
 	t.Run("apply gabc melodies to a group of phrases using mockSyllabifier", func(t *testing.T) {
 		is := is.New(t)
@@ -39,14 +43,30 @@ func TestGeneratePreface(t *testing.T) {
 		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
 		//log.Println("inputText: ", inputText)
 
-		syllabifier := mockSyllabifier.NewSyllabifier()
-
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
 		is.NoErr(err)
 
 		expectedGABC := "-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)\nNa(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)(Z)\n\nPor(f) is(h)so,(h) na(h) ver(gf)da(fg)de,(g) (;)\n-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(g) ver(g)da(fgh)de(g) (,)\nNa(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)(Z)\n\nPor(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\ndig(fgh)no(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (::)"
 
 		is.Equal(composedGABC, expectedGABC)
+
+	})
+
+	t.Run("exception attempt to apply 'last' melody to short phrase like 'Senhor nosso'", func(t *testing.T) {
+		is := is.New(t)
+
+		inputText := "Na verdade, é digno e justo,\n por Cristo,\n Senhor nosso."
+
+		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
+		is.NoErr(err)
+
+		expectedGABC := "Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\n por(g) Cris(fgh)to(g) (,)\n Sen(fe)hor(efg) nos(fg)so(f) (::)"
+
+		dmp := diffmatchpatch.New()
+		diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(composedGABC)), []rune(norm.NFC.String(expectedGABC)), false)
+		log.Println("\n\ndiffs: ", diffs)
+
+		is.Equal(norm.NFC.String(composedGABC), norm.NFC.String(expectedGABC))
 
 	})
 }
