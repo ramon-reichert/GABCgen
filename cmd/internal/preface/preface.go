@@ -3,7 +3,6 @@ package preface
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -64,7 +63,7 @@ func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 			if i == len(p.Phrases)-2 {
 
 				//debug code:
-				log.Printf("fields of a mediant to be appended to preface.Phrases:\n text:%v\n directives:%+v\n", p.Phrases[i].Text, p.Phrases[i].Directives)
+				//log.Printf("fields of a mediant to be appended to preface.Phrases:\n text:%v\n directives:%+v\n", p.Phrases[i].Text, p.Phrases[i].Directives)
 
 				preface.Phrases = append(preface.Phrases, mediant{
 					Text:       p.Phrases[i].Text,

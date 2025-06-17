@@ -5,7 +5,6 @@ package phrases
 import (
 	"context"
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -77,33 +76,34 @@ func (ph *Phrase) classifyWordSyllables(ctx context.Context, word string) ([]*wo
 // It also attempts to put the directives back into the right place.
 func JoinSyllables(syl []*words.Syllable, end string, d []Directive) string {
 	//debug code:
-	for i, v := range d {
-		log.Printf("directive just received in JoinSyllables:\n d.[%v]: %+v", i, v)
-	}
+	//for i, v := range d {
+	//	log.Printf("directive just received in JoinSyllables:\n d.[%v]: %+v", i, v)
+	//}
 
 	var result string
 	var pool string
 	dirIndex := 0
-	for _, v := range syl {
+	for i, v := range syl {
+		// join the GABC of each syllable:
 		result += v.GABC
-		pool += string(v.Char)
 		if v.IsLast {
 			result += " "
 
 		}
-		if dirIndex < len(d) && strings.HasSuffix(pool, d[dirIndex].Before) { //compares with the letters that were before the directive at the moment it was removed from the original phrase.
-			result += "||<i><c>" + d[dirIndex].Text + "</c></i>||" + "(,)"
-			dirIndex++
+
+		// put the directive - if it exists - back into the right place:
+		if i < len(syl)-1 { //skip last syllable to avoid conflicts with the end marker
+			pool += string(v.Char)
+			if dirIndex < len(d) && strings.HasSuffix(pool, d[dirIndex].Before) { //compares with the letters that were before the directive at the moment it was removed from the original phrase.
+				result += "||<i><c>" + d[dirIndex].Text + "</c></i>||" + "(,) "
+				dirIndex++
+			}
 		}
 	}
 
 	for dirIndex < len(d) { // if there is no match, the directive is put at the end of the phrase
 		result += "||<i><c>" + d[dirIndex].Text + "</c></i>||"
 		dirIndex++
-	}
-
-	if strings.HasSuffix(result, strings.TrimSuffix(end, "\n")) { // check to not put doubled end
-		return result + "\n"
 	}
 
 	return result + end
@@ -121,7 +121,7 @@ func (ph *Phrase) ExtractDirectives() error {
 			pool += v
 		}
 		//debug code:
-		log.Printf("leftOriginal: %v\n pool: %v\n", leftOriginal, pool)
+		//log.Printf("leftOriginal: %v\n pool: %v\n", leftOriginal, pool)
 
 		ph.Directives = append(ph.Directives, Directive{Text: extracted, Before: pool})
 
@@ -130,7 +130,7 @@ func (ph *Phrase) ExtractDirectives() error {
 	}
 
 	//debug:
-	log.Printf("directives extracted: %+v", ph.Directives)
+	//log.Printf("directives extracted: %+v", ph.Directives)
 
 	return nil
 }

@@ -2,7 +2,6 @@ package paragraph
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
@@ -45,7 +44,7 @@ func DistributeText(linedText string) ([]Paragraph, error) {
 	}
 
 	//debug code
-	log.Println("len(paragraphs): ", len(paragraphs))
+	//log.Println("len(paragraphs): ", len(paragraphs))
 
 	if len(paragraphs) == 0 {
 		return nil, fmt.Errorf("distributing text to new Phrases: %w", gabcErrors.ErrNoText)
