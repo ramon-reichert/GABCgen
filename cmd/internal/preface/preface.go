@@ -174,7 +174,7 @@ func (ph last) ApplyMelody() (string, error) {
 		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.La
 		i--
 		if i < 0 {
-			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
+			return "", fmt.Errorf("last phrase: %v: %w - last unstressed syllable with index %v", ph.Text, gabcErrors.ErrShortPhrase, i)
 		}
 	}
 
@@ -186,41 +186,48 @@ func (ph last) ApplyMelody() (string, error) {
 	}
 	i--
 	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
+		return "", fmt.Errorf("last phrase: %v: %w - last tonic syllable with index %v", ph.Text, gabcErrors.ErrShortPhrase, i)
 	}
 
 	//first syllable before the last tonic:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
-	i--
-	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
-	}
+	if i < 2 { //exception joining melodies of first and second syllables before the last tonic, when the phrase is to short to keep normal treatment
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLaSi
+		i--
+		if i < 0 {
+			return "", fmt.Errorf("last phrase: %v: %w - first syllable before last tonic with index %v (exception case)", ph.Text, gabcErrors.ErrShortPhrase, i)
+		}
+	} else { //normal treatment
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
+		i--
+		if i < 0 {
+			return "", fmt.Errorf("last phrase: %v: %w - first syllable before last tonic with index %v (normal case)", ph.Text, gabcErrors.ErrShortPhrase, i)
+		}
 
-	//second syllable before the last tonic:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLa
-	i--
-	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
+		//second syllable before the last tonic:
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.SolLa
+		i--
+		if i < 0 {
+			return "", fmt.Errorf("last phrase: %v: %w - second syllable before last tonic with index %v", ph.Text, gabcErrors.ErrShortPhrase, i)
+		}
 	}
 
 	//third syllable before the last tonic:
 	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.LaSol
 	i--
-	if i < 0 {
-		return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
-	}
+	if i >= 0 {
 
-	// completing reciting Syllables:
-	for i > 0 {
-		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
-		i--
-		if i < 0 {
-			return "", fmt.Errorf("last phrase: %v: %w ", ph.Text, gabcErrors.ErrShortPhrase)
+		// completing reciting Syllables:
+		for i > 0 {
+			ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
+			i--
+			if i < 0 {
+				return "", fmt.Errorf("last phrase: %v: %w - completing reciting syllables with index %v", ph.Text, gabcErrors.ErrShortPhrase, i)
+			}
 		}
-	}
 
-	//first syllable of the phrase:
-	ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
+		//first syllable of the phrase:
+		ph.Syllables[i].GABC = string(ph.Syllables[i].Char) + staff.Si
+	}
 
 	end := "(:)(Z)\n\n" //gabc code for the "whole bar" plus new line of score (Z), to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil

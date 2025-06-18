@@ -3,13 +3,11 @@ package preface_test
 import (
 	"context"
 	"fmt"
-	"log"
 	"testing"
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/mockSyllabifier"
-	"github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )
 
@@ -60,11 +58,11 @@ func TestGeneratePreface(t *testing.T) {
 		composedGABC, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, inputText)
 		is.NoErr(err)
 
-		expectedGABC := "Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\n por(g) Cris(fgh)to(g) (,)\n Sen(fe)hor(efg) nos(fg)so(f) (::)"
+		expectedGABC := "Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\npor(g) Cris(fgh)to,(g) (,)\nSe(fe)nhor(efg) nos(fg)so.(f) (::)"
 
-		dmp := diffmatchpatch.New()
-		diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(composedGABC)), []rune(norm.NFC.String(expectedGABC)), false)
-		log.Println("\n\ndiffs: ", diffs)
+		//dmp := diffmatchpatch.New()
+		//diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(composedGABC)), []rune(norm.NFC.String(expectedGABC)), false)
+		//log.Println("\n\ndiffs: ", diffs)
 
 		is.Equal(norm.NFC.String(composedGABC), norm.NFC.String(expectedGABC))
 

@@ -7,10 +7,11 @@ const (
 	La  = "(f)"
 	Sol = "(e)"
 
-	LaSi   = "(fg)"
-	LaSiLa = "(fgf)"
-	SiLa   = "(gf)"
-	LaSol  = "(fe)"
-	SolLa  = "(ef)"
-	LaSiDo = "(fgh)"
+	LaSi    = "(fg)"
+	LaSiLa  = "(fgf)"
+	SiLa    = "(gf)"
+	LaSol   = "(fe)"
+	SolLa   = "(ef)"
+	LaSiDo  = "(fgh)"
+	SolLaSi = "(efg)"
 )
