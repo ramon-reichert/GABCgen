@@ -12,7 +12,7 @@ type ServerConfig struct {
 func NewServer(config ServerConfig, h GabcHandler) *http.Server {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", ping)
-	//mux.HandleFunc("/gen", h.books)
+	mux.HandleFunc("/preface", h.preface)
 
 	server := http.Server{
 		Addr:    fmt.Sprintf(":%d", config.Port),

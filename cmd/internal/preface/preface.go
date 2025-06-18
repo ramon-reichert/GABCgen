@@ -11,7 +11,16 @@ import (
 	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
 )
 
-type preface struct {
+type Preface struct {
+	Header   PrefaceHeader
+	Dialogue string
+	Text     prefaceText
+}
+
+type PrefaceHeader struct {
+	// Metadate to generate the preface GABC
+}
+type prefaceText struct {
 	LinedText string
 	Phrases   []phrases.PhraseMelodyer
 }
@@ -25,14 +34,14 @@ type ( // Phrase types that can occur in a Preface
 )
 
 // New creates a new preface struct with the lined text.
-func New(linedText string) *preface { //returning a pointer because this struct is going to be modified by its methods
-	return &preface{
+func New(linedText string) *prefaceText { //returning a pointer because this struct is going to be modified by its methods
+	return &prefaceText{
 		LinedText: linedText,
 	}
 }
 
 // TypePhrases types the already built phrases based on the position of the phrases in the paragraph.
-func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
+func (preface *prefaceText) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 
 	for n, p := range newParagraphs {
 
@@ -84,7 +93,7 @@ func (preface *preface) TypePhrases(newParagraphs []paragraph.Paragraph) error {
 }
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
-func (preface *preface) ApplyGabcMelodies() (string, error) {
+func (preface *prefaceText) ApplyGabcMelodies() (string, error) {
 	var composedGABC string
 	for _, ph := range preface.Phrases {
 		gabcPhrase, err := ph.ApplyMelody()
