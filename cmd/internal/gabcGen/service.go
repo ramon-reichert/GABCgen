@@ -33,13 +33,13 @@ type scoreFile struct {
 
 // GeneratePreface attaches GABC code to each syllable of the incomming lined text following the preface melody rules.
 // Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
-func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (string, error) {
-	linedText := p.Text
+func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (preface.Preface, error) {
+	linedText := p.Text.LinedText
 	var composedGABC string
 
 	newParagraphs, err := paragraph.DistributeText(linedText)
 	if err != nil {
-		return composedGABC, fmt.Errorf("generating Preface: %w", err)
+		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
 	for _, p := range newParagraphs {
@@ -52,7 +52,7 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (stri
 			ph.Syllabifier = gen.Syllabifier
 
 			if err := ph.BuildPhraseSyllables(ctx); err != nil {
-				return composedGABC, fmt.Errorf("generating Preface: %w", err)
+				return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 			}
 		}
 	}
@@ -60,24 +60,24 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (stri
 	//save the user syllables to the file at once with all new words
 	err = gen.Syllabifier.SaveSyllables()
 	if err != nil {
-		return composedGABC, fmt.Errorf("saving user syllables: %w", err)
+		return preface.Preface{}, fmt.Errorf("saving user syllables: %w", err)
 	}
 
-	preface := preface.New(linedText)
+	prefaceText := preface.New(linedText)
 
-	if err := preface.TypePhrases(newParagraphs); err != nil {
-		return composedGABC, fmt.Errorf("generating Preface: %w", err)
+	if err := prefaceText.TypePhrases(newParagraphs); err != nil {
+		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	composedGABC, err = preface.ApplyGabcMelodies()
+	composedGABC, err = prefaceText.ApplyGabcMelodies()
 	if err != nil {
-		return composedGABC, fmt.Errorf("generating Preface: %w", err)
+		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
 	//Adjust the ending of the composed GABC string:
 	composedGABC = strings.TrimSuffix(composedGABC, "(:)(Z)\n\n") + "(::)"
 
-	return composedGABC, nil
+	return preface.Preface{Text: preface.PrefaceText{ComposedGABC: composedGABC}}, nil
 }
 
 func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {

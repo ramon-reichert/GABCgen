@@ -72,9 +72,9 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	prefaceGABC, err := h.gabcGenAPI.GeneratePreface(r.Context(), prefaceEntry) AQUI ADAPTAR PARA RECEBER/ENVIAR PREFACE.PREFACE!!
+	prefaceGABC, err := h.gabcGenAPI.GeneratePreface(r.Context(), entryToPreface(prefaceEntry))
 	if err != nil {
-		handleError(err, w, r)
+		handleError(err, w)
 		return
 	}
 
@@ -94,15 +94,23 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 }
 
 /*Hydrates the preface object with json tags*/
-func prefaceToResponse(p Preface) PrefaceJSON {
+func prefaceToResponse(p preface.Preface) PrefaceJSON {
 	return PrefaceJSON{
 		Header:   p.Header,
 		Dialogue: p.Dialogue,
-		Text:     p.Text,
+		Text:     p.Text.ComposedGABC,
 	}
 }
 
-func handleError(err error, w http.ResponseWriter, r *http.Request) {
+func entryToPreface(pEntry PrefaceJSON) preface.Preface {
+	return preface.Preface{
+		Header:   pEntry.Header,
+		Dialogue: pEntry.Dialogue,
+		Text:     preface.PrefaceText{LinedText: pEntry.Text},
+	}
+}
+
+func handleError(err error, w http.ResponseWriter) {
 	log.Println(err)
 	if errors.As(err, &gabcErrors.ErrResponse{}) {
 		responseJSON(w, http.StatusBadRequest, err)
