@@ -15,7 +15,7 @@ var ErrShortParagraph = ErrResponse{101, "each paragraph must have at least thre
 var ErrNoText = ErrResponse{102, "no incoming text to be parsed"}
 var ErrNoLetters = ErrResponse{103, "non-letter char not attached to any letter"}
 var ErrEntryInvalidJSON = ErrResponse{104, "the entry is not a valid JSON: "}
-var ErrEntryBlankFields = ErrResponse{105, "this entry fields must not be blank: "}
+var ErrEntryBlankFields = ErrResponse{105, "this entry field must not be blank: "}
 
 // Context:
 var ErrRequestTimeout = ErrResponse{201, "context deadline exceeded"}
