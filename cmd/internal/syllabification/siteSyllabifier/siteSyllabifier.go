@@ -35,19 +35,18 @@ type SyllableInfo struct {
 }
 
 func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
+	//check if the word is already syllabified in the user database of new words:
+	if info, ok := s.userSyllabs[word]; ok {
+		return info.Slashed, info.TonicIndex, nil
+	}
 
 	//check if the word is already syllabified in the embedded json database of liturgical words:
 	if info, ok := s.liturgicalSyllabs[word]; ok {
 		return info.Slashed, info.TonicIndex, nil
 	}
 
-	//check if the word is already syllabified in the user database of new words:
-	if info, ok := s.userSyllabs[word]; ok {
-		return info.Slashed, info.TonicIndex, nil
-	}
-
 	//if the word is not found in the databases, fetch it from a external website:
-	info, err := fetchSyllabs(word)
+	info, err := fetchSyllabs(ctx, word)
 	if err != nil {
 		//put the word into a list of non-syllabified words:
 		s.NotSyllabifiedWords = s.NotSyllabifiedWords + "\n" + word
@@ -112,12 +111,19 @@ func (s *SiteSyllabifier) SaveSyllables() error {
 }
 
 // fetchSyllabs fetches the syllables of a word from separaremsilabas.com
-func fetchSyllabs(word string) (SyllableInfo, error) {
+func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 	// Fetch the HTML
-	resp, err := http.Get("https://www.separaremsilabas.com/index.php?lang=index.php&p=" + word + "&button=Separa%C3%A7%C3%A3o+das+s%C3%ADlabas")
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://www.separaremsilabas.com/index.php?lang=index.php&p="+word+"&button=Separa%C3%A7%C3%A3o+das+s%C3%ADlabas", nil)
 	if err != nil {
 		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: %w", word, err)
 	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: %w", word, err)
+	}
+
 	defer resp.Body.Close()
 
 	// Read the body
