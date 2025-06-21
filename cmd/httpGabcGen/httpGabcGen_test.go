@@ -52,4 +52,31 @@ func TestGeneratePreface(t *testing.T) {
 		is.Equal((norm.NFC.String(string(body))), (norm.NFC.String(expectedJSONresponse)))
 
 	})
+
+	t.Run("returns invalid json request error", func(t *testing.T) {
+		is := is.New(t)
+
+		prefaceEntry := `{
+			"header": {},
+			"dialogue": ""
+			"text": "missing coma after field dialogue"
+}`
+		expectedJSONresponse := `{"error_code":104,"error_message":"the entry is not a valid JSON: invalid character '\"' after object key:value pair"}`
+
+		request, _ := http.NewRequest(http.MethodPost, "/preface", strings.NewReader(prefaceEntry))
+		response := httptest.NewRecorder()
+		server.Handler.ServeHTTP(response, request)
+		body, _ := io.ReadAll(response.Result().Body)
+
+		body = body[:len(body)-1] // remove the last newline character
+
+		is.True(response.Result().StatusCode == 400)
+
+		//	dmp := diffmatchpatch.New()
+		//	diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(string(body))), []rune(norm.NFC.String(expectedJSONresponse)), false)
+		//	log.Println("\n\ndiffs: ", diffs)
+
+		is.Equal((norm.NFC.String(string(body))), (norm.NFC.String(expectedJSONresponse)))
+
+	})
 }
