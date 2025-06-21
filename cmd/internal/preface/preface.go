@@ -94,16 +94,21 @@ func (preface *PrefaceText) TypePhrases(newParagraphs []paragraph.Paragraph) err
 }
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
-func (preface *PrefaceText) ApplyGabcMelodies() (string, error) {
+func (preface *PrefaceText) ApplyGabcMelodies() error {
 	var composedGABC string
 	for _, ph := range preface.Phrases {
 		gabcPhrase, err := ph.ApplyMelody()
 		if err != nil {
-			return "", fmt.Errorf("applying melody to %w", err)
+			return fmt.Errorf("applying melody to %w", err)
 		}
 		composedGABC = composedGABC + gabcPhrase
 	}
-	return composedGABC, nil
+
+	//Adjust the ending of the composed GABC string:
+	composedGABC = strings.TrimSuffix(composedGABC, "(:)(Z)\n\n") + "(::)"
+
+	preface.ComposedGABC = composedGABC
+	return nil
 
 }
 

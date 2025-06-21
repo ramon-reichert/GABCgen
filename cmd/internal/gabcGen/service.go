@@ -5,7 +5,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
@@ -35,7 +34,6 @@ type scoreFile struct {
 // Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
 func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (preface.Preface, error) {
 	linedText := p.Text.LinedText
-	var composedGABC string
 
 	newParagraphs, err := paragraph.DistributeText(linedText)
 	if err != nil {
@@ -69,15 +67,11 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (pref
 		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	composedGABC, err = prefaceText.ApplyGabcMelodies()
-	if err != nil {
+	if prefaceText.ApplyGabcMelodies() != nil {
 		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	//Adjust the ending of the composed GABC string:
-	composedGABC = strings.TrimSuffix(composedGABC, "(:)(Z)\n\n") + "(::)"
-
-	return preface.Preface{Text: preface.PrefaceText{ComposedGABC: composedGABC}}, nil
+	return preface.Preface{Text: *prefaceText}, nil
 }
 
 func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {
