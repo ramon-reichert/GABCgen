@@ -26,6 +26,35 @@ func TestGeneratePreface(t *testing.T) {
 	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
 	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(5*time.Second))
 	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080}, gabcHandler)
+
+	/*	t.Run("returns context timeout error", func(t *testing.T) {
+				is := is.New(t)
+
+				prefaceEntry := `{
+					"header": {},
+					"dialogue": "",
+					"text": "Na verdade, testando é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
+		}`
+				expectedJSONresponse := `{"error_code":201,"error_message":"context deadline exceeded"}`
+
+				request, _ := http.NewRequest(http.MethodPost, "/preface", strings.NewReader(prefaceEntry))
+				response := httptest.NewRecorder()
+				server.Handler.ServeHTTP(response, request)
+				body, _ := io.ReadAll(response.Result().Body)
+
+				body = body[:len(body)-1] // remove the last newline character
+
+				is.True(response.Result().StatusCode == 504) // 504 Gateway Timeout
+
+				//	dmp := diffmatchpatch.New()
+				//	diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(string(body))), []rune(norm.NFC.String(expectedJSONresponse)), false)
+				//	log.Println("\n\ndiffs: ", diffs)
+
+				is.Equal((norm.NFC.String(string(body))), (norm.NFC.String(expectedJSONresponse)))
+
+			})
+	*/
+
 	t.Run("generates preface Páscoa I without errors", func(t *testing.T) {
 		is := is.New(t)
 
@@ -43,7 +72,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		body = body[:len(body)-1] // remove the last newline character
 
-		is.True(response.Result().StatusCode == 200)
+		is.True(response.Result().StatusCode == 200) // 200 OK
 
 		//	dmp := diffmatchpatch.New()
 		//	diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(string(body))), []rune(norm.NFC.String(expectedJSONresponse)), false)
@@ -70,7 +99,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		body = body[:len(body)-1] // remove the last newline character
 
-		is.True(response.Result().StatusCode == 400)
+		is.True(response.Result().StatusCode == 400) // 400 Bad Request
 
 		//	dmp := diffmatchpatch.New()
 		//	diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(string(body))), []rune(norm.NFC.String(expectedJSONresponse)), false)
@@ -79,4 +108,5 @@ func TestGeneratePreface(t *testing.T) {
 		is.Equal((norm.NFC.String(string(body))), (norm.NFC.String(expectedJSONresponse)))
 
 	})
+
 }
