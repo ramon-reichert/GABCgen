@@ -27,7 +27,6 @@ type PrefaceText struct {
 }
 
 type ( // Phrase types that can occur in a Preface
-	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same text); Special treatment: just the melody can differ between simple or solemn tones
 	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence;
 	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence;
 	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence;
