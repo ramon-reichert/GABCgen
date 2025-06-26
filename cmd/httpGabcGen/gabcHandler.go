@@ -97,7 +97,7 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 func prefaceToResponse(p preface.Preface) PrefaceJSON {
 	return PrefaceJSON{
 		Header:   p.Header,
-		Dialogue: p.Dialogue,
+		Dialogue: string(p.Dialogue),
 		Text:     p.Text.ComposedGABC,
 	}
 }
@@ -105,8 +105,17 @@ func prefaceToResponse(p preface.Preface) PrefaceJSON {
 func entryToPreface(pEntry PrefaceJSON) preface.Preface {
 	return preface.Preface{
 		Header:   pEntry.Header,
-		Dialogue: pEntry.Dialogue,
+		Dialogue: setDialogueTone(pEntry),
 		Text:     preface.PrefaceText{LinedText: pEntry.Text},
+	}
+}
+
+func setDialogueTone(pEntry PrefaceJSON) preface.Dialogue {
+	switch pEntry.Dialogue {
+	case "regional":
+		return preface.Regional
+	default:
+		return preface.Solemn
 	}
 }
 

@@ -30,7 +30,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 
 		composedGABC := composedPreface.Text.ComposedGABC
 
-		expectedGABC := `Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)
+		expectedGABC := `<c><sp>V/</sp></c> Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)
 é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) (;)
 mas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te,(g) ||<i><c> neste dia ou neste tempo </c></i>||(,)
 por(g)que(g) Cris(g)to,(g) nos(g)sa(g) Pás(g)coa,(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:)(Z)
@@ -63,7 +63,7 @@ a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 
 		composedGABC := composedPreface.Text.ComposedGABC
 
-		expectedGABC := `Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) ||<i><c>directive in the middle</c></i>||(,) jus(fg)to,(g) (;)
+		expectedGABC := `<c><sp>V/</sp></c> Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) ||<i><c>directive in the middle</c></i>||(,) jus(fg)to,(g) (;)
 é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) ||<i><c>second directive in the same sentence</c></i>||(,) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) ||<i><c>directive at the end of a firsts</c></i>||(;)
 mas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te,(g) ||<i><c> neste dia ou neste tempo </c></i>||(,)
 por(g)que(g) Cris(g)to,(g) nos(g)sa(g) Pás(g)coa,(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:)(Z)

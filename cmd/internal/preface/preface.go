@@ -13,7 +13,7 @@ import (
 
 type Preface struct {
 	Header   PrefaceHeader
-	Dialogue string
+	Dialogue Dialogue
 	Text     PrefaceText
 }
 
@@ -94,7 +94,7 @@ func (preface *PrefaceText) TypePhrases(newParagraphs []paragraph.Paragraph) err
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
 func (preface *PrefaceText) ApplyGabcMelodies() error {
-	var composedGABC string
+	composedGABC := "<c><sp>V/</sp></c> " // Initialize the composed GABC string with the beginning of the proper preface
 	for _, ph := range preface.Phrases {
 		gabcPhrase, err := ph.ApplyMelody()
 		if err != nil {
