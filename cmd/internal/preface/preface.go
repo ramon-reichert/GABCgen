@@ -13,7 +13,7 @@ import (
 
 type Preface struct {
 	Header   PrefaceHeader
-	Dialogue string
+	Dialogue Dialogue
 	Text     PrefaceText
 }
 
@@ -27,7 +27,6 @@ type PrefaceText struct {
 }
 
 type ( // Phrase types that can occur in a Preface
-	dialogue   phrases.Phrase // dialogue = whole initial dialogue (always the same text); Special treatment: just the melody can differ between simple or solemn tones
 	firsts     phrases.Phrase // firsts(of the paragraph) = intonation, reciting tone, short cadence;
 	last       phrases.Phrase // last(of the paragraph) = reciting tone, final cadence;
 	mediant    phrases.Phrase // mediant = intonation, reciting tone, mediant cadence;
@@ -95,7 +94,7 @@ func (preface *PrefaceText) TypePhrases(newParagraphs []paragraph.Paragraph) err
 
 // ApplyGabcMelodies applies the GABC melodies to each phrase in the preface and returns the composed GABC string.
 func (preface *PrefaceText) ApplyGabcMelodies() error {
-	var composedGABC string
+	composedGABC := "<c><sp>V/</sp></c> " // Initialize the composed GABC string with the beginning of the proper preface
 	for _, ph := range preface.Phrases {
 		gabcPhrase, err := ph.ApplyMelody()
 		if err != nil {

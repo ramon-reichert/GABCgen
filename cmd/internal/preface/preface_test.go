@@ -47,7 +47,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		composedGABC := composedPreface.Text.ComposedGABC
 
-		expectedGABC := "-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)\nNa(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)(Z)\n\nPor(f) is(h)so,(h) na(h) ver(gf)da(fg)de,(g) (;)\n-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(g) ver(g)da(fgh)de(g) (,)\nNa(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)(Z)\n\nPor(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\ndig(fgh)no(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (::)"
+		expectedGABC := "<c><sp>V/</sp></c> -Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\nNa(f) ver(h)da(h)de,(h) dig(h)no(h) e(h) jus(h)to(gf) é,(fg) (;)\nNa(g) ver(g)da(g)de,(g) é(g) dig(g)no(f) e(g) jus(h)to(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (:)(Z)\n\nPor(f) is(h)so,(h) na(h) ver(gf)da(fg)de,(g) (;)\n-Na:(f) ver(h)d'a(h)de,(h) é(h) .dig(h)no(g) e(gf) jus(fg)to,(g) (;)\nNa(g) ver(g)da(fgh)de(g) (,)\nNa(g) ver(g)da(g)de,(g) dig(g)no(g) e(fe) jus(ef)to(g) é,(fgf) (:)(Z)\n\nPor(f) is(f)so,(f) na(f) ver(f)da(ef)de,(f) (,)\nNa(f) ver(h)da(h)de,(h) dig(h)no,(gf) jus(fg)to,(g) (;)\ndig(fgh)no(g) (,)\n-Na:(g) ver(g)d'a(g)de,(g) é(g) .dig(fe)no(ef) e(g) jus(fg)to,(f) (::)"
 
 		is.Equal(composedGABC, expectedGABC)
 
@@ -63,7 +63,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		composedGABC := composedPreface.Text.ComposedGABC
 
-		expectedGABC := "Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\npor(g) Cris(fgh)to,(g) (,)\nSe(fe)nhor(efg) nos(fg)so.(f) (::)"
+		expectedGABC := "<c><sp>V/</sp></c> Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\npor(g) Cris(fgh)to,(g) (,)\nSe(fe)nhor(efg) nos(fg)so.(f) (::)"
 
 		//dmp := diffmatchpatch.New()
 		//diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(composedGABC)), []rune(norm.NFC.String(expectedGABC)), false)

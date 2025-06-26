@@ -71,7 +71,9 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (pref
 		return preface.Preface{}, fmt.Errorf("generating Preface: %w", err)
 	}
 
-	return preface.Preface{Text: *prefaceText}, nil
+	return preface.Preface{
+		Dialogue: p.Dialogue,
+		Text:     *prefaceText}, nil
 }
 
 func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {
