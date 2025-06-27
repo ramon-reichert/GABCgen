@@ -12,13 +12,8 @@ import (
 )
 
 type Preface struct {
-	Header   PrefaceHeader
 	Dialogue Dialogue
 	Text     PrefaceText
-}
-
-type PrefaceHeader struct {
-	// Metadata to generate the preface GABC
 }
 type PrefaceText struct {
 	LinedText    string
