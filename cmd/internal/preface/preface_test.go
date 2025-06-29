@@ -7,6 +7,7 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/mockSyllabifier"
 	"golang.org/x/text/unicode/norm"
@@ -42,7 +43,7 @@ func TestGeneratePreface(t *testing.T) {
 		inputText := fmt.Sprint(a + b + c + d + e + f + g + h + l + b + i + j + g + l + c + k + f + a)
 		//log.Println("inputText: ", inputText)
 
-		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Text: preface.PrefaceText{LinedText: inputText}})
+		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Header: &header.Header{}, Text: preface.PrefaceText{LinedText: inputText}})
 		is.NoErr(err)
 
 		composedGABC := composedPreface.Text.ComposedGABC
@@ -58,7 +59,7 @@ func TestGeneratePreface(t *testing.T) {
 
 		inputText := "Na verdade, é digno e justo,\n por Cristo,\n Senhor nosso."
 
-		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Text: preface.PrefaceText{LinedText: inputText}})
+		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Header: &header.Header{}, Text: preface.PrefaceText{LinedText: inputText}})
 		is.NoErr(err)
 
 		composedGABC := composedPreface.Text.ComposedGABC

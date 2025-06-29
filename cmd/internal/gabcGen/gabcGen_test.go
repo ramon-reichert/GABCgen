@@ -6,6 +6,7 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/siteSyllabifier"
 	"golang.org/x/text/unicode/norm"
@@ -25,7 +26,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 		inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
 		//log.Println("inputText: ", inputText)
 
-		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Text: preface.PrefaceText{LinedText: inputText}})
+		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Header: &header.Header{}, Text: preface.PrefaceText{LinedText: inputText}})
 		is.NoErr(err)
 
 		composedGABC := composedPreface.Text.ComposedGABC
@@ -58,7 +59,7 @@ a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 		inputText := "Na verdade, é digno e (directive in the middle) justo,\n é nosso dever e salvação (second directive in the same sentence) proclamar vossa glória, ó Pai, em todo tempo, (directive at the end of a firsts)\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
 		//log.Println("inputText: ", inputText)
 
-		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Text: preface.PrefaceText{LinedText: inputText}})
+		composedPreface, err := gabcGen.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, preface.Preface{Header: &header.Header{}, Text: preface.PrefaceText{LinedText: inputText}})
 		is.NoErr(err)
 
 		composedGABC := composedPreface.Text.ComposedGABC
