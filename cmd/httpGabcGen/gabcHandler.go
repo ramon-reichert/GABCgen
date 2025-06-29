@@ -10,6 +10,7 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 )
 
@@ -44,9 +45,10 @@ func (h *GabcHandler) preface(w http.ResponseWriter, r *http.Request) {
 }
 
 type PrefaceJSON struct {
-	Header   preface.PrefaceHeader `json:"header"`
-	Dialogue string                `json:"dialogue"`
-	Text     string                `json:"text"`
+	Header   *header.Header `json:"header"`
+	Dialogue string         `json:"dialogue"`
+	Text     string         `json:"text"`
+	Gabc     string         `json:"gabc,omitempty"` // Optional field for GABC output
 }
 
 /* Validates the entry, then generates a preface GABC. */
@@ -54,7 +56,7 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 	var prefaceEntry PrefaceJSON
 	err := json.NewDecoder(r.Body).Decode(&prefaceEntry)
 	if err != nil {
-		log.Println(err)
+		log.Println("decoding to prefaceJSON: ", err)
 		errR := gabcErrors.ErrResponse{
 			Code:    gabcErrors.ErrEntryInvalidJSON.Code,
 			Message: gabcErrors.ErrEntryInvalidJSON.Message + err.Error(),
@@ -71,6 +73,14 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 		responseJSON(w, http.StatusBadRequest, errR)
 		return
 	}
+
+	//debug code:
+	//log.Println("Received preface entry: ", prefaceEntry)
+
+	if prefaceEntry.Header == nil {
+		prefaceEntry.Header = &header.Header{}
+	}
+	prefaceEntry.Header.SetHeaderOptions()
 
 	prefaceGABC, err := h.gabcGenAPI.GeneratePreface(r.Context(), entryToPreface(prefaceEntry))
 	if err != nil {
@@ -99,19 +109,20 @@ func prefaceToResponse(p preface.Preface) PrefaceJSON {
 		Header:   p.Header,
 		Dialogue: string(p.Dialogue),
 		Text:     p.Text.ComposedGABC,
+		Gabc:     p.Gabc,
 	}
 }
 
 func entryToPreface(pEntry PrefaceJSON) preface.Preface {
 	return preface.Preface{
 		Header:   pEntry.Header,
-		Dialogue: setDialogueTone(pEntry),
+		Dialogue: setDialogueTone(pEntry.Dialogue),
 		Text:     preface.PrefaceText{LinedText: pEntry.Text},
 	}
 }
 
-func setDialogueTone(pEntry PrefaceJSON) preface.Dialogue {
-	switch pEntry.Dialogue {
+func setDialogueTone(d string) preface.Dialogue {
+	switch d {
 	case "regional":
 		return preface.Regional
 	default:

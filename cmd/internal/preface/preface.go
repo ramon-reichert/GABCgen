@@ -6,19 +6,17 @@ import (
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
+	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
 )
 
 type Preface struct {
-	Header   PrefaceHeader
+	Header   *header.Header // Header of the preface, containing metadata
 	Dialogue Dialogue
 	Text     PrefaceText
-}
-
-type PrefaceHeader struct {
-	// Metadata to generate the preface GABC
+	Gabc     string // Join of all fields above, formatted to be used at Illuminare Score Editor
 }
 type PrefaceText struct {
 	LinedText    string
@@ -329,4 +327,9 @@ func (ph conclusion) ApplyMelody() (string, error) {
 
 	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
+}
+
+func (p *Preface) JoinPrefaceFields() string {
+	headerGabc := p.Header.GetComposedHeader()
+	return fmt.Sprintf("%s\n%s\n%s", headerGabc, p.Dialogue, p.Text.ComposedGABC)
 }
