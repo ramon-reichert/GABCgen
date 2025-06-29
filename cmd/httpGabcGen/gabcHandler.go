@@ -48,6 +48,7 @@ type PrefaceJSON struct {
 	Header   *header.Header `json:"header"`
 	Dialogue string         `json:"dialogue"`
 	Text     string         `json:"text"`
+	Gabc     string         `json:"gabc,omitempty"` // Optional field for GABC output
 }
 
 /* Validates the entry, then generates a preface GABC. */
@@ -87,7 +88,7 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	responseJSON(w, http.StatusOK, prefaceToResponse(prefaceGABC, prefaceEntry.Header))
+	responseJSON(w, http.StatusOK, prefaceToResponse(prefaceGABC))
 }
 
 /*Writes a JSON response into a http.ResponseWriter. */
@@ -103,16 +104,18 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 }
 
 /*Hydrates the preface object with json tags*/
-func prefaceToResponse(p preface.Preface, h *header.Header) PrefaceJSON {
+func prefaceToResponse(p preface.Preface) PrefaceJSON {
 	return PrefaceJSON{
-		Header:   h,
+		Header:   p.Header,
 		Dialogue: string(p.Dialogue),
 		Text:     p.Text.ComposedGABC,
+		Gabc:     p.Gabc,
 	}
 }
 
 func entryToPreface(pEntry PrefaceJSON) preface.Preface {
 	return preface.Preface{
+		Header:   pEntry.Header,
 		Dialogue: setDialogueTone(pEntry.Dialogue),
 		Text:     preface.PrefaceText{LinedText: pEntry.Text},
 	}
