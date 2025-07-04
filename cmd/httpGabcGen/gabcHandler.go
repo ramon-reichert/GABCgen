@@ -108,6 +108,10 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 func responseJSON(w http.ResponseWriter, status int, body any) {
 	w.Header().Set("content-type", "application/json")
 	w.WriteHeader(status)
+
+	//debug code:
+	log.Printf("Responding with: %+v", body)
+
 	err := json.NewEncoder(w).Encode(body)
 	if err != nil {
 		log.Println(err)
