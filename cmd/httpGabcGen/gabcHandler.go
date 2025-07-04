@@ -28,6 +28,19 @@ func NewGabcHandler(gabc gabcGen.GabcGen, reqTimeout time.Duration) GabcHandler 
 
 /* Addresses a call to "/preface" according to the requested action.  */
 func (h *GabcHandler) preface(w http.ResponseWriter, r *http.Request) {
+	// CORS headers
+	origin := r.Header.Get("Origin")
+	if origin == "http://localhost:5173" || origin == "https://ramon-reichert.github.io" {
+		w.Header().Set("Access-Control-Allow-Origin", origin)
+	}
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+	// Handle preflight (OPTIONS) request
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 
 	ctx, cancel := context.WithTimeout(r.Context(), time.Duration(h.requestTimeout))
 	defer cancel()
