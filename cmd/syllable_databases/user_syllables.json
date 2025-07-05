@@ -1,1 +1,34 @@
-{}
+{
+  "errshortparagraph": {
+    "slashed": "err/short/pa/ra/gra/ph",
+    "tonic_index": 6
+  },
+  "just": {
+    "slashed": "just",
+    "tonic_index": 1
+  },
+  "line": {
+    "slashed": "li/ne",
+    "tonic_index": 1
+  },
+  "of": {
+    "slashed": "of",
+    "tonic_index": 1
+  },
+  "one": {
+    "slashed": "o/ne",
+    "tonic_index": 1
+  },
+  "return": {
+    "slashed": "re/turn",
+    "tonic_index": 2
+  },
+  "should": {
+    "slashed": "should",
+    "tonic_index": 1
+  },
+  "text": {
+    "slashed": "text",
+    "tonic_index": 1
+  }
+}

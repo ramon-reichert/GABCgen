@@ -149,8 +149,10 @@ func setDialogueTone(d string) preface.Dialogue {
 
 func handleError(err error, w http.ResponseWriter) {
 	log.Println(err)
-	if errors.As(err, &gabcErrors.ErrResponse{}) {
-		responseJSON(w, http.StatusBadRequest, err)
+	var errR gabcErrors.ErrResponse
+	if errors.As(err, &errR) {
+		errR.Message = err.Error()
+		responseJSON(w, http.StatusBadRequest, errR)
 		return
 	} else if errors.Is(err, context.DeadlineExceeded) {
 		responseJSON(w, http.StatusGatewayTimeout, gabcErrors.ErrRequestTimeout)

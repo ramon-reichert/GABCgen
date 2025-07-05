@@ -140,4 +140,29 @@ func TestGeneratePreface(t *testing.T) {
 
 	})
 
+	t.Run("returns error from GabcGen", func(t *testing.T) {
+		is := is.New(t)
+
+		prefaceEntry := `{
+			"dialogue": "",
+			"text": "just one line of text, should return ErrShortParagraph"
+}`
+		expectedJSONresponse := `{"error_code":101,"error_message":"generating Preface: typing phrase: just one line of text, should return ErrShortParagraph - each paragraph must have at least three phrases, not counting the conclusion phrase - which can start the last paragraph"}`
+
+		request, _ := http.NewRequest(http.MethodPost, "/preface", strings.NewReader(prefaceEntry))
+		response := httptest.NewRecorder()
+		server.Handler.ServeHTTP(response, request)
+		body, _ := io.ReadAll(response.Result().Body)
+
+		body = body[:len(body)-1] // remove the last newline character
+
+		is.True(response.Result().StatusCode == 400) // 400 Bad Request
+
+		//	dmp := diffmatchpatch.New()
+		//	diffs := dmp.DiffMainRunes([]rune(norm.NFC.String(string(body))), []rune(norm.NFC.String(expectedJSONresponse)), false)
+		//	log.Println("\n\ndiffs: ", diffs)
+
+		is.Equal((norm.NFC.String(string(body))), (norm.NFC.String(expectedJSONresponse)))
+
+	})
 }
