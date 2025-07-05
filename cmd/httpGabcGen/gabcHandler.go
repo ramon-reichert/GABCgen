@@ -110,7 +110,7 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 	w.WriteHeader(status)
 
 	//debug code:
-	log.Printf("Responding with: %+v", body)
+	//log.Printf("Responding with: %+v", body)
 
 	err := json.NewEncoder(w).Encode(body)
 	if err != nil {
