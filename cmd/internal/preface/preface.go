@@ -331,5 +331,5 @@ func (ph conclusion) ApplyMelody() (string, error) {
 
 func (p *Preface) JoinPrefaceFields() string {
 	headerGabc := p.Header.GetComposedHeader()
-	return fmt.Sprintf("%s\n%s\n%s", headerGabc, p.Dialogue, p.Text.ComposedGABC)
+	return fmt.Sprintf("%s\n%s\n\n%s", headerGabc, p.Dialogue, p.Text.ComposedGABC)
 }

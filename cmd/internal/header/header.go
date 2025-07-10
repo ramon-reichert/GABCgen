@@ -39,7 +39,7 @@ func (h *Header) SetHeaderOptions() {
 
 // Compose the header string:
 func (h *Header) GetComposedHeader() string {
-	composedHeader := "name: " + h.Name + ";\n" + "initial-style: " + "0" + ";\n" + "fontsize: " + h.FontSize + ";\n" + "font: " + h.Font + ";\n" + "width: " + h.Width + ";\n" + "height: " + h.Height + ";\n" + "%%\n(" + h.Clef + ")\n"
+	composedHeader := "name: " + h.Name + ";\n" + "initial-style: " + "0" + ";\n" + "%fontsize: " + h.FontSize + ";\n" + "%font: " + h.Font + ";\n" + "%width: " + h.Width + ";\n" + "%height: " + h.Height + ";\n" + "%%\n(" + h.Clef + ")\n"
 	return fmt.Sprintf(`%v`, composedHeader)
 }
 
