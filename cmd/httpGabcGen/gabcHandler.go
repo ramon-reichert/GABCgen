@@ -10,7 +10,6 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
 )
 
@@ -58,10 +57,9 @@ func (h *GabcHandler) preface(w http.ResponseWriter, r *http.Request) {
 }
 
 type PrefaceJSON struct {
-	Header   *header.Header `json:"header"`
-	Dialogue string         `json:"dialogue"`
-	Text     string         `json:"text"`
-	Gabc     string         `json:"gabc,omitempty"` // Optional field for GABC output
+	Dialogue string `json:"dialogue"`
+	Text     string `json:"text"`
+	Gabc     string `json:"gabc,omitempty"` // Optional field for GABC output
 }
 
 /* Validates the entry, then generates a preface GABC. */
@@ -89,11 +87,6 @@ func (h *GabcHandler) genPreface(w http.ResponseWriter, r *http.Request) {
 
 	//debug code:
 	//log.Println("Received preface entry: ", prefaceEntry)
-
-	if prefaceEntry.Header == nil {
-		prefaceEntry.Header = &header.Header{}
-	}
-	prefaceEntry.Header.SetHeaderOptions()
 
 	prefaceGABC, err := h.gabcGenAPI.GeneratePreface(r.Context(), entryToPreface(prefaceEntry))
 	if err != nil {
@@ -123,7 +116,6 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 /*Hydrates the preface object with json tags*/
 func prefaceToResponse(p preface.Preface) PrefaceJSON {
 	return PrefaceJSON{
-		Header:   p.Header,
 		Dialogue: string(p.Dialogue),
 		Text:     p.Text.ComposedGABC,
 		Gabc:     p.Gabc,
@@ -132,7 +124,6 @@ func prefaceToResponse(p preface.Preface) PrefaceJSON {
 
 func entryToPreface(pEntry PrefaceJSON) preface.Preface {
 	return preface.Preface{
-		Header:   pEntry.Header,
 		Dialogue: setDialogueTone(pEntry.Dialogue),
 		Text:     preface.PrefaceText{LinedText: pEntry.Text},
 	}

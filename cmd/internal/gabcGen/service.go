@@ -26,10 +26,6 @@ func NewGabcGenAPI(syllab words.Syllabifier) GabcGen {
 	}
 }
 
-type scoreFile struct {
-	Url string
-}
-
 // GeneratePreface attaches GABC code to each syllable of the incomming lined text following the preface melody rules.
 // Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
 func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (preface.Preface, error) {
@@ -75,11 +71,4 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, p preface.Preface) (pref
 	p.Gabc = p.JoinPrefaceFields()
 
 	return p, nil
-}
-
-func (gen GabcGen) RenderPDF(ctx context.Context, markedText string) (scoreFile, error) {
-	var score scoreFile
-	//score.url, err = gen.renderer.Render(ctx, composedGABC) //go func??
-	//TODO: handle error
-	return score, nil
 }

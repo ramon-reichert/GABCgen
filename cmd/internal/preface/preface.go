@@ -6,14 +6,12 @@ import (
 	"strings"
 
 	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/header"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
 	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
 )
 
 type Preface struct {
-	Header   *header.Header // Header of the preface, containing metadata
 	Dialogue Dialogue
 	Text     PrefaceText
 	Gabc     string // Join of all fields above, formatted to be used at Illuminare Score Editor
@@ -330,6 +328,6 @@ func (ph conclusion) ApplyMelody() (string, error) {
 }
 
 func (p *Preface) JoinPrefaceFields() string {
-	s := "%%\n(c3)\n\n" + string(p.Dialogue) + "\n\n" + p.Text.ComposedGABC
+	s := string(p.Dialogue) + "\n\n" + p.Text.ComposedGABC
 	return fmt.Sprintf(`%v`, s)
 }
