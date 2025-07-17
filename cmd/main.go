@@ -34,7 +34,7 @@ func run() error {
 
 	//Init service with its dependencies:
 	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(5*time.Second))
+	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(10*time.Second))
 
 	//create and init http server:
 	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080}, gabcHandler)
