@@ -11,10 +11,6 @@ import (
 	"github.com/ramon-reichert/GABCgen/cmd/internal/words"
 )
 
-type Renderer interface {
-	Render(ctx context.Context, composedGABC string) (string, error)
-}
-
 type GabcGen struct {
 	Syllabifier words.Syllabifier
 	//	renderer    Renderer
