@@ -26,7 +26,7 @@ func TestGeneratePreface(t *testing.T) {
 	}
 	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
 	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(5*time.Second))
-	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080}, gabcHandler)
+	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080, DisableRateLimit: true}, gabcHandler)
 
 	/*	t.Run("returns context timeout error", func(t *testing.T) {
 				is := is.New(t)
@@ -97,6 +97,7 @@ func TestGeneratePreface(t *testing.T) {
 		body, _ := io.ReadAll(response.Result().Body)
 		body = body[:len(body)-1] // remove the last newline character
 
+		log.Println("response.Result().StatusCode: ", response.Result().StatusCode)
 		is.True(response.Result().StatusCode == 200) // 200 OK
 
 		expectedGabcText := `"\u003cc\u003e\u003csp\u003eV/\u003c/sp\u003e\u003c/c\u003e Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)\né(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) (;)\nmas,(g) com(g) mai(g)or(g) jú(g)bi(g)lo,(g) lou(g)var(g)-vos(g) nes(f)ta(g) noi(h)te,(g) ||\u003ci\u003e\u003cc\u003e neste dia ou neste tempo \u003c/c\u003e\u003c/i\u003e||(,)\npor(g)que(g) Cris(g)to,(g) nos(g)sa(g) Pás(g)coa,(g) foi(fe) i(ef)mo(g)la(fg)do.(f) (:)(Z)\n\nÉ(f) e(h)le(h) o(h) ver(h)da(h)dei(h)ro(h) Cor(h)dei(h)ro,(h) que(h) ti(h)rou(h) o(h) pe(h)ca(h)do(g) do(gf) mun(fg)do;(g) (;)\nmor(g)ren(g)do,(g) des(g)tru(g)iu(g) a(g) nos(f)sa(g) mor(h)te(g) (,)\ne,(g) res(g)sur(g)gin(g)do,(g) res(g)tau(fe)rou(ef) a(g) vi(fg)da.(f) (:)(Z)\n\nPor(f) is(ef)so,(f) (,)\ntrans(f)bor(h)dan(h)do(h) de(h) a(h)le(h)gri(h)a(h) pas(h)cal,(h) e(h)xul(h)ta(h) a(h) cri(h)a(h)ção(h) por(h) to(h)da(g) a(gf) ter(fg)ra;(g) (;)\ntam(f)bém(h) as(h) Vir(h)tu(h)des(h) ce(h)les(h)tes(h) e(h) as(h) Po(h)tes(h)ta(h)des(h) an(h)gé(h)li(h)cas(h) pro(h)cla(h)mam(h) um(h) hi(h)no(h) à(h) vos(h)sa(gf) gló(fg)ria,(g) (;)\ncan(g)tan(fgh)do(g) (,)\na(g) u(fe)ma(ef) só(g) voz:(fgf) (::)"`
