@@ -19,3 +19,6 @@ var ErrEntryBlankFields = ErrResponse{105, "this entry field must not be blank: 
 
 // Context:
 var ErrRequestTimeout = ErrResponse{201, "context deadline exceeded"}
+
+// Access:
+var ErrToManyRequests = ErrResponse{301, "rate limit exceeded. try again after 30 seconds."}

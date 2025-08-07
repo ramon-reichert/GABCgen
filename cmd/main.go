@@ -37,7 +37,8 @@ func run() error {
 	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(10*time.Second))
 
 	//create and init http server:
-	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080}, gabcHandler)
+	disableRate := os.Getenv("DISABLE_RATE_LIMIT") == "true"
+	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080, DisableRateLimit: disableRate}, gabcHandler)
 
 	go func() {
 		err := server.ListenAndServe()
