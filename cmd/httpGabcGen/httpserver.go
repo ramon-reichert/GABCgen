@@ -2,6 +2,7 @@ package httpGabcGen
 
 import (
 	"fmt"
+	"net"
 	"net/http"
 	"sync"
 	"time"
@@ -29,7 +30,7 @@ func getVisitorLimiter(ip string) *rate.Limiter {
 	limiter, exists := visitors[ip]
 	if !exists {
 		// 1 request per 60 seconds, burst of 1
-		limiter = rate.NewLimiter(rate.Every(30*time.Second), 1)
+		limiter = rate.NewLimiter(rate.Every(60*time.Second), 2)
 		visitors[ip] = limiter
 	}
 	return limiter
@@ -44,7 +45,10 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 				return
 			}
 
-			ip := r.RemoteAddr
+			ip, _, err := net.SplitHostPort(r.RemoteAddr)
+			if err != nil {
+				ip = r.RemoteAddr
+			}
 			limiter := getVisitorLimiter(ip)
 
 			if !limiter.Allow() {
