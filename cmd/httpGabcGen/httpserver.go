@@ -36,12 +36,7 @@ func NewServer(config ServerConfig, h GabcHandler) *http.Server {
 
 func corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		origin := r.Header.Get("Origin")
-		if origin == "http://localhost:5173" || origin == "https://ramon-reichert.github.io" {
-			w.Header().Set("Access-Control-Allow-Origin", origin)
-		}
-		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		setCorsHeaders(w, r)
 
 		// Handle preflight
 		if r.Method == http.MethodOptions {
@@ -51,6 +46,15 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 		next.ServeHTTP(w, r)
 	})
+}
+
+func setCorsHeaders(w http.ResponseWriter, r *http.Request) {
+	origin := r.Header.Get("Origin")
+	if origin == "http://localhost:5173" || origin == "https://ramon-reichert.github.io" {
+		w.Header().Set("Access-Control-Allow-Origin", origin)
+	}
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 }
 
 func timeoutMiddleware(timeout time.Duration) func(http.Handler) http.Handler {
@@ -102,10 +106,12 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 			limiter := getVisitorLimiter(ip)
 
 			if !limiter.Allow() {
+
 				errR := gabcErrors.ErrResponse{
 					Code:    gabcErrors.ErrToManyRequests.Code,
 					Message: gabcErrors.ErrToManyRequests.Message,
 				}
+				setCorsHeaders(w, r)
 				responseJSON(w, http.StatusTooManyRequests, errR)
 				return
 
