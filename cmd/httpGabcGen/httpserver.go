@@ -1,6 +1,7 @@
 package httpGabcGen
 
 import (
+	"context"
 	"fmt"
 	"net"
 	"net/http"
@@ -15,6 +16,59 @@ import (
 type ServerConfig struct {
 	Port             int
 	DisableRateLimit bool
+}
+
+func NewServer(config ServerConfig, h GabcHandler) *http.Server {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/ping", ping)
+	mux.HandleFunc("/preface", h.preface)
+
+	handlerWithCors := corsMiddleware(mux)
+	handlerWithTimeout := timeoutMiddleware(time.Duration(h.requestTimeout))(handlerWithCors)
+	handlerWithRateLimit := rateLimitMiddleware(config.DisableRateLimit)(handlerWithTimeout)
+
+	server := http.Server{
+		Addr:    fmt.Sprintf(":%d", config.Port),
+		Handler: handlerWithRateLimit,
+	}
+	return &server
+}
+
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		setCorsHeaders(w, r)
+
+		// Handle preflight
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
+func setCorsHeaders(w http.ResponseWriter, r *http.Request) {
+	origin := r.Header.Get("Origin")
+	if origin == "http://localhost:5173" || origin == "https://ramon-reichert.github.io" {
+		w.Header().Set("Access-Control-Allow-Origin", origin)
+	}
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+}
+
+func timeoutMiddleware(timeout time.Duration) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			ctx, cancel := context.WithTimeout(r.Context(), timeout)
+			defer cancel()
+
+			// Replace request context with the timed context
+			r = r.WithContext(ctx)
+
+			next.ServeHTTP(w, r)
+		})
+	}
 }
 
 var (
@@ -52,10 +106,12 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 			limiter := getVisitorLimiter(ip)
 
 			if !limiter.Allow() {
+
 				errR := gabcErrors.ErrResponse{
 					Code:    gabcErrors.ErrToManyRequests.Code,
 					Message: gabcErrors.ErrToManyRequests.Message,
 				}
+				setCorsHeaders(w, r)
 				responseJSON(w, http.StatusTooManyRequests, errR)
 				return
 
@@ -63,21 +119,6 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 		})
 	}
-}
-
-func NewServer(config ServerConfig, h GabcHandler) *http.Server {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/ping", ping)
-	mux.HandleFunc("/preface", h.preface)
-
-	// Apply the middleware to all routes
-	limitedMux := rateLimitMiddleware(config.DisableRateLimit)(mux)
-
-	server := http.Server{
-		Addr:    fmt.Sprintf(":%d", config.Port),
-		Handler: limitedMux,
-	}
-	return &server
 }
 
 /* Tests the http server connection.  */
