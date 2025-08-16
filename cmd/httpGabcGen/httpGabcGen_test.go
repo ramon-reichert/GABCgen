@@ -11,15 +11,15 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/cmd/httpGabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/internal/syllabification/siteSyllabifier"
 	"github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )
 
 func TestGeneratePreface(t *testing.T) {
 
-	syllabifier := siteSyllabifier.NewSyllabifier("../syllable_databases/liturgical_syllables.json", "../syllable_databases/user_syllables.json", "../syllable_databases/not_syllabified.txt")
+	syllabifier := siteSyllabifier.NewSyllabifier("../../assets/syllable_databases/liturgical_syllables.json", "../../assets/syllable_databases/user_syllables.json", "../../assets/syllable_databases/not_syllabified.txt")
 	err := syllabifier.LoadSyllables()
 	if err != nil {
 		log.Printf("loading syllables db files: %v", err)

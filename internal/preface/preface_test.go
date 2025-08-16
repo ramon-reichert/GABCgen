@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/mockSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/internal/preface"
+	"github.com/ramon-reichert/GABCgen/internal/syllabification/mockSyllabifier"
 	"golang.org/x/text/unicode/norm"
 )
 

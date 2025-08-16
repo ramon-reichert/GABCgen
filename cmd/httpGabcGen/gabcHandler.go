@@ -8,9 +8,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/preface"
+	"github.com/ramon-reichert/GABCgen/internal/gabcErrors"
+	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/internal/preface"
 )
 
 type GabcHandler struct {

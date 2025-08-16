@@ -11,6 +11,14 @@
     "slashed": "li/ne",
     "tonic_index": 1
   },
+  "linhas": {
+    "slashed": "li/nhas",
+    "tonic_index": 1
+  },
+  "mínimo": {
+    "slashed": "mí/ni/mo",
+    "tonic_index": 1
+  },
   "of": {
     "slashed": "of",
     "tonic_index": 1
@@ -19,12 +27,20 @@
     "slashed": "o/ne",
     "tonic_index": 1
   },
+  "prefácio": {
+    "slashed": "pre/fá/cio",
+    "tonic_index": 2
+  },
   "return": {
     "slashed": "re/turn",
     "tonic_index": 2
   },
   "should": {
     "slashed": "should",
+    "tonic_index": 1
+  },
+  "teste": {
+    "slashed": "tes/te",
     "tonic_index": 1
   },
   "text": {
