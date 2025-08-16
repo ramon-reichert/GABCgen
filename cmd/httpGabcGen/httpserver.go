@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
+	"github.com/ramon-reichert/GABCgen/internal/gabcErrors"
 
 	"golang.org/x/time/rate"
 )
