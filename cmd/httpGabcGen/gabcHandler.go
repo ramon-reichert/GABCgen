@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 	"github.com/ramon-reichert/GABCgen/internal/preface"
 )
 

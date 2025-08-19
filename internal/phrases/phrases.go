@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/gabcErrors"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 	"github.com/ramon-reichert/GABCgen/internal/words"
 )
 

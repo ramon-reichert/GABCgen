@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/gabcErrors"
 	"github.com/ramon-reichert/GABCgen/internal/paragraph"
 	"github.com/ramon-reichert/GABCgen/internal/phrases"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 	"github.com/ramon-reichert/GABCgen/internal/staff"
 )
 

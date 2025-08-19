@@ -1,4 +1,4 @@
-package gabcErrors
+package errors
 
 type ErrResponse struct {
 	Code    int    `json:"error_code"`
