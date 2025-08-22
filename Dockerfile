@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY ./cmd ./cmd
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o ./api ./cmd
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./api ./cmd/gabcgen
 
 EXPOSE 8080 
 
