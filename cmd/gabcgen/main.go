@@ -11,8 +11,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/cmd/httpGabcGen"
-	"github.com/ramon-reichert/GABCgen/internal/gabcGen"
+	"github.com/ramon-reichert/GABCgen/internal/generator"
+	"github.com/ramon-reichert/GABCgen/internal/handlers"
+	"github.com/ramon-reichert/GABCgen/internal/platform/web"
 	"github.com/ramon-reichert/GABCgen/internal/syllabification/siteSyllabifier"
 )
 
@@ -33,12 +34,17 @@ func run() error {
 	}
 
 	//Init service with its dependencies:
-	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(10*time.Second))
+	generatorAPI := generator.NewGabcGenAPI(syllabifier /*, render*/)
+	gabcHandler := handlers.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
+
+	// router:
+	mux := http.NewServeMux()
+	mux.HandleFunc("/ping", handlers.Ping)
+	mux.HandleFunc("/preface", gabcHandler.Preface)
 
 	//create and init http server:
 	disableRate := os.Getenv("DISABLE_RATE_LIMIT") == "true"
-	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080, DisableRateLimit: disableRate}, gabcHandler)
+	server := web.NewServer(web.ServerConfig{Port: 8080, DisableRateLimit: disableRate, Timeout: 10 * time.Second}, mux)
 
 	go func() {
 		err := server.ListenAndServe()
