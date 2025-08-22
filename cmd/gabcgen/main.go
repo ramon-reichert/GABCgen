@@ -13,8 +13,8 @@ import (
 
 	"github.com/ramon-reichert/GABCgen/internal/generator"
 	"github.com/ramon-reichert/GABCgen/internal/handlers"
+	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
-	"github.com/ramon-reichert/GABCgen/internal/syllabification/siteSyllabifier"
 )
 
 func main() {

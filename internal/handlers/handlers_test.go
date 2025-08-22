@@ -12,8 +12,8 @@ import (
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/internal/generator"
 	"github.com/ramon-reichert/GABCgen/internal/handlers"
+	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
-	"github.com/ramon-reichert/GABCgen/internal/syllabification/siteSyllabifier"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )

@@ -7,7 +7,7 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/internal/generator"
-	"github.com/ramon-reichert/GABCgen/internal/syllabification/mockSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/mockSyllabifier"
 	"golang.org/x/text/unicode/norm"
 )
 
