@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 )
 

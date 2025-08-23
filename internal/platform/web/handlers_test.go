@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/generator"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
+	"github.com/ramon-reichert/GABCgen/internal/service"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )
@@ -24,7 +24,7 @@ func TestGeneratePreface(t *testing.T) {
 	if err != nil {
 		log.Printf("loading syllables db files: %v", err)
 	}
-	gabc := generator.NewGabcGenAPI(syllabifier /*, render*/)
+	gabc := service.NewGabcGenAPI(syllabifier /*, render*/)
 	gabcHandler := web.NewGabcHandler(gabc, time.Duration(5*time.Second))
 	// router:
 	mux := http.NewServeMux()

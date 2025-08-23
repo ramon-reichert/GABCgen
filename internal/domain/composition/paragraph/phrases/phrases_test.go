@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
 )
 
 func TestExtractDirectives(t *testing.T) {

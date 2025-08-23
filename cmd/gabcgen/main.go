@@ -11,9 +11,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/internal/generator"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
+	"github.com/ramon-reichert/GABCgen/internal/service"
 )
 
 func main() {
@@ -33,7 +33,7 @@ func run() error {
 	}
 
 	//Init service with its dependencies:
-	generatorAPI := generator.NewGabcGenAPI(syllabifier /*, render*/)
+	generatorAPI := service.NewGabcGenAPI(syllabifier /*, render*/)
 	gabcHandler := web.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
 
 	// router:

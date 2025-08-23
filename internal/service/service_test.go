@@ -1,4 +1,4 @@
-package generator_test
+package service_test
 
 import (
 	"context"
@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/generator"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/service"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )
@@ -27,7 +27,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 		inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
 		//log.Println("inputText: ", inputText)
 
-		composedGABC, err := generator.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
+		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)
 
 		expectedGABC := `<c><sp>V/</sp></c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(hg)co.(g) (::) <c><sp>R/</sp></c> E(f)<e>le</e> es(g)tá(h) no(h) me(h)io(f) de(g) nós.(hg) (::) (Z) <c><sp>V/</sp></c> Co(g)ra(h)ções(i) ao(h) al(gh)to.(gf) (::) <c><sp>R/</sp></c> O(h) nos(h)so(h) co(g)ra(h)cão(i) es(h)tá(g) em(h) Deus.(gf) (::) (Z) <c><sp>V/</sp></c> De(hg)mos(f) gra(fg)ças(h) ao(g) Se(h)nhor(ih) nos(gf)so(gh) Deus.(ghg) (::) <c><sp>R/</sp></c> É(g) no(g)sso(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::) (Z)
@@ -63,7 +63,7 @@ a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 		inputText := "Na verdade, é digno e (directive in the middle) justo,\n é nosso dever e salvação (second directive in the same sentence) proclamar vossa glória, ó Pai, em todo tempo, (directive at the end of a firsts)\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
 		//log.Println("inputText: ", inputText)
 
-		composedGABC, err := generator.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
+		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)
 
 		expectedGABC := `<c><sp>V/</sp></c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(hg)co.(g) (::) <c><sp>R/</sp></c> E(f)<e>le</e> es(g)tá(h) no(h) me(h)io(f) de(g) nós.(hg) (::) (Z) <c><sp>V/</sp></c> Co(g)ra(h)ções(i) ao(h) al(gh)to.(gf) (::) <c><sp>R/</sp></c> O(h) nos(h)so(h) co(g)ra(h)cão(i) es(h)tá(g) em(h) Deus.(gf) (::) (Z) <c><sp>V/</sp></c> De(hg)mos(f) gra(fg)ças(h) ao(g) Se(h)nhor(ih) nos(gf)so(gh) Deus.(ghg) (::) <c><sp>R/</sp></c> É(g) no(g)sso(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::) (Z)

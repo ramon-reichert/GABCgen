@@ -8,16 +8,16 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/internal/generator"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
+	"github.com/ramon-reichert/GABCgen/internal/service"
 )
 
 type GabcHandler struct {
-	serviceAPI     generator.Service
+	serviceAPI     service.Service
 	requestTimeout time.Duration
 }
 
-func NewGabcHandler(service generator.Service, reqTimeout time.Duration) GabcHandler {
+func NewGabcHandler(service service.Service, reqTimeout time.Duration) GabcHandler {
 	return GabcHandler{
 		serviceAPI:     service,
 		requestTimeout: reqTimeout,

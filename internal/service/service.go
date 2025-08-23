@@ -1,14 +1,14 @@
 // The core of the GABC Generator. Coordinates internal and external packages interactions.
-package generator
+package service
 
 import (
 	"context"
 	"fmt"
 	"log"
 
-	"github.com/ramon-reichert/GABCgen/internal/paragraph"
-	"github.com/ramon-reichert/GABCgen/internal/preface"
-	"github.com/ramon-reichert/GABCgen/internal/words"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases/words"
+	"github.com/ramon-reichert/GABCgen/internal/domain/preface"
 )
 
 type GabcGen struct {

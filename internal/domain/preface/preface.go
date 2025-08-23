@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/paragraph"
-	"github.com/ramon-reichert/GABCgen/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/staff"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
-	"github.com/ramon-reichert/GABCgen/internal/staff"
 )
 
 type Preface struct {
