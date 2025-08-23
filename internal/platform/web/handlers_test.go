@@ -1,4 +1,4 @@
-package httpgabcgen_test
+package web_test
 
 import (
 	"io"
@@ -11,7 +11,6 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/internal/generator"
-	"github.com/ramon-reichert/GABCgen/internal/httpgabcgen"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
@@ -20,13 +19,13 @@ import (
 
 func TestGeneratePreface(t *testing.T) {
 
-	syllabifier := siteSyllabifier.NewSyllabifier("../../assets/syllable_databases/liturgical_syllables.json", "../../assets/syllable_databases/user_syllables.json", "../../assets/syllable_databases/not_syllabified.txt")
+	syllabifier := siteSyllabifier.NewSyllabifier("../../../assets/syllable_databases/liturgical_syllables.json", "../../../assets/syllable_databases/user_syllables.json", "../../../assets/syllable_databases/not_syllabified.txt")
 	err := syllabifier.LoadSyllables()
 	if err != nil {
 		log.Printf("loading syllables db files: %v", err)
 	}
 	gabc := generator.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := httpgabcgen.NewGabcHandler(gabc, time.Duration(5*time.Second))
+	gabcHandler := web.NewGabcHandler(gabc, time.Duration(5*time.Second))
 	// router:
 	mux := http.NewServeMux()
 	mux.HandleFunc("/preface", gabcHandler.Preface)

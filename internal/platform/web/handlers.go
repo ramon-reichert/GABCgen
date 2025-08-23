@@ -1,4 +1,4 @@
-package httpgabcgen
+package web
 
 import (
 	"context"
