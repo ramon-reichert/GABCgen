@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/ramon-reichert/GABCgen/internal/generator"
-	"github.com/ramon-reichert/GABCgen/internal/handlers"
+	"github.com/ramon-reichert/GABCgen/internal/httpgabcgen"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
 )
@@ -35,11 +35,11 @@ func run() error {
 
 	//Init service with its dependencies:
 	generatorAPI := generator.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := handlers.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
+	gabcHandler := httpgabcgen.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
 
 	// router:
 	mux := http.NewServeMux()
-	mux.HandleFunc("/ping", handlers.Ping)
+	mux.HandleFunc("/ping", httpgabcgen.Ping)
 	mux.HandleFunc("/preface", gabcHandler.Preface)
 
 	//create and init http server:

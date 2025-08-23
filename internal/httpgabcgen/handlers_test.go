@@ -1,4 +1,4 @@
-package handlers_test
+package httpgabcgen_test
 
 import (
 	"io"
@@ -11,7 +11,7 @@ import (
 
 	"github.com/matryer/is"
 	"github.com/ramon-reichert/GABCgen/internal/generator"
-	"github.com/ramon-reichert/GABCgen/internal/handlers"
+	"github.com/ramon-reichert/GABCgen/internal/httpgabcgen"
 	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 	"github.com/ramon-reichert/GABCgen/internal/platform/web"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
@@ -26,7 +26,7 @@ func TestGeneratePreface(t *testing.T) {
 		log.Printf("loading syllables db files: %v", err)
 	}
 	gabc := generator.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := handlers.NewGabcHandler(gabc, time.Duration(5*time.Second))
+	gabcHandler := httpgabcgen.NewGabcHandler(gabc, time.Duration(5*time.Second))
 	// router:
 	mux := http.NewServeMux()
 	mux.HandleFunc("/preface", gabcHandler.Preface)
