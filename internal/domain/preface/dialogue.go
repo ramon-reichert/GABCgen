@@ -9,3 +9,12 @@ const (
 	// Solemn mode is the official one that comes in the last brazilian missal:
 	Solemn Dialogue = "<c><sp>V/</sp></c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(hg)co.(g) (::) <c><sp>R/</sp></c> E(f)<e>le</e> es(g)tá(h) no(h) me(h)io(f) de(g) nós.(hg) (::) (Z) <c><sp>V/</sp></c> Co(g)ra(h)ções(i) ao(h) al(gh)to.(gf) (::) <c><sp>R/</sp></c> O(h) nos(h)so(h) co(g)ra(h)cão(i) es(h)tá(g) em(h) Deus.(gf) (::) (Z) <c><sp>V/</sp></c> De(hg)mos(f) gra(fg)ças(h) ao(g) Se(h)nhor(ih) nos(gf)so(gh) Deus.(ghg) (::) <c><sp>R/</sp></c> É(g) no(g)sso(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::) (Z)"
 )
+
+func SetDialogueTone(d string) Dialogue {
+	switch d {
+	case "regional":
+		return Regional
+	default:
+		return Solemn
+	}
+}

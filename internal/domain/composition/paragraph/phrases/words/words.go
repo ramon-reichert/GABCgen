@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 )
 
 type Syllabifier interface {

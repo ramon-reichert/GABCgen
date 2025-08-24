@@ -11,9 +11,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/cmd/httpGabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcGen"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/platform/web"
+	"github.com/ramon-reichert/GABCgen/internal/service"
 )
 
 func main() {
@@ -26,19 +26,24 @@ func main() {
 
 func run() error {
 	//Init dependencies:
-	syllabifier := siteSyllabifier.NewSyllabifier("cmd/syllable_databases/liturgical_syllables.json", "cmd/syllable_databases/user_syllables.json", "cmd/syllable_databases/not_syllabified.txt")
+	syllabifier := siteSyllabifier.NewSyllabifier("assets/syllable_databases/liturgical_syllables.json", "assets/syllable_databases/user_syllables.json", "assets/syllable_databases/not_syllabified.txt")
 	err := syllabifier.LoadSyllables()
 	if err != nil {
 		return fmt.Errorf("loading syllables db files: %w", err)
 	}
 
 	//Init service with its dependencies:
-	gabc := gabcGen.NewGabcGenAPI(syllabifier /*, render*/)
-	gabcHandler := httpGabcGen.NewGabcHandler(gabc, time.Duration(10*time.Second))
+	generatorAPI := service.NewGabcGenAPI(syllabifier /*, render*/)
+	gabcHandler := web.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
+
+	// router:
+	mux := http.NewServeMux()
+	mux.HandleFunc("/ping", web.Ping)
+	mux.HandleFunc("/preface", gabcHandler.Preface)
 
 	//create and init http server:
 	disableRate := os.Getenv("DISABLE_RATE_LIMIT") == "true"
-	server := httpGabcGen.NewServer(httpGabcGen.ServerConfig{Port: 8080, DisableRateLimit: disableRate}, gabcHandler)
+	server := web.NewServer(web.ServerConfig{Port: 8080, DisableRateLimit: disableRate, Timeout: 10 * time.Second}, mux)
 
 	go func() {
 		err := server.ListenAndServe()
