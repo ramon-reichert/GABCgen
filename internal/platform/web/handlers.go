@@ -91,10 +91,6 @@ func responseJSON(w http.ResponseWriter, status int, body any) {
 	}
 }
 
-type ErrResponse struct {
-	Message string `json:"error_message"`
-}
-
 // handleError processes errors and sends appropriate HTTP responses.
 func handleError(err error, w http.ResponseWriter) {
 	log.Println(err)
@@ -102,10 +98,9 @@ func handleError(err error, w http.ResponseWriter) {
 	if errors.As(err, &domainErr) {
 		domainErr.Message = err.Error()
 		http.Error(w, err.Error(), http.StatusBadRequest)
-		//	responseJSON(w, http.StatusBadRequest, ErrResponse{Message: domainErr.Error()})
 		return
 	} else if errors.Is(err, context.DeadlineExceeded) {
-		responseJSON(w, http.StatusGatewayTimeout, ErrResponse{Message: "context deadline exceeded"})
+		http.Error(w, "context deadline exceeded", http.StatusGatewayTimeout)
 		return
 	}
 	w.WriteHeader(http.StatusInternalServerError)
