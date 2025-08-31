@@ -5,16 +5,15 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/paragraph"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/staff"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/staff"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 )
 
 type Preface struct {
 	Dialogue Dialogue
 	Text     PrefaceText
-	Gabc     string // Join of all fields above, formatted to be used at Illuminare Score Editor
 }
 type PrefaceText struct {
 	LinedText    string
@@ -325,9 +324,4 @@ func (ph conclusion) ApplyMelody() (string, error) {
 
 	end := "(,)\n" //gabc code for the "quarter bar", to be added at the end of the phrase
 	return phrases.JoinSyllables(ph.Syllables, end, ph.Directives), nil
-}
-
-func (p *Preface) JoinPrefaceFields() string {
-	s := string(p.Dialogue) + "\n\n" + p.Text.ComposedGABC
-	return fmt.Sprintf(`%v`, s)
 }

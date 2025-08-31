@@ -8,9 +8,9 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
-COPY ./cmd ./cmd
+COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o ./api ./cmd
+RUN CGO_ENABLED=0 GOOS=linux go build -o ./api ./cmd/gabcgen
 
 EXPOSE 8080 
 

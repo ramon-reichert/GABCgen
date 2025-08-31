@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/cmd/internal/gabcErrors"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
+	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 )
 
 type Paragraph struct {

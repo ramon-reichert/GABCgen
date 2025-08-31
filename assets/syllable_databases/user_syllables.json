@@ -1,0 +1,74 @@
+{
+  "erro": {
+    "slashed": "er/ro",
+    "tonic_index": 1
+  },
+  "errshortparagraph": {
+    "slashed": "err/short/pa/ra/gra/ph",
+    "tonic_index": 6
+  },
+  "just": {
+    "slashed": "just",
+    "tonic_index": 1
+  },
+  "line": {
+    "slashed": "li/ne",
+    "tonic_index": 1
+  },
+  "linhas": {
+    "slashed": "li/nhas",
+    "tonic_index": 1
+  },
+  "mostrar": {
+    "slashed": "mos/trar",
+    "tonic_index": 2
+  },
+  "mínimo": {
+    "slashed": "mí/ni/mo",
+    "tonic_index": 1
+  },
+  "normal": {
+    "slashed": "nor/mal",
+    "tonic_index": 2
+  },
+  "of": {
+    "slashed": "of",
+    "tonic_index": 1
+  },
+  "one": {
+    "slashed": "o/ne",
+    "tonic_index": 1
+  },
+  "palabras": {
+    "slashed": "pa/la/bras",
+    "tonic_index": 2
+  },
+  "prefácio": {
+    "slashed": "pre/fá/cio",
+    "tonic_index": 2
+  },
+  "return": {
+    "slashed": "re/turn",
+    "tonic_index": 2
+  },
+  "should": {
+    "slashed": "should",
+    "tonic_index": 1
+  },
+  "silabas": {
+    "slashed": "si/la/bas",
+    "tonic_index": 2
+  },
+  "teste": {
+    "slashed": "tes/te",
+    "tonic_index": 1
+  },
+  "testetesteteste": {
+    "slashed": "tes/te/tes/te/tes/te",
+    "tonic_index": 5
+  },
+  "text": {
+    "slashed": "text",
+    "tonic_index": 1
+  }
+}

@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/cmd/internal/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
 )
 
 var ctx context.Context = context.Background()
