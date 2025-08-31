@@ -151,7 +151,7 @@ func TestGeneratePreface(t *testing.T) {
 			"dialogue": "",
 			"text": "just one line of text, should return ErrShortParagraph"
 }`
-		expectedJSONresponse := `{"error_message":"generating Preface: typing phrase: just one line of text, should return ErrShortParagraph - each paragraph must have at least three phrases, not counting the conclusion phrase - which can start the last paragraph"}`
+		expectedJSONresponse := `generating Preface: typing phrase: just one line of text, should return ErrShortParagraph - each paragraph must have at least three phrases, not counting the conclusion phrase - which can start the last paragraph`
 
 		request, _ := http.NewRequest(http.MethodPost, "/preface", strings.NewReader(prefaceEntry))
 		response := httptest.NewRecorder()

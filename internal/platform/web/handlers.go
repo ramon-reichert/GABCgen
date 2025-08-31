@@ -101,7 +101,8 @@ func handleError(err error, w http.ResponseWriter) {
 	var domainErr gabcErrors.DomainErr
 	if errors.As(err, &domainErr) {
 		domainErr.Message = err.Error()
-		responseJSON(w, http.StatusBadRequest, ErrResponse{Message: domainErr.Error()})
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		//	responseJSON(w, http.StatusBadRequest, ErrResponse{Message: domainErr.Error()})
 		return
 	} else if errors.Is(err, context.DeadlineExceeded) {
 		responseJSON(w, http.StatusGatewayTimeout, ErrResponse{Message: "context deadline exceeded"})
