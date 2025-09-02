@@ -64,6 +64,13 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 	}
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+
+			// Skip rate limiting for preflight requests
+			if r.Method == http.MethodOptions {
+				next.ServeHTTP(w, r)
+				return
+			}
+
 			ip, _, _ := net.SplitHostPort(r.RemoteAddr)
 			limiter := getVisitorLimiter(ip)
 			if !limiter.Allow() {
