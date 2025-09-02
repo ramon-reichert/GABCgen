@@ -81,7 +81,7 @@ func getVisitorLimiter(ip string) *rate.Limiter {
 	limiter, ok := visitors[ip]
 	if !ok {
 		// Matches your current behavior roughly: 1 req/sec, burst 3.
-		limiter = rate.NewLimiter(1, 3)
+		limiter = rate.NewLimiter(rate.Every(60*time.Second), 2)
 		visitors[ip] = limiter
 	}
 	return limiter
