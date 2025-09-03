@@ -74,6 +74,7 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 			ip, _, _ := net.SplitHostPort(r.RemoteAddr)
 			limiter := getVisitorLimiter(ip)
 			if !limiter.Allow() {
+				setCORSHeaders(w, r)
 				http.Error(w, "rate limit exceeded. try again after 30 seconds.", http.StatusTooManyRequests)
 				return
 			}
