@@ -15,9 +15,9 @@ type ServerConfig struct {
 // NewServer applies generic middleware (CORS, timeout, rate limit) to the given handler.
 // It does NOT register any application routes.
 func NewServer(cfg ServerConfig, handler http.Handler) *http.Server {
-	h := corsMiddleware(handler)
-	h = timeoutMiddleware(cfg.Timeout)(h)
+	h := timeoutMiddleware(cfg.Timeout)(handler)
 	h = rateLimitMiddleware(cfg.DisableRateLimit)(h)
+	h = corsMiddleware(h)
 
 	return &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),
