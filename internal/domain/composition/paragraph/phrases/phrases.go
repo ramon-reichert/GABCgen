@@ -18,10 +18,6 @@ type Phrase struct {
 	Directives  []Directive       // possible singing directives may come between parentheses and are not to be sung. They are removed from the text before the syllabification and should be put back again after the melody is applied.
 }
 
-type PhraseMelodyer interface {
-	ApplyMelody() (string, error) //Applying the Open/Closed principle from SOLID so we can always have new types of Phrases
-}
-
 type Directive struct {
 	Text   string
 	Before string
