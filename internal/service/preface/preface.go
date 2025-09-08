@@ -5,10 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph"
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/staff"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
+	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/service/composition/staff"
 )
 
 type PhraseMelodyer interface {
@@ -39,7 +38,7 @@ func New(linedText string) *PrefaceText { //returning a pointer because this str
 }
 
 // TypePhrases types the already built phrases based on the position of the phrases in the paragraph.
-func (preface *PrefaceText) TypePhrases(newParagraphs []paragraph.Paragraph) error {
+func (preface *PrefaceText) TypePhrases(newParagraphs []phrases.Paragraph) error {
 
 	for n, p := range newParagraphs {
 

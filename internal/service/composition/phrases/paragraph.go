@@ -1,19 +1,18 @@
-package paragraph
+package phrases
 
 import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
 )
 
 type Paragraph struct {
-	Phrases []*phrases.Phrase
+	Phrases []*Phrase
 }
 
 func DistributeText(linedText string) ([]Paragraph, error) {
-	var newPhrases []*phrases.Phrase
+	var newPhrases []*Phrase
 	var paragraphs []Paragraph
 
 	if linedText == "" {
@@ -32,7 +31,7 @@ func DistributeText(linedText string) ([]Paragraph, error) {
 			//debug code
 			//fmt.Println("line: ", text)
 
-			newPhrases = append(newPhrases, phrases.New(text))
+			newPhrases = append(newPhrases, New(text))
 		} else if newPhrases != nil {
 			paragraphs = append(paragraphs, Paragraph{Phrases: newPhrases})
 			p++

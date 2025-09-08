@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases/words"
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
+	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases/words"
 )
 
 type Phrase struct {

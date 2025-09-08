@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph"
-	"github.com/ramon-reichert/GABCgen/internal/domain/composition/paragraph/phrases/words"
-	"github.com/ramon-reichert/GABCgen/internal/domain/preface"
+	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases"
+	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases/words"
+	"github.com/ramon-reichert/GABCgen/internal/service/preface"
 )
 
 type GabcGen struct {
@@ -30,7 +30,7 @@ type Service interface {
 // Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
 func (gen GabcGen) GeneratePreface(ctx context.Context, dialogue, linedText string) (string, error) {
 
-	newParagraphs, err := paragraph.DistributeText(linedText)
+	newParagraphs, err := phrases.DistributeText(linedText)
 	if err != nil {
 		return "", fmt.Errorf("generating Preface: %w", err)
 	}
