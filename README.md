@@ -4,7 +4,7 @@ Backend of this experimental tool for generating GABC code from liturgical texts
 
 [Structure tree](https://github.com/ramon-reichert/GABCgen/blob/18ee210e0c2810d4c98201b4f6ac6e6663dc2d33/documentation/tree.ini)
 
-[APP Diagram here](https://excalidraw.com/#json=qrPCGQujr2X7NnTvQTrPM,mvIp1fm_HMl-FiL0mshB5g)
+[APP Diagram here](https://excalidraw.com/#json=p8aZV3P2AtoP_hZ1s95Y5,cLOs0p7rOvoSTNKfnx9_Rw)
 
 API: https://gabcgen.fly.dev/ping
 
