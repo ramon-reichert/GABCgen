@@ -1,7 +1,7 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "https://excalidraw.com",
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
   "elements": [
     {
       "id": "XYmQHSf69lcE9IpgWhYNB",
@@ -4487,7 +4487,7 @@
       "x": -1277.6858716078782,
       "y": 771.9290623989621,
       "width": 275.95172119140625,
-      "height": 129.60000000000002,
+      "height": 151.20000000000002,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "#f8f9fa",
@@ -4506,20 +4506,20 @@
       "index": "b3g",
       "roundness": null,
       "seed": 1635991030,
-      "version": 3575,
-      "versionNonce": 498175990,
+      "version": 3616,
+      "versionNonce": 1210100962,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1757614594717,
+      "updated": 1757624902564,
       "link": null,
       "locked": false,
-      "text": "main.go:\n\n- Read environment variables\n- Init service with its dependencies\n- Create and init http server\n- Listen Syscalls to graceful shutdown",
+      "text": "main.go:\n\n- Read environment variables\n- Init service with its dependencies\n- HTTP routing\n- Create and init http server\n- Listen Syscalls to graceful shutdown",
       "fontSize": 16,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "main.go:\n\n- Read environment variables\n- Init service with its dependencies\n- Create and init http server\n- Listen Syscalls to graceful shutdown",
+      "originalText": "main.go:\n\n- Read environment variables\n- Init service with its dependencies\n- HTTP routing\n- Create and init http server\n- Listen Syscalls to graceful shutdown",
       "autoResize": true,
       "lineHeight": 1.35
     },
@@ -4610,7 +4610,7 @@
       "version": 211,
       "versionNonce": 420592324,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1757616512297,
       "link": null,
       "locked": false,
@@ -4636,8 +4636,7 @@
     "gridSize": 20,
     "gridStep": 5,
     "gridModeEnabled": false,
-    "viewBackgroundColor": "#ffffff",
-    "lockedMultiSelections": {}
+    "viewBackgroundColor": "#ffffff"
   },
   "files": {
     "c161eb510803b93413b0b97c9f00bd268706c30a": {
