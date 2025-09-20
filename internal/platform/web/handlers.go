@@ -9,15 +9,18 @@ import (
 	"time"
 
 	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
-	"github.com/ramon-reichert/GABCgen/internal/service"
 )
 
+type Service interface {
+	GeneratePreface(ctx context.Context, dialogue, text string) (gabc string, err error)
+}
+
 type GabcHandler struct {
-	serviceAPI     service.Service
+	serviceAPI     Service
 	requestTimeout time.Duration
 }
 
-func NewGabcHandler(service service.Service, reqTimeout time.Duration) GabcHandler {
+func NewGabcHandler(service Service, reqTimeout time.Duration) GabcHandler {
 	return GabcHandler{
 		serviceAPI:     service,
 		requestTimeout: reqTimeout,

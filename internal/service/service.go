@@ -22,10 +22,6 @@ func NewGabcGenAPI(syllab words.Syllabifier) GabcGen {
 	}
 }
 
-type Service interface {
-	GeneratePreface(ctx context.Context, dialogue, text string) (gabc string, err error)
-}
-
 // GeneratePreface attaches GABC code to each syllable of the incomming lined text following the preface melody rules.
 // Each line is a phrase with its corresponding melody. Pharagraphs are separated by a double newline.
 func (gen GabcGen) GeneratePreface(ctx context.Context, dialogue, linedText string) (string, error) {
