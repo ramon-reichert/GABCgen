@@ -17,7 +17,7 @@ type SiteSyllabifier struct {
 	userFilePath           string                  // path to the user syllables file
 	liturgicalSyllabs      map[string]SyllableInfo // map of liturgical syllables, loaded from a file
 	liturgicalFilePath     string                  // path to the liturgical syllables file
-	NotSyllabifiedWords    string                  // list of words that were not syllabified, to be saved to a file later
+	notSyllabifiedWords    string                  // list of words that were not syllabified, to be saved to a file later
 	notSyllabifiedFilePath string                  // path to the file where the not syllabified words will be saved
 }
 
@@ -51,7 +51,7 @@ func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, i
 	info, err := fetchSyllabs(ctx, word)
 	if err != nil {
 		// Put the word into a list of non-syllabified words
-		s.NotSyllabifiedWords = s.NotSyllabifiedWords + "\n" + word
+		s.notSyllabifiedWords = s.notSyllabifiedWords + "\n" + word
 		return "", 0, fmt.Errorf("syllabifying new word: %w", err)
 	}
 
@@ -86,7 +86,7 @@ func (s *SiteSyllabifier) LoadSyllables() error {
 		return err
 	}
 
-	s.NotSyllabifiedWords = string(dataNS)
+	s.notSyllabifiedWords = string(dataNS)
 
 	return nil
 }
@@ -103,10 +103,11 @@ func (s *SiteSyllabifier) SaveSyllables() error {
 		return fmt.Errorf("writing syllables to file %s: %w", s.userFilePath, err)
 	}
 
-	err = os.WriteFile(s.notSyllabifiedFilePath, []byte(s.NotSyllabifiedWords), 0644)
+	err = os.WriteFile(s.notSyllabifiedFilePath, []byte(s.notSyllabifiedWords), 0644)
 	if err != nil {
 		return fmt.Errorf("writing syllables to file %s: %w", s.notSyllabifiedFilePath, err)
 	}
+
 	return nil
 }
 
@@ -136,7 +137,7 @@ func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: no syllables found", word)
 	}
 
-	// Define the tonic syllable:
+	// Define the tonic syllable
 	tonicIndex := 0
 	syllabs := strings.Split(matches[1], "-")
 	for i, s := range syllabs {

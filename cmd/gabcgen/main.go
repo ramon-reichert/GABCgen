@@ -25,7 +25,7 @@ func main() {
 }
 
 func run() error {
-	// Initialize syllabifier
+	// Initialize dependencies
 	syllabifier := siteSyllabifier.NewSyllabifier("assets/syllable_databases/liturgical_syllables.json", "assets/syllable_databases/user_syllables.json", "assets/syllable_databases/not_syllabified.txt")
 	err := syllabifier.LoadSyllables()
 	if err != nil {

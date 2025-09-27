@@ -32,9 +32,8 @@ func TestSyllabify(t *testing.T) {
 
 		slashed, tonicIndex, err := syllabifier.Syllabify(ctx, "litúrgicas")
 		is.NoErr(err)
-		is.Equal(slashed, "fetched/in/liturgical/db") //proposital wrong answer, to ensure that the syllables were fetched from the liturgical db
+		is.Equal(slashed, "fetched/in/liturgical/db") // proposital wrong answer, to ensure that the syllables were fetched from the liturgical db
 		is.Equal(tonicIndex, 2)
-
 	})
 
 	t.Run("fetch syllables from new words at external site", func(t *testing.T) {
@@ -43,7 +42,7 @@ func TestSyllabify(t *testing.T) {
 		newWord := "externo"
 		slashed, tonicIndex, err := syllabifier.Syllabify(ctx, newWord)
 		is.NoErr(err)
-		is.Equal(slashed, "ex/ter/no") //word not present in liturgical db or user db, so it was fetched from external site
+		is.Equal(slashed, "ex/ter/no") // word not present in liturgical db or user db, so it was fetched from external site
 		is.Equal(tonicIndex, 2)
 
 		syllabifier.SaveSyllables()
@@ -58,7 +57,6 @@ func TestSyllabify(t *testing.T) {
 		is.NoErr(err)
 		fileContent, err := os.ReadFile("test_user_syllables.json")
 		is.NoErr(err)
-		is.Equal(fileContent, data) //check if the user db file was created with the new word
-
+		is.Equal(fileContent, data) // check if the user db file was created with the new word
 	})
 }
