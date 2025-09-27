@@ -25,23 +25,25 @@ func main() {
 }
 
 func run() error {
-	//Init dependencies:
+	// Initialize syllabifier
 	syllabifier := siteSyllabifier.NewSyllabifier("assets/syllable_databases/liturgical_syllables.json", "assets/syllable_databases/user_syllables.json", "assets/syllable_databases/not_syllabified.txt")
 	err := syllabifier.LoadSyllables()
 	if err != nil {
 		return fmt.Errorf("loading syllables db files: %w", err)
 	}
 
-	//Init service with its dependencies:
+	// Initialize service with dependencies
 	generatorAPI := service.NewGabcGenAPI(syllabifier /*, render*/)
+
+	// Initialize http handler with service dependency
 	gabcHandler := web.NewGabcHandler(generatorAPI, time.Duration(10*time.Second))
 
-	// router:
+	// Setup http routes
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", web.Ping)
 	mux.HandleFunc("/preface", gabcHandler.Preface)
 
-	//create and init http server:
+	// Initialize http server
 	disableRate := os.Getenv("DISABLE_RATE_LIMIT") == "true"
 	server := web.NewServer(web.ServerConfig{Port: 8080, DisableRateLimit: disableRate, Timeout: 10 * time.Second}, mux)
 
@@ -53,6 +55,7 @@ func run() error {
 		log.Println("stopped serving new requests.")
 	}()
 
+	// Wait for termination signal and shutdown gracefully
 	stopSignal := make(chan os.Signal, 1)
 	signal.Notify(stopSignal, syscall.SIGINT, syscall.SIGTERM)
 	<-stopSignal

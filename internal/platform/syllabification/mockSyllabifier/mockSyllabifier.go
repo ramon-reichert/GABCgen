@@ -1,3 +1,4 @@
+// Package mockSyllabifier provides a mock implementation of a syllabifier for testing purposes.
 package mockSyllabifier
 
 import (
@@ -11,12 +12,12 @@ func NewSyllabifier() *MockSyllabifier {
 	return &MockSyllabifier{}
 }
 
+// Syllabify provides a mock syllabification of given words for testing.
 func (syllab MockSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
 	var slashed string
-	var tonic int //index of the tonic syllable, beginning with 1
+	var tonic int // index of the tonic syllable, beginning with 1
 
-	//Mocking syllabification to allow testing the core application:
-	switch word { //"Na verdade, é digno e justo,="
+	switch word { // "Na verdade, é digno e justo"
 	case "na":
 		slashed = "na"
 		tonic = 1

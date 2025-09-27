@@ -1,3 +1,4 @@
+// Package siteSyllabifier is an adapter that fetches syllables from an external website.
 package siteSyllabifier
 
 import (
@@ -5,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"regexp"
@@ -13,14 +13,15 @@ import (
 )
 
 type SiteSyllabifier struct {
-	userSyllabs            map[string]SyllableInfo
-	userFilePath           string                  //path to the user syllables file
-	liturgicalSyllabs      map[string]SyllableInfo //map of liturgical syllables, loaded from a file
-	liturgicalFilePath     string                  //path to the liturgical syllables file
-	NotSyllabifiedWords    string                  //list of words that were not syllabified, to be saved to a file later
-	notSyllabifiedFilePath string                  //path to the file where the not syllabified words will be saved
+	userSyllabs            map[string]SyllableInfo // map of user syllables, loaded from a file and new words added during runtime
+	userFilePath           string                  // path to the user syllables file
+	liturgicalSyllabs      map[string]SyllableInfo // map of liturgical syllables, loaded from a file
+	liturgicalFilePath     string                  // path to the liturgical syllables file
+	NotSyllabifiedWords    string                  // list of words that were not syllabified, to be saved to a file later
+	notSyllabifiedFilePath string                  // path to the file where the not syllabified words will be saved
 }
 
+// NewSyllabifier creates a new SiteSyllabifier instance.
 func NewSyllabifier(liturgicalSyllabsPath, userSyllabsPath, notSyllabifiedPath string) *SiteSyllabifier {
 	return &SiteSyllabifier{
 		userFilePath:           userSyllabsPath,
@@ -34,34 +35,33 @@ type SyllableInfo struct {
 	TonicIndex int    `json:"tonic_index"`
 }
 
+// Syllabify syllabifies a word, first checking the user and liturgical databases, then fetching from an external website if not found.
 func (s *SiteSyllabifier) Syllabify(ctx context.Context, word string) (string, int, error) {
-	//check if the word is already syllabified in the user database of new words:
+	// Check if the word is already syllabified in the user database of new words
 	if info, ok := s.userSyllabs[word]; ok {
 		return info.Slashed, info.TonicIndex, nil
 	}
 
-	//check if the word is already syllabified in the embedded json database of liturgical words:
+	// Check if the word is already syllabified in the embedded json database of liturgical words
 	if info, ok := s.liturgicalSyllabs[word]; ok {
 		return info.Slashed, info.TonicIndex, nil
 	}
 
-	//if the word is not found in the databases, fetch it from a external website:
+	// Fetch the word from a external website, if not found in the databases
 	info, err := fetchSyllabs(ctx, word)
 	if err != nil {
-		//put the word into a list of non-syllabified words:
+		// Put the word into a list of non-syllabified words
 		s.NotSyllabifiedWords = s.NotSyllabifiedWords + "\n" + word
 		return "", 0, fmt.Errorf("syllabifying new word: %w", err)
 	}
 
-	//debug code:
-	log.Printf("Syllabified new word %v: %v", word, info)
-
-	//add the word to the user database of new words
+	// Add the word to the user database of new words
 	s.userSyllabs[word] = info
 
 	return info.Slashed, info.TonicIndex, nil
 }
 
+// LoadSyllables loads the syllables from the liturgical and user files.
 func (s *SiteSyllabifier) LoadSyllables() error {
 	dataL, err := os.ReadFile(s.liturgicalFilePath)
 	if err != nil {
@@ -91,6 +91,7 @@ func (s *SiteSyllabifier) LoadSyllables() error {
 	return nil
 }
 
+// SaveSyllables saves the user syllables and the not syllabified words to their respective files.
 func (s *SiteSyllabifier) SaveSyllables() error {
 	data, err := json.MarshalIndent(s.userSyllabs, "", "  ")
 	if err != nil {
@@ -107,13 +108,10 @@ func (s *SiteSyllabifier) SaveSyllables() error {
 		return fmt.Errorf("writing syllables to file %s: %w", s.notSyllabifiedFilePath, err)
 	}
 	return nil
-
 }
 
-// fetchSyllabs fetches the syllables of a word from separaremsilabas.com
+// fetchSyllabs fetches the syllables of a word from the external website.
 func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
-	// Fetch the HTML
-
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://www.separaremsilabas.com/index.php?lang=index.php&p="+word+"&button=Separa%C3%A7%C3%A3o+das+s%C3%ADlabas", nil)
 	if err != nil {
 		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: %w", word, err)
@@ -126,7 +124,6 @@ func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 
 	defer resp.Body.Close()
 
-	// Read the body
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: %w", word, err)
@@ -139,7 +136,7 @@ func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 		return SyllableInfo{}, fmt.Errorf("fetching syllables of %v from separaremsilabas.com: no syllables found", word)
 	}
 
-	//define the tonic syllable:
+	// Define the tonic syllable:
 	tonicIndex := 0
 	syllabs := strings.Split(matches[1], "-")
 	for i, s := range syllabs {
@@ -153,10 +150,8 @@ func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 
 	if tonicIndex == 0 {
 		return SyllableInfo{}, fmt.Errorf("unable to define tonic syllable in: %v", word)
-
 	}
 
-	//build slashed syllable string
+	// Build slashed syllable string
 	return SyllableInfo{Slashed: strings.Join(syllabs, "/"), TonicIndex: tonicIndex}, nil
-
 }
