@@ -16,7 +16,8 @@ var ctx context.Context = context.Background()
 
 func TestIntegrationGeneratePreface(t *testing.T) {
 	is := is.New(t)
-	// Initialize the syllabifier with the necessary files:
+
+	// Initialize the syllabifier with the necessary files
 	syllabifier := siteSyllabifier.NewSyllabifier("../../assets/syllable_databases/liturgical_syllables.json", "../../assets/syllable_databases/user_syllables.json", "../../assets/syllable_databases/not_syllabified.txt")
 	is.NoErr(syllabifier.LoadSyllables())
 
@@ -25,7 +26,6 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 
 		//TODO: VERIFY ERROR WITH THIS INPUT: inputText := "Teste de geração de prefácio\n com no mínimo\n três linhas"
 		inputText := "Na verdade, é digno e justo,\n é nosso dever e salvação proclamar vossa glória, ó Pai, em todo tempo,\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
-		//log.Println("inputText: ", inputText)
 
 		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)
@@ -54,14 +54,12 @@ a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 		}
 
 		is.Equal(norm.NFC.String(composedGABC), norm.NFC.String(expectedGABC))
-
 	})
 
 	t.Run("modified preface Páscoa I with more directives", func(t *testing.T) {
 		is := is.New(t)
 
 		inputText := "Na verdade, é digno e (directive in the middle) justo,\n é nosso dever e salvação (second directive in the same sentence) proclamar vossa glória, ó Pai, em todo tempo, (directive at the end of a firsts)\n mas, com maior júbilo, louvar-vos nesta noite, ( neste dia ou neste tempo )\n porque Cristo, nossa Páscoa, foi imolado.\n\n É ele o verdadeiro Cordeiro, que tirou o pecado do mundo;\n morrendo, destruiu a nossa morte\n e, ressurgindo, restaurou a vida.\n\n Por isso,\n transbordando de alegria pascal, exulta a criação por toda a terra;\n também as Virtudes celestes e as Potestades angélicas proclamam um hino à vossa glória,\n cantando\n a uma só voz:"
-		//log.Println("inputText: ", inputText)
 
 		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)

@@ -1,4 +1,4 @@
-// Holder for staff notation constants in gabc code
+// Package staff is a holder for staff notation constants in gabc code
 package staff
 
 const (
