@@ -88,6 +88,7 @@ func rateLimitMiddleware(disable bool) func(http.Handler) http.Handler {
 func getVisitorLimiter(ip string) *rate.Limiter {
 	mu.Lock()
 	defer mu.Unlock()
+
 	limiter, ok := visitors[ip]
 	if !ok {
 		limiter = rate.NewLimiter(rate.Every(60*time.Second), 2) // allows 2 requests per minute

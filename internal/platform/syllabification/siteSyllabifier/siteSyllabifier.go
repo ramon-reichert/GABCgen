@@ -68,7 +68,7 @@ func (s *SiteSyllabifier) LoadSyllables() error {
 		return err
 	}
 
-	if json.Unmarshal(dataL, &s.liturgicalSyllabs) != nil {
+	if err := json.Unmarshal(dataL, &s.liturgicalSyllabs); err != nil {
 		return fmt.Errorf("unmarshaling file %v: %w", s.liturgicalFilePath, err)
 	}
 
@@ -77,7 +77,7 @@ func (s *SiteSyllabifier) LoadSyllables() error {
 		return err
 	}
 
-	if json.Unmarshal(dataU, &s.userSyllabs) != nil {
+	if err := json.Unmarshal(dataU, &s.userSyllabs); err != nil {
 		return fmt.Errorf("unmarshaling file %v: %w", s.userFilePath, err)
 	}
 
@@ -98,13 +98,11 @@ func (s *SiteSyllabifier) SaveSyllables() error {
 		return fmt.Errorf("marshalling syllables to JSON: %w", err)
 	}
 
-	err = os.WriteFile(s.userFilePath, data, 0644)
-	if err != nil {
+	if err := os.WriteFile(s.userFilePath, data, 0644); err != nil {
 		return fmt.Errorf("writing syllables to file %s: %w", s.userFilePath, err)
 	}
 
-	err = os.WriteFile(s.notSyllabifiedFilePath, []byte(s.notSyllabifiedWords), 0644)
-	if err != nil {
+	if err := os.WriteFile(s.notSyllabifiedFilePath, []byte(s.notSyllabifiedWords), 0644); err != nil {
 		return fmt.Errorf("writing syllables to file %s: %w", s.notSyllabifiedFilePath, err)
 	}
 
@@ -140,7 +138,9 @@ func fetchSyllabs(ctx context.Context, word string) (SyllableInfo, error) {
 	// Define the tonic syllable
 	tonicIndex := 0
 	syllabs := strings.Split(matches[1], "-")
+
 	for i, s := range syllabs {
+
 		if strings.HasPrefix(s, "<strong>") {
 			s = strings.TrimPrefix(s, "<strong>")
 			s = strings.TrimSuffix(s, "</strong>")

@@ -48,8 +48,7 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, dialogue, linedText stri
 	}
 
 	// Save the user syllables to the file at once with all new words
-	err = gen.Syllabifier.SaveSyllables()
-	if err != nil {
+	if err := gen.Syllabifier.SaveSyllables(); err != nil {
 		return "", fmt.Errorf("saving user syllables: %w", err)
 	}
 
@@ -59,7 +58,7 @@ func (gen GabcGen) GeneratePreface(ctx context.Context, dialogue, linedText stri
 		return "", fmt.Errorf("generating Preface: %w", err)
 	}
 
-	if prefaceText.ApplyGabcMelodies() != nil {
+	if err := prefaceText.ApplyGabcMelodies(); err != nil {
 		return "", fmt.Errorf("generating Preface: %w", err)
 	}
 

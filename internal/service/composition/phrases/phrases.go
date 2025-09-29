@@ -39,6 +39,7 @@ func (ph *Phrase) BuildPhraseSyllables(ctx context.Context) error {
 		if err != nil {
 			return fmt.Errorf("building Phrase Syllables: %w ", err)
 		}
+
 		ph.Syllables = append(ph.Syllables, syllables...)
 	}
 

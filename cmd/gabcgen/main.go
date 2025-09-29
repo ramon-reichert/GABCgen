@@ -17,8 +17,7 @@ import (
 )
 
 func main() {
-	err := run()
-	if err != nil {
+	if err := run(); err != nil {
 		log.Println(err)
 		os.Exit(1)
 	}
@@ -27,8 +26,8 @@ func main() {
 func run() error {
 	// Initialize dependencies
 	syllabifier := siteSyllabifier.NewSyllabifier("assets/syllable_databases/liturgical_syllables.json", "assets/syllable_databases/user_syllables.json", "assets/syllable_databases/not_syllabified.txt")
-	err := syllabifier.LoadSyllables()
-	if err != nil {
+
+	if err := syllabifier.LoadSyllables(); err != nil {
 		return fmt.Errorf("loading syllables db files: %w", err)
 	}
 
@@ -48,8 +47,7 @@ func run() error {
 	server := web.NewServer(web.ServerConfig{Port: 8080, DisableRateLimit: disableRate, Timeout: 10 * time.Second}, mux)
 
 	go func() {
-		err := server.ListenAndServe()
-		if err != nil && !errors.Is(err, http.ErrServerClosed) {
+		if err := server.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			log.Printf("unexpected http server error: %v", err)
 		}
 		log.Println("stopped serving new requests.")
@@ -62,6 +60,7 @@ func run() error {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(10*time.Second))
 	defer cancel()
+
 	if err := server.Shutdown(ctx); err != nil {
 		return fmt.Errorf("HTTP shutdown error: %w", err)
 	}

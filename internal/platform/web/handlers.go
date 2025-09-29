@@ -13,7 +13,7 @@ import (
 )
 
 type Service interface {
-	GeneratePreface(ctx context.Context, dialogue, text string) (gabc string, err error)
+	GeneratePreface(ctx context.Context, dialogue, text string) (string, error)
 }
 
 type GabcHandler struct {
