@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
-	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases"
-	"github.com/ramon-reichert/GABCgen/internal/service/composition/staff"
+	gabcErrors "github.com/ramon-reichert/gabcgen/internal/platform/errors"
+	"github.com/ramon-reichert/gabcgen/internal/service/composition/phrases"
+	"github.com/ramon-reichert/gabcgen/internal/service/composition/staff"
 )
 
 type PhraseMelodyer interface {

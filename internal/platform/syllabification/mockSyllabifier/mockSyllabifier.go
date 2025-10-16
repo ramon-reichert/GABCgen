@@ -1,5 +1,5 @@
 // Package mockSyllabifier provides a mock implementation of a syllabifier for testing purposes.
-package mockSyllabifier
+package mocksyllabifier
 
 import (
 	"context"

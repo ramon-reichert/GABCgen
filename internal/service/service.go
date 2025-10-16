@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases"
-	"github.com/ramon-reichert/GABCgen/internal/service/composition/phrases/words"
-	"github.com/ramon-reichert/GABCgen/internal/service/preface"
+	"github.com/ramon-reichert/gabcgen/internal/service/composition/phrases"
+	"github.com/ramon-reichert/gabcgen/internal/service/composition/phrases/words"
+	"github.com/ramon-reichert/gabcgen/internal/service/preface"
 )
 
 type GabcGen struct {

@@ -1,4 +1,4 @@
-// Package web is the http layer adapter for the GABCgen service.
+// Package web is the http layer adapter for the gabcgen service.
 package web
 
 import (
@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
+	gabcErrors "github.com/ramon-reichert/gabcgen/internal/platform/errors"
 )
 
 type Service interface {

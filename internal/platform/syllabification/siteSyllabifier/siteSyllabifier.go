@@ -1,5 +1,5 @@
-// Package siteSyllabifier is an adapter that fetches syllables from an external website.
-package siteSyllabifier
+// Package sitesyllabifier is an adapter that fetches syllables from an external website.
+package sitesyllabifier
 
 import (
 	"context"

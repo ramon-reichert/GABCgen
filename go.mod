@@ -1,4 +1,4 @@
-module github.com/ramon-reichert/GABCgen
+module github.com/ramon-reichert/gabcgen
 
 go 1.24
 

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	gabcErrors "github.com/ramon-reichert/GABCgen/internal/platform/errors"
+	gabcErrors "github.com/ramon-reichert/gabcgen/internal/platform/errors"
 )
 
 type Paragraph struct {

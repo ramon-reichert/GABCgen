@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
-	"github.com/ramon-reichert/GABCgen/internal/service"
+	"github.com/ramon-reichert/gabcgen/internal/platform/syllabification/sitesyllabifier"
+	"github.com/ramon-reichert/gabcgen/internal/service"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
 	"golang.org/x/text/unicode/norm"
 )
@@ -18,7 +18,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 	is := is.New(t)
 
 	// Initialize the syllabifier with the necessary files
-	syllabifier := siteSyllabifier.NewSyllabifier("../../assets/syllable_databases/liturgical_syllables.json", "../../assets/syllable_databases/user_syllables.json", "../../assets/syllable_databases/not_syllabified.txt")
+	syllabifier := sitesyllabifier.NewSyllabifier("../../assets/syllabledatabases/liturgical_syllables.json", "../../assets/syllabledatabases/user_syllables.json", "../../assets/syllabledatabases/not_syllabified.txt")
 	is.NoErr(syllabifier.LoadSyllables())
 
 	t.Run("generate preface Páscoa I", func(t *testing.T) {

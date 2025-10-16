@@ -6,15 +6,15 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/mockSyllabifier"
-	"github.com/ramon-reichert/GABCgen/internal/service"
+	"github.com/ramon-reichert/gabcgen/internal/platform/syllabification/mocksyllabifier"
+	"github.com/ramon-reichert/gabcgen/internal/service"
 	"golang.org/x/text/unicode/norm"
 )
 
 var ctx context.Context = context.Background()
 
 func TestGeneratePreface(t *testing.T) {
-	syllabifier := mockSyllabifier.NewSyllabifier()
+	syllabifier := mocksyllabifier.NewSyllabifier()
 
 	t.Run("apply gabc melodies to a group of phrases using mockSyllabifier", func(t *testing.T) {
 		is := is.New(t)

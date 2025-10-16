@@ -11,9 +11,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
-	"github.com/ramon-reichert/GABCgen/internal/platform/web"
-	"github.com/ramon-reichert/GABCgen/internal/service"
+	"github.com/ramon-reichert/gabcgen/internal/platform/syllabification/sitesyllabifier"
+	"github.com/ramon-reichert/gabcgen/internal/platform/web"
+	"github.com/ramon-reichert/gabcgen/internal/service"
 )
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 
 func run() error {
 	// Initialize dependencies
-	syllabifier := siteSyllabifier.NewSyllabifier("assets/syllable_databases/liturgical_syllables.json", "assets/syllable_databases/user_syllables.json", "assets/syllable_databases/not_syllabified.txt")
+	syllabifier := sitesyllabifier.NewSyllabifier("assets/syllabledatabases/liturgical_syllables.json", "assets/syllabledatabases/user_syllables.json", "assets/syllabledatabases/not_syllabified.txt")
 
 	if err := syllabifier.LoadSyllables(); err != nil {
 		return fmt.Errorf("loading syllables db files: %w", err)

@@ -1,4 +1,4 @@
-// Package web is the http layer adapter for the GABCgen service.
+// Package web is the http layer adapter for the gabcgen service.
 package web
 
 import (

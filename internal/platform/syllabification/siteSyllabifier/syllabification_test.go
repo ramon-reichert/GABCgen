@@ -1,4 +1,4 @@
-package siteSyllabifier_test
+package sitesyllabifier_test
 
 import (
 	"context"
@@ -7,20 +7,20 @@ import (
 	"testing"
 
 	"github.com/matryer/is"
-	"github.com/ramon-reichert/GABCgen/internal/platform/syllabification/siteSyllabifier"
+	"github.com/ramon-reichert/gabcgen/internal/platform/syllabification/sitesyllabifier"
 )
 
 var ctx context.Context = context.Background()
 
 func TestSyllabify(t *testing.T) {
 	is := is.New(t)
-	syllabifier := siteSyllabifier.NewSyllabifier("test_liturgical_syllables.json", "test_user_syllables.json", "test_not_syllabified.txt")
+	syllabifier := sitesyllabifier.NewSyllabifier("test_liturgical_syllables.json", "test_user_syllables.json", "test_not_syllabified.txt")
 	is.NoErr(os.WriteFile("test_user_syllables.json", []byte("{}"), 0644)) //write an empty json file to the user syllables path
 
 	t.Run("fetch syllables from words that are already at liturgical syllabs db file", func(t *testing.T) {
 		is := is.New(t)
 
-		jsonWord := map[string]siteSyllabifier.SyllableInfo{
+		jsonWord := map[string]sitesyllabifier.SyllableInfo{
 			"litúrgicas": {
 				Slashed:    "fetched/in/liturgical/db",
 				TonicIndex: 2,
@@ -47,7 +47,7 @@ func TestSyllabify(t *testing.T) {
 
 		syllabifier.SaveSyllables()
 
-		jsonWord := map[string]siteSyllabifier.SyllableInfo{
+		jsonWord := map[string]sitesyllabifier.SyllableInfo{
 			newWord: {
 				Slashed:    slashed,
 				TonicIndex: tonicIndex,
