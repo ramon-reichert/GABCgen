@@ -29,7 +29,7 @@ func TestIntegrationGeneratePreface(t *testing.T) {
 		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)
 
-		expectedGABC := `<c><sp>V/</sp></c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(hg)co.(g) (::) <c><sp>R/</sp></c> E(f)<e>le</e> es(g)tá(h) no(h) me(h)io(f) de(g) nós.(hg) (::) (Z) <c><sp>V/</sp></c> Co(g)ra(h)ções(i) ao(h) al(gh)to.(gf) (::) <c><sp>R/</sp></c> O(h) nos(h)so(h) co(g)ra(h)cão(i) es(h)tá(g) em(h) Deus.(gf) (::) (Z) <c><sp>V/</sp></c> De(hg)mos(f) gra(fg)ças(h) ao(g) Se(h)nhor(ih) nos(gf)so(gh) Deus.(ghg) (::) <c><sp>R/</sp></c> É(g) no(g)sso(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::) (Z)
+		expectedGABC := `<c><sp>V/</sp></c> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <c><sp>R/</sp></c> E(e)<e>le</e> es(f)tá(g) no(g) me(g)io(e) de(f) nós.(gf) (::) (Z) <c><sp>V/</sp></c> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <c><sp>R/</sp></c> O(g) nos(g)so(g) co(f)ra(g)cão(h) es(g)tá(f) em(g) Deus.(fe) (::) (Z) <c><sp>V/</sp></c> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <c><sp>R/</sp></c> É(f) no(f)sso(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::) (Z)
 
 <c><sp>V/</sp></c> Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) jus(fg)to,(g) (;)
 é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) (;)
@@ -63,7 +63,7 @@ a(g) u(fe)ma(ef) só(g) voz:(fgf) (::)`
 		composedGABC, err := service.NewGabcGenAPI(syllabifier).GeneratePreface(ctx, "", inputText)
 		is.NoErr(err)
 
-		expectedGABC := `<c><sp>V/</sp></c> O(f) Se(g)nhor(h) es(h)te(h)ja(f) con(g)vos(hg)co.(g) (::) <c><sp>R/</sp></c> E(f)<e>le</e> es(g)tá(h) no(h) me(h)io(f) de(g) nós.(hg) (::) (Z) <c><sp>V/</sp></c> Co(g)ra(h)ções(i) ao(h) al(gh)to.(gf) (::) <c><sp>R/</sp></c> O(h) nos(h)so(h) co(g)ra(h)cão(i) es(h)tá(g) em(h) Deus.(gf) (::) (Z) <c><sp>V/</sp></c> De(hg)mos(f) gra(fg)ças(h) ao(g) Se(h)nhor(ih) nos(gf)so(gh) Deus.(ghg) (::) <c><sp>R/</sp></c> É(g) no(g)sso(g) de(h)ver(i) e(h) nos(h)sa(g) sal(h)va(g)ção.(gf) (::) (Z)
+		expectedGABC := `<c><sp>V/</sp></c> O(e) Se(f)nhor(g) es(g)te(g)ja(e) con(f)vos(gf)co.(f) (::) <c><sp>R/</sp></c> E(e)<e>le</e> es(f)tá(g) no(g) me(g)io(e) de(f) nós.(gf) (::) (Z) <c><sp>V/</sp></c> Co(f)ra(g)ções(h) ao(g) al(fg)to.(fe) (::) <c><sp>R/</sp></c> O(g) nos(g)so(g) co(f)ra(g)cão(h) es(g)tá(f) em(g) Deus.(fe) (::) (Z) <c><sp>V/</sp></c> De(gf)mos(e) gra(ef)ças(g) ao(f) Se(g)nhor(hg) nos(fe)so(fg) Deus.(fgf) (::) <c><sp>R/</sp></c> É(f) no(f)sso(f) de(g)ver(h) e(g) nos(g)sa(f) sal(g)va(f)ção.(fe) (::) (Z)
 
 <c><sp>V/</sp></c> Na(f) ver(h)da(h)de,(h) é(h) dig(h)no(g) e(gf) ||<i><c>directive in the middle</c></i>||(,) jus(fg)to,(g) (;)
 é(f) nos(h)so(h) de(h)ver(h) e(h) sal(h)va(h)ção(h) ||<i><c>second directive in the same sentence</c></i>||(,) pro(h)cla(h)mar(h) vos(h)sa(h) gló(h)ria,(h) ó(h) Pai,(h) em(h) to(h)do(gf) tem(fg)po,(g) ||<i><c>directive at the end of a firsts</c></i>||(;)
